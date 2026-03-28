@@ -90,7 +90,7 @@ const features = [
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
     ),
-    className: "lg:col-start-3 lg:row-start-1",
+    className: "lg:col-span-1 lg:col-start-3 lg:row-start-1",
   },
   {
     Icon: TrendingUp,
@@ -99,7 +99,7 @@ const features = [
     href: "#features",
     cta: "İncele",
     background: <CounterBackground />,
-    className: "lg:col-start-1 lg:row-start-2",
+    className: "lg:col-span-1 lg:col-start-1 lg:row-start-2",
   },
   {
     Icon: Bell,
@@ -110,7 +110,7 @@ const features = [
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-chart-3/5 to-transparent" />
     ),
-    className: "lg:col-start-2 lg:row-start-2",
+    className: "lg:col-span-1 lg:col-start-2 lg:row-start-2",
   },
   {
     Icon: Layers,
@@ -120,7 +120,7 @@ const features = [
     href: "#features",
     cta: "Tümü",
     background: <IntegrationsBackground />,
-    className: "lg:col-start-3 lg:row-start-2",
+    className: "lg:col-span-1 lg:col-start-3 lg:row-start-2",
   },
 ] as const;
 
