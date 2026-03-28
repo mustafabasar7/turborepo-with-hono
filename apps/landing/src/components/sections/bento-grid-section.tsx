@@ -30,11 +30,11 @@ const INTEGRATION_BADGES = [
 
 function SpinningAiBackground() {
   return (
-    <div className="absolute inset-0 flex items-center justify-center overflow-hidden opacity-20">
+    <div className="absolute inset-x-0 top-0 flex justify-center overflow-hidden opacity-15">
       <SpinningText
-        radius={10}
+        radius={7}
         duration={14}
-        className="text-lg font-bold text-primary"
+        className="text-sm font-bold text-primary"
       >
         {"AI • YAPAY ZEKA • AKILLI • "}
       </SpinningText>
