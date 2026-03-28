@@ -55,7 +55,7 @@ const BentoCard = ({
     )}
     {...props}
   >
-    <div className="min-h-20">{background}</div>
+    <div className="flex-1 overflow-hidden">{background}</div>
     <div className="p-4">
       <div className="pointer-events-none z-10 flex flex-col gap-1">
         <Icon className="h-12 w-12 origin-left text-neutral-700" />
