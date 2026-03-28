@@ -13,7 +13,14 @@ import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-primary/8 to-background py-20 md:py-32">
+    <section className="relative overflow-hidden bg-background py-20 md:py-32">
+      {/* Animated gradient orbs — pure Tailwind */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="motion-safe:animate-pulse absolute -top-32 left-1/2 size-[700px] -translate-x-1/2 rounded-full bg-primary/20 blur-3xl" />
+        <div className="motion-safe:animate-pulse absolute top-1/3 -left-32 size-[400px] rounded-full bg-primary/10 blur-3xl [animation-delay:1.5s] [animation-duration:4s]" />
+        <div className="motion-safe:animate-pulse absolute top-1/4 -right-32 size-[400px] rounded-full bg-primary/10 blur-3xl [animation-delay:3s] [animation-duration:5s]" />
+        <div className="motion-safe:animate-pulse absolute bottom-0 left-1/2 size-[500px] -translate-x-1/2 rounded-full bg-primary/8 blur-3xl [animation-delay:0.8s] [animation-duration:6s]" />
+      </div>
       {/* Floating icons */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-1/2 -z-10 size-[700px] -translate-x-1/2 rounded-full bg-primary/8 blur-3xl" />
