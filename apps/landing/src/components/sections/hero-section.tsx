@@ -2,93 +2,155 @@
 
 import React from "react";
 import Link from "next/link";
-import { Play, HardHat, Construction, Truck, Ruler, BrickWall } from "lucide-react";
+import { HardHat, Construction, Truck, Ruler, BrickWall } from "lucide-react";
 import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
 import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Particles } from "@/components/ui/particles";
+import { TextAnimate } from "@/components/ui/text-animate";
+import { WordRotate } from "@/components/ui/word-rotate";
+import { Meteors } from "@/components/ui/meteors";
+import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 to-background py-20 md:py-32">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-3xl" />
-        {/* Floating construction icons */}
-        <div className="absolute top-16 left-8 md:left-24 opacity-10 text-primary rotate-[-12deg]">
-          <HardHat className="w-12 h-12 md:w-16 md:h-16" />
+      {/* Interactive particle field */}
+      <Particles
+        className="pointer-events-none absolute inset-0"
+        quantity={60}
+        ease={80}
+        size={0.5}
+      />
+
+      {/* Meteor shower */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <Meteors number={10} minDuration={4} maxDuration={12} />
+      </div>
+
+      {/* Floating icons */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -z-10 size-[700px] -translate-x-1/2 rounded-full bg-primary/8 blur-3xl" />
+        <div className="absolute top-16 left-8 rotate-[-12deg] opacity-10 md:left-24">
+          <HardHat className="size-12 text-primary md:size-16" />
         </div>
-        <div className="absolute top-32 right-8 md:right-28 opacity-10 text-primary rotate-[10deg]">
-          <Construction className="w-10 h-10 md:w-14 md:h-14" />
+        <div className="absolute top-32 right-8 rotate-[10deg] opacity-10 md:right-28">
+          <Construction className="size-10 text-primary md:size-14" />
         </div>
-        <div className="absolute bottom-24 left-12 md:left-36 opacity-10 text-primary rotate-[8deg]">
-          <Truck className="w-10 h-10 md:w-12 md:h-12" />
+        <div className="absolute bottom-24 left-12 rotate-[8deg] opacity-10 md:left-36">
+          <Truck className="size-10 text-primary md:size-12" />
         </div>
-        <div className="absolute top-20 left-1/4 opacity-8 text-primary rotate-[-6deg]">
-          <Hammer size={36} animateOnView loop loopDelay={3000} />
+        <div className="absolute top-20 left-1/4 rotate-[-6deg] opacity-10">
+          <Hammer size={36} animateOnView loop loopDelay={3000} className="text-primary" />
         </div>
-        <div className="absolute bottom-32 right-12 md:right-40 opacity-10 text-primary rotate-[15deg]">
-          <Ruler className="w-8 h-8 md:w-12 md:h-12" />
+        <div className="absolute bottom-32 right-12 rotate-[15deg] opacity-10 md:right-40">
+          <Ruler className="size-8 text-primary md:size-12" />
         </div>
-        <div className="absolute top-48 right-1/4 opacity-8 text-primary rotate-[-8deg]">
-          <BrickWall className="w-8 h-8 md:w-10 md:h-10" />
+        <div className="absolute top-48 right-1/4 rotate-[-8deg] opacity-10">
+          <BrickWall className="size-8 text-primary md:size-10" />
         </div>
       </div>
 
-      <div className="container mx-auto px-4 text-center">
-        <Badge variant="secondary" className="mb-6 text-sm px-4 py-1.5">
-          Türkiye&apos;nin İnşaat ERP Platformu
-        </Badge>
+      <div className="container relative z-10 mx-auto px-4 text-center">
+        {/* Shiny badge */}
+        <div className="mb-6 flex justify-center">
+          <div className="inline-flex items-center gap-1.5 rounded-full border bg-background/70 px-4 py-1.5 text-sm backdrop-blur-sm">
+            <AnimatedShinyText shimmerWidth={150} className="font-medium">
+              Türkiye&apos;nin İnşaat ERP Platformu
+            </AnimatedShinyText>
+          </div>
+        </div>
 
-        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-6">
-          Maliyet Aşımı Bitti.{" "}
-          <span className="text-primary">Gecikme Bitti.</span>{" "}
-          Kontrol Sizde.
-        </h1>
+        {/* Animated headline */}
+        <TextAnimate
+          as="h1"
+          animation="blurInUp"
+          by="word"
+          duration={0.4}
+          className="mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+        >
+          {"Maliyet Aşımı Bitti."}
+        </TextAnimate>
 
-        <p className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl mb-10">
-          Şantiyeden ofise tek platform. Proje yönetimi, maliyet kontrolü,
-          kalite denetimi, saha operasyonları ve AI araçları — hepsi bir arada.
-        </p>
+        {/* Rotating tagline */}
+        <div className="mb-6 flex justify-center">
+          <WordRotate
+            words={[
+              "Gecikme Bitti.",
+              "Kaos Bitti.",
+              "Belirsizlik Bitti.",
+              "Kontrol Sizde.",
+            ]}
+            duration={2200}
+            className="text-4xl font-extrabold tracking-tight text-primary sm:text-5xl md:text-6xl lg:text-7xl"
+          />
+        </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button size="lg" className="text-base px-8" asChild>
+        <TextAnimate
+          as="p"
+          animation="blurIn"
+          by="word"
+          duration={0.6}
+          delay={0.4}
+          className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground md:text-xl"
+        >
+          {"Şantiyeden ofise tek platform. Proje yönetimi, maliyet kontrolü, kalite denetimi, saha operasyonları ve AI araçları — hepsi bir arada."}
+        </TextAnimate>
+
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Button size="lg" className="px-8 text-base" asChild>
             <Link href="#demo">
               Ücretsiz Demo Talep Et
               <ArrowRight data-icon="inline-end" animateOnHover />
             </Link>
           </Button>
-          <Button size="lg" variant="outline" className="text-base px-8" asChild>
-            <Link href="#features">
-              <Play className="mr-2 h-4 w-4" />
-              Özelliklere Bak
-            </Link>
+          <Button
+            size="lg"
+            variant="outline"
+            className="px-8 text-base backdrop-blur-sm"
+            asChild
+          >
+            <Link href="#features">Özelliklere Bak</Link>
           </Button>
         </div>
 
         {/* Trust badges */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <span className="flex items-center gap-1.5">✓ 14 gün ücretsiz deneme</span>
-          <span className="flex items-center gap-1.5">✓ Kredi kartı gerekmez</span>
-          <span className="flex items-center gap-1.5">✓ Kurulum 5 dakika</span>
-          <span className="flex items-center gap-1.5">✓ Türkçe destek</span>
+          {[
+            "14 gün ücretsiz deneme",
+            "Kredi kartı gerekmez",
+            "Kurulum 5 dakika",
+            "Türkçe destek",
+          ].map((item) => (
+            <span key={item} className="flex items-center gap-1.5">
+              ✓ {item}
+            </span>
+          ))}
         </div>
 
-        {/* Product mockup placeholder */}
-        <div className="mt-16 mx-auto max-w-5xl">
-          <div className="rounded-xl border bg-muted/50 shadow-2xl overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b bg-muted">
-              <div className="h-3 w-3 rounded-full bg-red-400" />
-              <div className="h-3 w-3 rounded-full bg-yellow-400" />
-              <div className="h-3 w-3 rounded-full bg-green-400" />
-              <div className="flex-1 mx-4 h-6 rounded bg-background/50" />
+        {/* Product mockup */}
+        <div className="mx-auto mt-16 max-w-5xl">
+          <div className="overflow-hidden rounded-xl border bg-muted/50 shadow-2xl">
+            <div className="flex items-center gap-2 border-b bg-muted px-4 py-3">
+              <div className="size-3 rounded-full bg-destructive/60" />
+              <div className="size-3 rounded-full bg-yellow-400/80" />
+              <div className="size-3 rounded-full bg-green-500/80" />
+              <div className="mx-4 h-6 flex-1 rounded bg-background/50" />
             </div>
-            <div className="aspect-[16/9] bg-gradient-to-br from-primary/15 to-secondary/15 flex items-center justify-center">
+            <div className="flex aspect-[16/9] items-center justify-center bg-gradient-to-br from-primary/15 to-secondary/15">
               <div className="text-center">
-                <Hammer size={60} animateOnView loop loopDelay={4000} className="text-primary mb-4 mx-auto" />
-                <p className="text-muted-foreground font-semibold text-lg">
+                <Hammer
+                  size={60}
+                  animateOnView
+                  loop
+                  loopDelay={4000}
+                  className="mx-auto mb-4 text-primary"
+                />
+                <p className="text-lg font-semibold text-muted-foreground">
                   İnşaat Kontrol — Dashboard
                 </p>
-                <p className="text-muted-foreground text-sm mt-1">
+                <p className="mt-1 text-sm text-muted-foreground">
                   Tüm projeleriniz, tek ekranda
                 </p>
               </div>

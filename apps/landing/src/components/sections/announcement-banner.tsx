@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { X } from "lucide-react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { Sparkles } from "@/components/animate-ui/icons/sparkles";
+import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
 
 export function AnnouncementBanner() {
   const [dismissed, setDismissed] = useState(false);
@@ -13,40 +14,41 @@ export function AnnouncementBanner() {
   if (dismissed) return null;
 
   return (
-    <Alert className="rounded-none border-x-0 border-t-0 bg-primary/10 border-primary/20 py-3 px-4">
-      <AlertDescription>
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex flex-1 flex-wrap items-center justify-center gap-2 text-sm">
-            <div className="flex items-center gap-1.5">
-              <Sparkles
-                size={16}
-                className="text-primary"
-                animateOnView
-                animateOnViewOnce={false}
-              />
-              <Badge variant="default" className="text-xs px-2 py-0.5">
-                Yeni
-              </Badge>
-            </div>
-            <span className="text-foreground">
-              AI Doküman Zekası özelliği yayında — Çizimlerinizden otomatik RFI
-              ve Submittal oluşturun.
-            </span>
-            <Button variant="link" size="sm" className="h-auto p-0 text-primary">
-              Dene →
-            </Button>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            aria-label="Kapat"
-            className="shrink-0 size-7 p-0 text-muted-foreground hover:text-foreground"
-            onClick={() => setDismissed(true)}
-          >
-            <X className="size-4" />
-          </Button>
-        </div>
-      </AlertDescription>
-    </Alert>
+    <div className="relative flex w-full items-center justify-center border-b border-primary/10 bg-primary/5 py-2 px-4">
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <Sparkles
+          size={14}
+          className="text-primary"
+          animateOnView
+          animateOnViewOnce={false}
+        />
+        <Badge variant="default" className="px-2 py-0 text-xs">
+          Yeni
+        </Badge>
+        <AnimatedShinyText shimmerWidth={150} className="text-sm font-medium">
+          AI Doküman Zekası yayında — Çizimlerinizden otomatik RFI oluşturun
+        </AnimatedShinyText>
+        <Button
+          variant="link"
+          size="sm"
+          className="h-auto gap-1 p-0 text-xs text-primary"
+          asChild
+        >
+          <a href="#features">
+            Dene
+            <ArrowRight size={12} animateOnHover />
+          </a>
+        </Button>
+      </div>
+      <Button
+        variant="ghost"
+        size="sm"
+        aria-label="Kapat"
+        className="absolute right-2 top-1/2 size-6 -translate-y-1/2 p-0 text-muted-foreground hover:text-foreground"
+        onClick={() => setDismissed(true)}
+      >
+        <X className="size-3" />
+      </Button>
+    </div>
   );
 }
