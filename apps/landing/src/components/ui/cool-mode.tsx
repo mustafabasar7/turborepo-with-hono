@@ -127,7 +127,7 @@ const applyParticleEffect = (
 
   function generateParticle() {
     const size =
-      options?.size || sizes[Math.floor(Math.random() * sizes.length)]
+      options?.size ?? sizes[Math.floor(Math.random() * sizes.length)] ?? 20
     const speedHorz = options?.speedHorz || Math.random() * 10
     const speedUp = options?.speedUp || Math.random() * 25
     const spinVal = Math.random() * 360
