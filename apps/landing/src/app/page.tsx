@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { AnnouncementBanner } from "@/components/sections/announcement-banner";
 import { HeroSection } from "@/components/sections/hero-section";
 import { LogoMarqueeSection } from "@/components/sections/logo-marquee-section";
 import { StatsSection } from "@/components/sections/stats-section";
@@ -26,7 +25,6 @@ import { DemoFormSection } from "@/components/sections/demo-form-section";
 export default function HomePage() {
   return (
     <>
-      <AnnouncementBanner />
       <Navbar />
       <main>
         <HeroSection />
