@@ -225,8 +225,8 @@ const applyParticleEffect = (
 
   const updateMousePosition = (e: MouseEvent | TouchEvent) => {
     if ("touches" in e) {
-      mouseX = e.touches?.[0].clientX
-      mouseY = e.touches?.[0].clientY
+      mouseX = e.touches[0]?.clientX ?? mouseX
+      mouseY = e.touches[0]?.clientY ?? mouseY
     } else {
       mouseX = e.clientX
       mouseY = e.clientY
