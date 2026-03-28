@@ -10,7 +10,6 @@ import { Badge } from "@/components/ui/badge";
 import { Particles } from "@/components/ui/particles";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { WordRotate } from "@/components/ui/word-rotate";
-import { Meteors } from "@/components/ui/meteors";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 
 export function HeroSection() {
@@ -23,11 +22,6 @@ export function HeroSection() {
         ease={80}
         size={0.5}
       />
-
-      {/* Meteor shower */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <Meteors number={10} minDuration={4} maxDuration={12} />
-      </div>
 
       {/* Floating icons */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -66,8 +60,8 @@ export function HeroSection() {
         <TextAnimate
           as="h1"
           animation="blurInUp"
-          by="word"
-          duration={0.4}
+          by="line"
+          duration={0.25}
           className="mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
         >
           {"Maliyet Aşımı Bitti."}
@@ -90,9 +84,9 @@ export function HeroSection() {
         <TextAnimate
           as="p"
           animation="blurIn"
-          by="word"
-          duration={0.6}
-          delay={0.4}
+          by="line"
+          duration={0.3}
+          delay={0.2}
           className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground md:text-xl"
         >
           {"Şantiyeden ofise tek platform. Proje yönetimi, maliyet kontrolü, kalite denetimi, saha operasyonları ve AI araçları — hepsi bir arada."}

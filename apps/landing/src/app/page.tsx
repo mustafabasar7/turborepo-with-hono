@@ -10,7 +10,6 @@ import { BentoGridSection } from "@/components/sections/bento-grid-section";
 import { ComparisonTableSection } from "@/components/sections/comparison-table-section";
 import { ProductShowcaseSection } from "@/components/sections/product-showcase-section";
 import { VideoDemoSection } from "@/components/sections/video-demo-section";
-import { RoiCalculatorSection } from "@/components/sections/roi-calculator-section";
 import { UseCasesSection } from "@/components/sections/use-cases-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { MobileSection } from "@/components/sections/mobile-section";
@@ -39,7 +38,6 @@ export default function HomePage() {
         <ComparisonTableSection />
         <ProductShowcaseSection />
         <VideoDemoSection />
-        <RoiCalculatorSection />
         <UseCasesSection />
         <HowItWorksSection />
         <MobileSection />
