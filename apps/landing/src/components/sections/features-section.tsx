@@ -15,7 +15,13 @@ import {
   Wrench,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FEATURES } from "@/lib/constants";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -54,10 +60,6 @@ const CATEGORIES = [
 ];
 
 export function FeaturesSection() {
-  const [activeCategory, setActiveCategory] = useState<"sahada" | "ofiste" | "zekice">("sahada");
-
-  const filtered = FEATURES.filter((f) => f.category === activeCategory);
-
   return (
     <section id="features" className="py-20">
       <div className="container mx-auto px-4">
@@ -72,58 +74,64 @@ export function FeaturesSection() {
           </p>
         </div>
 
-        {/* Category tabs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              onClick={() => setActiveCategory(cat.id)}
-              className={cn(
-                "flex flex-col items-center gap-1 rounded-xl border px-8 py-4 text-sm font-medium transition-colors w-full sm:w-auto",
-                activeCategory === cat.id
-                  ? "bg-primary text-primary-foreground border-primary shadow-md"
-                  : "bg-background text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
-              )}
-            >
-              <span className="text-2xl">{cat.emoji}</span>
-              <span className="font-semibold">{cat.label}</span>
-              <span className="text-xs opacity-80">{cat.description}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Feature cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {filtered.map((feature) => {
-            const Icon = ICON_MAP[feature.icon];
-            return (
-              <div
-                key={feature.title}
-                className="flex gap-4 rounded-xl border bg-card p-5 hover:shadow-md transition-shadow"
+        {/* shadcn Tabs — MCP'den alındı */}
+        <Tabs defaultValue="sahada" className="max-w-5xl mx-auto">
+          <TabsList className="flex h-auto gap-2 bg-transparent justify-center mb-10 flex-wrap">
+            {CATEGORIES.map((cat) => (
+              <TabsTrigger
+                key={cat.id}
+                value={cat.id}
+                className="flex flex-col items-center gap-1 rounded-xl border px-8 py-4 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-md border-border text-muted-foreground hover:text-foreground transition-all h-auto"
               >
-                {Icon && (
-                  <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 mt-0.5">
-                    <Icon className="h-5 w-5 text-primary" />
-                  </div>
-                )}
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-semibold text-sm">{feature.title}</h3>
-                    {feature.badge && (
-                      <Badge variant="default" className="text-xs px-1.5 py-0">
-                        {feature.badge}
-                      </Badge>
-                    )}
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
+                <span className="text-2xl">{cat.emoji}</span>
+                <span className="font-semibold text-sm">{cat.label}</span>
+                <span className="text-xs opacity-80 hidden sm:block">{cat.description}</span>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {CATEGORIES.map((cat) => (
+            <TabsContent key={cat.id} value={cat.id}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {FEATURES.filter((f) => f.category === cat.id).map((feature) => {
+                  const Icon = ICON_MAP[feature.icon];
+                  return (
+                    <Tooltip key={feature.title}>
+                      <TooltipTrigger asChild>
+                        <Card className="cursor-default hover:shadow-md transition-shadow hover:border-primary/40">
+                          <CardContent className="flex gap-4 p-5">
+                            {Icon && (
+                              <div className="flex-shrink-0 flex size-10 items-center justify-center rounded-lg bg-primary/10 mt-0.5">
+                                <Icon className="size-5 text-primary" />
+                              </div>
+                            )}
+                            <div className="min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <h3 className="font-semibold text-sm">{feature.title}</h3>
+                                {feature.badge && (
+                                  <Badge variant="default" className="text-xs px-1.5 py-0">
+                                    {feature.badge}
+                                  </Badge>
+                                )}
+                              </div>
+                              <p className="text-xs text-muted-foreground leading-relaxed">
+                                {feature.description}
+                              </p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="max-w-xs text-center">
+                        <p className="font-medium">{feature.title}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{feature.description}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </section>
   );
