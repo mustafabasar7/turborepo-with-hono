@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Github, Twitter } from "lucide-react";
+import { Menu, Hammer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -16,6 +16,8 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -24,22 +26,21 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Hammer } from "@/components/animate-ui/icons/hammer";
-import { NAV_LINKS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
-const FEATURE_ITEMS = [
-  { label: "Saha Operasyonları", href: "#features" },
-  { label: "Maliyet Kontrolü", href: "#features" },
-  { label: "Kalite & Güvenlik", href: "#features" },
-  { label: "Doküman Zekası", href: "#features" },
-  { label: "AI Araçları", href: "#features" },
+const PRODUCT_ITEMS = [
+  { label: "Özellikler", href: "#features", description: "Saha, ofis ve AI araçları" },
+  { label: "Platform Özeti", href: "#showcase", description: "Ürünü yakından gör" },
+  { label: "Kullanım Alanları", href: "#use-cases", description: "Senaryoya göre incele" },
+  { label: "Entegrasyonlar", href: "#integrations", description: "40+ araçla bağlantı" },
+  { label: "Nasıl Çalışır", href: "#how-it-works", description: "5 adımda başla" },
 ] as const;
 
-// NAV_LINKS excluding "Özellikler" — shown via DropdownMenu instead
-const SECONDARY_NAV_LINKS = NAV_LINKS.filter(
-  (link) => link.label !== "Özellikler"
-);
+const SECONDARY_NAV = [
+  { label: "Fiyatlandırma", href: "#pricing" },
+  { label: "Referanslar", href: "#testimonials" },
+  { label: "SSS", href: "#faq" },
+] as const;
 
 export function Navbar() {
   return (
@@ -47,48 +48,46 @@ export function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Hammer className="size-7 text-primary" />
-          <span className="text-lg font-bold">İnşaat Kontrol</span>
-          <Badge variant="secondary" className="text-xs">
-            v2.0
-          </Badge>
+          <Hammer className="size-5 text-primary" />
+          <span className="text-lg font-bold tracking-tight">İnşaat Kontrol</span>
+          <Badge variant="secondary" className="text-xs">Beta</Badge>
         </Link>
 
         {/* Desktop Nav */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList>
-            {/* Özellikler — DropdownMenu */}
+            {/* Ürün dropdown */}
             <NavigationMenuItem>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      "flex items-center gap-1"
-                    )}
-                  >
-                    Özellikler
-                    <span className="text-[10px] opacity-60">▼</span>
+                  <button className={cn(navigationMenuTriggerStyle(), "gap-1")}>
+                    Ürün
+                    <span className="text-[10px] opacity-50">▾</span>
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-52">
+                <DropdownMenuContent align="start" className="w-64">
+                  <DropdownMenuLabel className="text-xs text-muted-foreground font-normal">Platform</DropdownMenuLabel>
                   <DropdownMenuGroup>
-                    {FEATURE_ITEMS.map((item) => (
+                    {PRODUCT_ITEMS.map((item) => (
                       <DropdownMenuItem key={item.label} asChild>
-                        <Link href={item.href}>{item.label}</Link>
+                        <Link href={item.href} className="flex flex-col items-start gap-0.5">
+                          <span className="font-medium">{item.label}</span>
+                          <span className="text-xs text-muted-foreground">{item.description}</span>
+                        </Link>
                       </DropdownMenuItem>
                     ))}
                   </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="#demo" className="font-medium text-primary">Demo Talep Et →</Link>
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </NavigationMenuItem>
 
-            {SECONDARY_NAV_LINKS.map((link) => (
+            {SECONDARY_NAV.map((link) => (
               <NavigationMenuItem key={link.href}>
-                <NavigationMenuLink
-                  asChild
-                  className={navigationMenuTriggerStyle()}
-                >
+                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                   <Link href={link.href}>{link.label}</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -97,7 +96,7 @@ export function Navbar() {
         </NavigationMenu>
 
         {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden items-center gap-3 md:flex">
           <Button variant="ghost" size="sm" asChild>
             <Link href="#demo">Giriş Yap</Link>
           </Button>
@@ -106,36 +105,27 @@ export function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile — Sheet drawer (side="left") */}
+        {/* Mobile — Sheet drawer */}
         <Sheet>
           <SheetTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              aria-label="Menüyü aç"
-            >
-              <Menu className="size-6" />
+            <Button variant="ghost" size="icon" className="md:hidden" aria-label="Menüyü aç">
+              <Menu className="size-5" />
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-72 px-0">
             <SheetTitle className="sr-only">Navigasyon Menüsü</SheetTitle>
 
-            {/* Sheet Logo */}
             <div className="flex items-center gap-2 border-b px-6 pb-4 pt-2">
-              <Hammer className="size-6 text-primary" />
+              <Hammer className="size-5 text-primary" />
               <span className="font-bold">İnşaat Kontrol</span>
-              <Badge variant="secondary" className="text-xs">
-                v2.0
-              </Badge>
+              <Badge variant="secondary" className="text-xs">Beta</Badge>
             </div>
 
             <nav className="flex flex-col gap-1 px-3 pt-4">
-              {/* Özellikler group */}
-              <p className="px-3 pt-2 pb-1 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Özellikler
+              <p className="px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Ürün
               </p>
-              {FEATURE_ITEMS.map((item) => (
+              {PRODUCT_ITEMS.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
@@ -145,9 +135,8 @@ export function Navbar() {
                 </Link>
               ))}
 
-              {/* Other nav links */}
               <div className="my-2 border-t" />
-              {SECONDARY_NAV_LINKS.map((link) => (
+              {SECONDARY_NAV.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -157,7 +146,6 @@ export function Navbar() {
                 </Link>
               ))}
 
-              {/* CTA buttons */}
               <div className="mt-4 flex flex-col gap-2 border-t pt-4">
                 <Button variant="outline" size="sm" asChild>
                   <Link href="#demo">Giriş Yap</Link>

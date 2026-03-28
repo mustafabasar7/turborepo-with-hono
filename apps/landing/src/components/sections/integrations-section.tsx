@@ -137,7 +137,7 @@ function AnimatedBeamDemo() {
 
 export function IntegrationsSection() {
   return (
-    <section className="bg-muted/30 py-24">
+    <section id="integrations" className="bg-muted/30 py-24">
       <div className="mx-auto max-w-6xl px-4">
         <BlurFade delay={0.1} inView>
           <div className="mb-12 flex flex-col items-center gap-4 text-center">
