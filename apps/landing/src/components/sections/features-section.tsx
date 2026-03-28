@@ -132,6 +132,8 @@ export function FeaturesSection() {
                               <MagicCard
                                 className="rounded-xl"
                                 gradientSize={150}
+                                gradientColor="hsl(var(--primary))"
+                                gradientOpacity={0.08}
                               >
                                 <div className="flex gap-4 p-5">
                                   {Icon && (

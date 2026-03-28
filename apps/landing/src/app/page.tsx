@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/layout/navbar";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
 import { LogoMarqueeSection } from "@/components/sections/logo-marquee-section";
@@ -50,6 +51,7 @@ export default function HomePage() {
         <DemoFormSection />
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }

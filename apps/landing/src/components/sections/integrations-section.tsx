@@ -103,7 +103,7 @@ function AnimatedBeamDemo() {
         ))}
       </div>
 
-      {/* Animated beams — left to center (4 beams only) */}
+      {/* Animated beams — left to center */}
       {leftRefs.map((ref, i) => (
         <AnimatedBeam
           key={`left-${i}`}
@@ -115,6 +115,20 @@ function AnimatedBeamDemo() {
           duration={5}
           gradientStartColor="hsl(var(--primary))"
           gradientStopColor="hsl(var(--chart-2))"
+        />
+      ))}
+      {/* Animated beams — center to right */}
+      {rightRefs.map((ref, i) => (
+        <AnimatedBeam
+          key={`right-${i}`}
+          containerRef={containerRef}
+          fromRef={centerRef}
+          toRef={ref}
+          curvature={i % 2 === 0 ? -30 : 30}
+          delay={i * 0.6 + 0.3}
+          duration={5}
+          gradientStartColor="hsl(var(--chart-2))"
+          gradientStopColor="hsl(var(--primary))"
         />
       ))}
     </div>
