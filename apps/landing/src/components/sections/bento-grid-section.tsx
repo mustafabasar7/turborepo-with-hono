@@ -44,7 +44,7 @@ function SpinningAiBackground() {
 
 function IntegrationsBackground() {
   return (
-    <div className="absolute inset-x-0 top-0 overflow-hidden p-4">
+    <div className="absolute inset-x-0 top-0 h-20 overflow-hidden p-4">
       <Marquee pauseOnHover className="[--duration:20s] [--gap:0.5rem]">
         {INTEGRATION_BADGES.map((name) => (
           <span
@@ -79,7 +79,7 @@ const features = [
     href: "#features",
     cta: "Keşfet",
     background: <SpinningAiBackground />,
-    className: "lg:col-span-2 lg:row-start-1",
+    className: "lg:col-span-2",
   },
   {
     Icon: Activity,
@@ -90,7 +90,7 @@ const features = [
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
     ),
-    className: "lg:col-span-1 lg:col-start-3 lg:row-start-1",
+    className: "lg:col-span-1",
   },
   {
     Icon: TrendingUp,
@@ -99,7 +99,7 @@ const features = [
     href: "#features",
     cta: "İncele",
     background: <CounterBackground />,
-    className: "lg:col-span-1 lg:col-start-1 lg:row-start-2",
+    className: "lg:col-span-1",
   },
   {
     Icon: Bell,
@@ -110,7 +110,7 @@ const features = [
     background: (
       <div className="absolute inset-0 bg-gradient-to-br from-chart-3/5 to-transparent" />
     ),
-    className: "lg:col-span-1 lg:col-start-2 lg:row-start-2",
+    className: "lg:col-span-1",
   },
   {
     Icon: Layers,
@@ -120,7 +120,7 @@ const features = [
     href: "#features",
     cta: "Tümü",
     background: <IntegrationsBackground />,
-    className: "lg:col-span-1 lg:col-start-3 lg:row-start-2",
+    className: "lg:col-span-1",
   },
 ] as const;
 
@@ -144,7 +144,7 @@ export function BentoGridSection() {
         </BlurFade>
 
         <BlurFade delay={0.2} inView>
-          <BentoGrid className="mx-auto max-w-5xl lg:grid-rows-2">
+          <BentoGrid className="mx-auto max-w-5xl">
             {features.map((feature) => (
               <BentoCard key={feature.name} {...feature} />
             ))}
