@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "hono": "^4.8.10",
-    "@repo/constants": "workspace:*"
+    "@repo/constants": "workspace:*",
+    "better-auth": "^1",
+    "@repo/db": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
