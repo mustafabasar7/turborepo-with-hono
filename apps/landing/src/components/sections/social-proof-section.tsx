@@ -47,7 +47,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "Kamera entegrasyonu ile sahayı ofisten izleyebilmek inanılmaz fark yarattı. Artık her gün şantiyeye gitmek zorunda değilim.",
+      "Kamera entegrasyonu harika — yapay zeka ekipman takmayan işçiyi anında tespit ediyor. Ben fark etmeden sistem uyarı veriyor, artık sahaya gitme zorunluluğum kalmadı.",
     name: "Osman Tunç",
     title: "İnşaat Direktörü",
     initials: "OT",
