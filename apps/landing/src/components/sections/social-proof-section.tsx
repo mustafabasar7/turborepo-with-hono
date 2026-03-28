@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { Star } from "lucide-react";
+import { Star } from "@/components/animate-ui/icons/star";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -58,7 +60,7 @@ function StarRating() {
   return (
     <div className="flex gap-0.5 mb-3">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} className="size-4 fill-primary text-primary" />
+        <Star key={i} size={16} className="fill-primary text-primary" animateOnView animateOnViewOnce={false} delay={i * 100} />
       ))}
     </div>
   );

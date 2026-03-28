@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, HardHat, Construction, Building2 } from "lucide-react";
+import { HardHat, Construction, Building2 } from "lucide-react";
+import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
+import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { Button } from "@/components/ui/button";
 
 export function CtaSection() {
@@ -16,7 +20,7 @@ export function CtaSection() {
 
       <div className="container mx-auto px-4 text-center relative z-10">
         <div className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 px-4 py-1.5 text-sm font-medium mb-6">
-          <HardHat className="size-4" />
+          <Hammer size={16} animateOnView />
           14 gün ücretsiz, kredi kartı gerekmez
         </div>
 
@@ -37,7 +41,7 @@ export function CtaSection() {
           >
             <Link href="#demo">
               Ücretsiz Demo Talep Et
-              <ArrowRight className="ml-2 size-5" />
+              <ArrowRight data-icon="inline-end" animateOnHover />
             </Link>
           </Button>
           <Button

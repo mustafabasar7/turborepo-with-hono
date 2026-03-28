@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
+import { Check } from "@/components/animate-ui/icons/check";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
@@ -235,7 +236,7 @@ export function PricingSection() {
                   <ul className="flex flex-col gap-3">
                     {plan.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-2 text-sm">
-                        <Check className="size-4 text-primary flex-shrink-0" />
+                        <Check size={16} className="text-primary flex-shrink-0" animateOnView />
                         <span>{feature}</span>
                       </li>
                     ))}

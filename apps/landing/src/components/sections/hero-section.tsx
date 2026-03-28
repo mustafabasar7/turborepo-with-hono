@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Play, HardHat, Construction, Truck, Hammer, Ruler, BrickWall } from "lucide-react";
+import { Play, HardHat, Construction, Truck, Ruler, BrickWall } from "lucide-react";
+import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
+import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -20,7 +24,7 @@ export function HeroSection() {
           <Truck className="w-10 h-10 md:w-12 md:h-12" />
         </div>
         <div className="absolute top-20 left-1/4 opacity-8 text-primary rotate-[-6deg]">
-          <Hammer className="w-8 h-8 md:w-10 md:h-10" />
+          <Hammer size={36} animateOnView loop loopDelay={3000} />
         </div>
         <div className="absolute bottom-32 right-12 md:right-40 opacity-10 text-primary rotate-[15deg]">
           <Ruler className="w-8 h-8 md:w-12 md:h-12" />
@@ -50,7 +54,7 @@ export function HeroSection() {
           <Button size="lg" className="text-base px-8" asChild>
             <Link href="#demo">
               Ücretsiz Demo Talep Et
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight data-icon="inline-end" animateOnHover />
             </Link>
           </Button>
           <Button size="lg" variant="outline" className="text-base px-8" asChild>

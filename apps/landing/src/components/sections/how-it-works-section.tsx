@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
-import { ClipboardList, Building2, UserPlus, MonitorSmartphone } from "lucide-react";
+import { Building2, UserPlus, MonitorSmartphone } from "lucide-react";
+import { ClipboardList } from "@/components/animate-ui/icons/clipboard-list";
+import { Settings } from "@/components/animate-ui/icons/settings";
 import { Badge } from "@/components/ui/badge";
 import { HOW_IT_WORKS_STEPS } from "@/lib/constants";
 
-const STEP_ICONS = [ClipboardList, Building2, UserPlus, MonitorSmartphone];
+type LucideIcon = React.ComponentType<{ className?: string }>;
+const STEP_ICONS_LUCIDE: (LucideIcon | null)[] = [null, Building2, UserPlus, MonitorSmartphone];
 const STEP_COLORS = [
   "bg-amber-100 text-amber-700",
   "bg-blue-100 text-blue-700",
@@ -16,7 +21,10 @@ export function HowItWorksSection() {
     <section id="how-it-works" className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">Nasıl Çalışır</Badge>
+          <Badge variant="secondary" className="mb-4 gap-1">
+            <Settings size={14} animateOnView />
+            Nasıl Çalışır
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
             4 Adımda Başlayın
           </h2>
@@ -31,13 +39,15 @@ export function HowItWorksSection() {
             <div className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-0.5 bg-border z-0" />
 
             {HOW_IT_WORKS_STEPS.map((step, index) => {
-              const Icon = STEP_ICONS[index];
+              const LucideIcon = STEP_ICONS_LUCIDE[index];
               const colorClass = STEP_COLORS[index] ?? STEP_COLORS[0];
               return (
                 <div key={step.step} className="relative flex flex-col items-center text-center z-10">
                   {/* Icon circle */}
                   <div className={`flex size-20 items-center justify-center rounded-2xl ${colorClass} mb-4 shadow-sm`}>
-                    {Icon && <Icon className="size-9" />}
+                    {index === 0
+                      ? <ClipboardList size={36} animateOnView />
+                      : LucideIcon && <LucideIcon className="size-9" />}
                   </div>
 
                   {/* Step number badge */}

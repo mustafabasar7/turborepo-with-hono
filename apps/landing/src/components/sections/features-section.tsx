@@ -1,19 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   Building2,
   Ruler,
   HardHat,
-  Sparkles,
   FileText,
-  BarChart3,
-  Users,
-  Camera,
   Truck,
   Construction,
   Wrench,
 } from "lucide-react";
+import { Sparkles } from "@/components/animate-ui/icons/sparkles";
+import { ChartBarIncreasing } from "@/components/animate-ui/icons/chart-bar-increasing";
+import { UsersRound } from "@/components/animate-ui/icons/users-round";
+import { Cctv } from "@/components/animate-ui/icons/cctv";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -24,15 +24,15 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FEATURES } from "@/lib/constants";
 
-const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: number; animateOnView?: boolean }>> = {
   Building2,
   Ruler,
   HardHat,
   Sparkles,
   FileText,
-  BarChart3,
-  Users,
-  Camera,
+  BarChart3: ChartBarIncreasing,
+  Users: UsersRound,
+  Camera: Cctv,
   Truck,
   Construction,
   Wrench,
@@ -64,7 +64,10 @@ export function FeaturesSection() {
     <section id="features" className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <Badge variant="secondary" className="mb-4">Özellikler</Badge>
+          <Badge variant="secondary" className="mb-4 gap-1">
+            <Sparkles size={14} animateOnView />
+            Özellikler
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
             Her İhtiyacınız İçin Kapsamlı Çözümler
           </h2>
@@ -102,7 +105,7 @@ export function FeaturesSection() {
                           <CardContent className="flex gap-4 p-5">
                             {Icon && (
                               <div className="flex-shrink-0 flex size-10 items-center justify-center rounded-lg bg-primary/10 mt-0.5">
-                                <Icon className="size-5 text-primary" />
+                                <Icon size={20} className="text-primary" animateOnView />
                               </div>
                             )}
                             <div className="min-w-0">
