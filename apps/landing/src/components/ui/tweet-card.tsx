@@ -191,7 +191,7 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
           playsInline
           className="rounded-xl border shadow-sm"
         >
-          <source src={tweet.video.variants[0].src} type="video/mp4" />
+          <source src={tweet.video.variants[0]?.src} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       )}
