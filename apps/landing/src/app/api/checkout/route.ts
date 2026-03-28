@@ -2,15 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { createRequire } from "module";
 import { v4 as uuidv4 } from "uuid";
 
-// iyzipay CommonJS modülü
+// iyzipay CommonJS modülü — build zamanında değil, request zamanında başlatılır
 const require = createRequire(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const Iyzipay = require("iyzipay");
 
-const iyzipay = new Iyzipay({
-  apiKey: process.env.IYZICO_API_KEY ?? "",
-  secretKey: process.env.IYZICO_SECRET_KEY ?? "",
-  uri: process.env.IYZICO_BASE_URL ?? "https://sandbox-api.iyzipay.com",
-});
+function getIyzipay() {
+  return new Iyzipay({
+    apiKey: process.env.IYZICO_API_KEY ?? "",
+    secretKey: process.env.IYZICO_SECRET_KEY ?? "",
+    uri: process.env.IYZICO_BASE_URL ?? "https://sandbox-api.iyzipay.com",
+  });
+}
 
 interface CheckoutRequest {
   planReferenceCode: string;
@@ -26,6 +29,7 @@ function initializeCheckoutForm(params: object): Promise<{
   checkoutFormContent: string;
 }> {
   return new Promise((resolve, reject) => {
+    const iyzipay = getIyzipay();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (iyzipay.subscriptionCheckoutForm as any).initialize(
       params,
