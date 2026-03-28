@@ -45,7 +45,7 @@ export function LogoMarqueeSection() {
       <Separator />
       <div className="relative overflow-hidden py-8">
         <p className="mb-5 text-center text-sm font-medium text-muted-foreground">
-          100+ inşaat firması güveniyor
+          20+ inşaat firması güveniyor
         </p>
 
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
