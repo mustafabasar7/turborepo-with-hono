@@ -100,7 +100,7 @@ export function UseCasesSection() {
         </div>
 
         <Tabs defaultValue="mteahhit" className="max-w-4xl mx-auto">
-          <TabsList className="flex h-auto gap-2 bg-transparent justify-center mb-8 flex-wrap">
+          <TabsList className="grid h-auto grid-cols-2 gap-2 bg-transparent mb-8 sm:grid-cols-4">
             {PERSONAS.map((p) => (
               <TabsTrigger
                 key={p.id}
