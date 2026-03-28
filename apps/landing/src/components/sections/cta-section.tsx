@@ -59,9 +59,9 @@ export function CtaSection() {
               shimmerColor="#ffffff"
               shimmerDuration="2.5s"
               borderRadius="8px"
-              className="px-8 py-3 text-base font-semibold"
+              className="px-8 py-3 text-base font-semibold text-white"
             >
-              <Link href="#features" className="flex items-center gap-2">
+              <Link href="#features" className="flex items-center gap-2 text-white">
                 Özelliklere Bak
               </Link>
             </ShimmerButton>

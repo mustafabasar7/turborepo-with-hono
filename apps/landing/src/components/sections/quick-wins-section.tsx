@@ -25,7 +25,7 @@ const WINS = [
   {
     day: "Gün 3",
     title: "Saha Ekibi Aktif",
-    description: "Mobil uygulama ile saha logları giriliyor, ofis anlık takip ediyor.",
+    description: "Mobil görünüm ile saha logları giriliyor, ofis anlık takip ediyor.",
     value: 45,
     metric: "Telefon trafiği %70 azalır",
   },

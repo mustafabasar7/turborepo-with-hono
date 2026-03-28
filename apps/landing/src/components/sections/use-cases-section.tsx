@@ -41,7 +41,7 @@ const PERSONAS = [
       "Sabah 7'de sahaya geldiğimde günlük logu giriyorum, mühendisler ofiste anında görüyor.",
     pain: "Telefon ve WhatsApp ile koordinasyon kaybı",
     gains: [
-      "Günlük saha logu mobil uygulamadan",
+      "Günlük saha logu mobil görünümden",
       "Ekipman ve personel anlık takip",
       "Near-miss ve güvenlik kaydı",
       "İnternet olmadan çalışır",

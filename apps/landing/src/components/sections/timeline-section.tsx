@@ -27,7 +27,7 @@ const MILESTONES: Milestone[] = [
     period: "Q1 2024",
     title: "Platform Lansmanı",
     description: "Temel proje yönetimi ve maliyet kontrolü modülleri.",
-    items: ["Proje yönetimi", "Maliyet takibi", "Hakediş modülü", "Mobil uygulama (beta)"],
+    items: ["Proje yönetimi", "Maliyet takibi", "Hakediş modülü", "Mobil görünüm (beta)"],
     status: "done",
   },
   {

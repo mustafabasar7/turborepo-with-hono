@@ -122,7 +122,7 @@ export const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
     step: 4,
     title: "Sahadan Yönetin",
     description:
-      "Mobil uygulama veya masaüstünden gerçek zamanlı veri alın; kararlarınızı veriye dayandırın.",
+      "Mobil görünüm veya masaüstünden gerçek zamanlı veri alın; kararlarınızı veriye dayandırın.",
   },
 ];
 
@@ -207,7 +207,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Şantiye personeli teknik bilgi olmadan kullanabilir mi?",
     answer:
-      "Evet. Mobil uygulama saha personeli için özel olarak tasarlandı: fotoğraf çek, log gir, kontrol listesini onayla. Teknik bilgi gerektiren adım yok. Ortalama öğrenme süresi 20 dakika.",
+      "Evet. Mobil görünüm saha personeli için özel olarak tasarlandı: fotoğraf çek, log gir, kontrol listesini onayla. Teknik bilgi gerektiren adım yok. Ortalama öğrenme süresi 20 dakika.",
   },
   {
     question: "Birden fazla şantiyeyi aynı anda takip edebilir miyim?",
