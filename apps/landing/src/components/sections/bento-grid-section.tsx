@@ -49,7 +49,7 @@ function IntegrationsBackground() {
         {INTEGRATION_BADGES.map((name) => (
           <span
             key={name}
-            className="rounded-full border bg-background px-3 py-1 text-xs font-medium text-muted-foreground"
+            className="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
           >
             {name}
           </span>
@@ -126,7 +126,7 @@ const features = [
 
 export function BentoGridSection() {
   return (
-    <section className="py-20">
+    <section className="bg-muted/30 py-20">
       <div className="container mx-auto px-4">
         <BlurFade delay={0.1} inView>
           <div className="mb-12 text-center">
