@@ -7,7 +7,6 @@ import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
 import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Particles } from "@/components/ui/particles";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
@@ -15,14 +14,6 @@ import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 to-background py-20 md:py-32">
-      {/* Interactive particle field */}
-      <Particles
-        className="pointer-events-none absolute inset-0"
-        quantity={60}
-        ease={80}
-        size={0.5}
-      />
-
       {/* Floating icons */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-1/2 -z-10 size-[700px] -translate-x-1/2 rounded-full bg-primary/8 blur-3xl" />
