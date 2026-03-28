@@ -2,34 +2,34 @@
 
 import React, { useState } from "react";
 import {
-  LayoutDashboard,
-  TrendingUp,
-  ShieldCheck,
+  Building2,
+  Ruler,
   HardHat,
   Sparkles,
   FileText,
   BarChart3,
-  AlertTriangle,
   Users,
   Camera,
   Truck,
+  Construction,
+  Wrench,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { FEATURES } from "@/lib/constants";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
-  LayoutDashboard,
-  TrendingUp,
-  ShieldCheck,
+  Building2,
+  Ruler,
   HardHat,
   Sparkles,
   FileText,
   BarChart3,
-  AlertTriangle,
   Users,
   Camera,
   Truck,
+  Construction,
+  Wrench,
 };
 
 const CATEGORIES = [

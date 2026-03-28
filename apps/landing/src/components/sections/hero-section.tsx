@@ -1,14 +1,33 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Play, HardHat, Construction, Truck, Hammer, Ruler, BrickWall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 to-background py-20 md:py-32">
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-3xl" />
+        {/* Floating construction icons */}
+        <div className="absolute top-16 left-8 md:left-24 opacity-10 text-primary rotate-[-12deg]">
+          <HardHat className="w-12 h-12 md:w-16 md:h-16" />
+        </div>
+        <div className="absolute top-32 right-8 md:right-28 opacity-10 text-primary rotate-[10deg]">
+          <Construction className="w-10 h-10 md:w-14 md:h-14" />
+        </div>
+        <div className="absolute bottom-24 left-12 md:left-36 opacity-10 text-primary rotate-[8deg]">
+          <Truck className="w-10 h-10 md:w-12 md:h-12" />
+        </div>
+        <div className="absolute top-20 left-1/4 opacity-8 text-primary rotate-[-6deg]">
+          <Hammer className="w-8 h-8 md:w-10 md:h-10" />
+        </div>
+        <div className="absolute bottom-32 right-12 md:right-40 opacity-10 text-primary rotate-[15deg]">
+          <Ruler className="w-8 h-8 md:w-12 md:h-12" />
+        </div>
+        <div className="absolute top-48 right-1/4 opacity-8 text-primary rotate-[-8deg]">
+          <BrickWall className="w-8 h-8 md:w-10 md:h-10" />
+        </div>
       </div>
 
       <div className="container mx-auto px-4 text-center">

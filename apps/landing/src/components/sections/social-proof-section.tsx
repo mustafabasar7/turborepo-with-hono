@@ -1,5 +1,15 @@
 import React from "react";
+import { Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const TESTIMONIALS = [
   {
@@ -8,6 +18,7 @@ const TESTIMONIALS = [
     name: "Mehmet Yıldız",
     title: "Müteahhit Firma Sahibi",
     initials: "MY",
+    color: "bg-amber-500",
   },
   {
     quote:
@@ -15,6 +26,7 @@ const TESTIMONIALS = [
     name: "Hasan Çelik",
     title: "Şantiye Şefi",
     initials: "HÇ",
+    color: "bg-blue-500",
   },
   {
     quote:
@@ -22,12 +34,39 @@ const TESTIMONIALS = [
     name: "Ayşe Kara",
     title: "Proje Müdürü",
     initials: "AK",
+    color: "bg-green-600",
+  },
+  {
+    quote:
+      "Risk matrisini ilk gördüğümde şaşırdım. Olasılık × etki bazlı görsel matris tam ihtiyacımız olan şeydi. Artık riskleri proaktif yönetiyoruz.",
+    name: "Kemal Arslan",
+    title: "İnşaat Proje Direktörü",
+    initials: "KA",
+    color: "bg-purple-600",
+  },
+  {
+    quote:
+      "AI araçları sayesinde saha talimatlarını çok daha hızlı oluşturuyorum. Malzeme önerileri de gerçekten isabetli çıkıyor.",
+    name: "Selin Demir",
+    title: "Saha Mühendisi",
+    initials: "SD",
+    color: "bg-rose-500",
   },
 ];
 
+function StarRating() {
+  return (
+    <div className="flex gap-0.5 mb-3">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star key={i} className="size-4 fill-primary text-primary" />
+      ))}
+    </div>
+  );
+}
+
 export function SocialProofSection() {
   return (
-    <section id="testimonials" className="py-20">
+    <section id="testimonials" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <Badge variant="secondary" className="mb-4">Müşteri Görüşleri</Badge>
@@ -39,27 +78,38 @@ export function SocialProofSection() {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
-          {TESTIMONIALS.map((t) => (
-            <div
-              key={t.name}
-              className="rounded-xl border bg-card p-6 flex flex-col gap-4"
-            >
-              <p className="text-sm text-foreground leading-relaxed flex-1">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold flex-shrink-0">
-                  {t.initials}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.title}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          className="w-full max-w-5xl mx-auto"
+        >
+          <CarouselContent className="-ml-4">
+            {TESTIMONIALS.map((t) => (
+              <CarouselItem key={t.name} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                <Card className="h-full">
+                  <CardContent className="flex flex-col gap-4 p-6 h-full">
+                    <StarRating />
+                    <p className="text-sm text-foreground leading-relaxed flex-1">
+                      &ldquo;{t.quote}&rdquo;
+                    </p>
+                    <div className="flex items-center gap-3 pt-2 border-t">
+                      <Avatar className="size-10 flex-shrink-0">
+                        <AvatarFallback className={`${t.color} text-white text-sm font-bold`}>
+                          {t.initials}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-sm font-semibold">{t.name}</p>
+                        <p className="text-xs text-muted-foreground">{t.title}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </Carousel>
       </div>
     </section>
   );

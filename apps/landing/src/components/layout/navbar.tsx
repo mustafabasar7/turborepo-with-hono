@@ -4,6 +4,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Menu, X, HardHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 import { NAV_LINKS } from "@/lib/constants";
 
 export function Navbar() {
@@ -13,22 +20,22 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-          <HardHat className="h-7 w-7 text-primary" />
+          <HardHat className="size-7 text-primary" />
           <span className="text-lg font-bold">İnşaat Kontrol</span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Desktop Nav — NavigationMenu from shadcn MCP */}
+        <NavigationMenu className="hidden md:flex">
+          <NavigationMenuList>
+            {NAV_LINKS.map((link) => (
+              <NavigationMenuItem key={link.href}>
+                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                  <Link href={link.href}>{link.label}</Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
 
         <div className="hidden md:flex items-center gap-3">
           <Button variant="ghost" size="sm" asChild>
@@ -45,7 +52,7 @@ export function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Menüyü aç/kapat"
         >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
         </button>
       </div>
 

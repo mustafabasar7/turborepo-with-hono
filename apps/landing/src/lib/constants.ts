@@ -18,14 +18,14 @@ export const STATS: StatItem[] = [
 export const FEATURES: FeatureItem[] = [
   // --- Sahada ---
   {
-    icon: "HardHat",
+    icon: "Construction",
     title: "Saha Operasyonları",
     description:
       "Günlük saha logları, hava durumu takibi, ekipman saatleri ve alt yüklenici koordinasyonu. Mobil uyumlu, internet olmadan da çalışır.",
     category: "sahada",
   },
   {
-    icon: "ShieldCheck",
+    icon: "HardHat",
     title: "Kalite & Güvenlik",
     description:
       "Punch board, denetim şablonları, near-miss kaydı ve iş güvenliği kontrol listeleri. Saha ekibine anlık bildirim.",
@@ -38,9 +38,16 @@ export const FEATURES: FeatureItem[] = [
       "Gerçek zamanlı saha kamerası entegrasyonu. İstediğiniz anda şantiyeyi izleyin, kayıtlara erişin.",
     category: "sahada",
   },
+  {
+    icon: "Truck",
+    title: "Kaynaklar & Lojistik",
+    description:
+      "Ekipman yönetimi, teslimat takvimi ve alt yüklenici KPI takibi. Gecikmeler başlamadan önce görün.",
+    category: "sahada",
+  },
   // --- Ofiste ---
   {
-    icon: "TrendingUp",
+    icon: "Ruler",
     title: "Maliyet Kontrolü",
     description:
       "Ek işler, hakedişler, maliyet kodları ve bütçe sapma analizi. Excel export ile muhasebe entegrasyonu.",
@@ -60,6 +67,13 @@ export const FEATURES: FeatureItem[] = [
       "Takım aktivitesi, kapasite riski ve üretkenlik metrikleri. Haftalık, aylık, proje bazlı PDF/Excel raporları.",
     category: "ofiste",
   },
+  {
+    icon: "Building2",
+    title: "Proje Yönetimi",
+    description:
+      "Liste, Kanban ve Takvim görünümleri. Görev atama, ilerleme takibi ve zaman çizelgesi yönetimi.",
+    category: "ofiste",
+  },
   // --- Zekice ---
   {
     icon: "Sparkles",
@@ -70,7 +84,7 @@ export const FEATURES: FeatureItem[] = [
     category: "zekice",
   },
   {
-    icon: "AlertTriangle",
+    icon: "Wrench",
     title: "Risk Yönetimi",
     description:
       "Probability×Impact matrisi ile risk skorlama, mitigasyon planları ve otomatik uyarı sistemi.",
@@ -82,20 +96,6 @@ export const FEATURES: FeatureItem[] = [
     description:
       "Müşterinize özel görünüm: proje ilerlemesi, bütçe durumu ve onaylanan belgeler. Güven oluşturun.",
     category: "zekice",
-  },
-  {
-    icon: "LayoutDashboard",
-    title: "Proje Yönetimi",
-    description:
-      "Liste, Kanban ve Takvim görünümleri. Görev atama, ilerleme takibi ve zaman çizelgesi yönetimi.",
-    category: "ofiste",
-  },
-  {
-    icon: "Truck",
-    title: "Kaynaklar & Lojistik",
-    description:
-      "Ekipman yönetimi, teslimat takvimi ve alt yüklenici KPI takibi. Gecikmeler başlamadan önce görün.",
-    category: "sahada",
   },
 ];
 

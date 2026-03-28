@@ -1,8 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 
 const TABS = [
   {
@@ -15,7 +21,7 @@ const TABS = [
   },
   {
     id: "cost",
-    label: "Maliyet Kontrolü",
+    label: "Maliyet",
     emoji: "💰",
     title: "Her kuruşu kontrol edin",
     description:
@@ -31,7 +37,7 @@ const TABS = [
   },
   {
     id: "field",
-    label: "Saha Operasyonları",
+    label: "Saha Ops",
     emoji: "🔧",
     title: "Sahayı ofisten yönetin",
     description:
@@ -39,7 +45,7 @@ const TABS = [
   },
   {
     id: "documents",
-    label: "Doküman Zekası",
+    label: "Dokümanlar",
     emoji: "📁",
     title: "Çizimler, RFI, onaylar",
     description:
@@ -56,12 +62,6 @@ const TABS = [
 ];
 
 export function ProductShowcaseSection() {
-  const [activeTab, setActiveTab] = useState<string>(TABS[0]!.id);
-
-  // TABS is a non-empty const — find always returns a defined value
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const current = (TABS.find((t) => t.id === activeTab) ?? TABS[0])!;
-
   return (
     <section id="showcase" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -75,46 +75,50 @@ export function ProductShowcaseSection() {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6">
-          {/* Tab list */}
-          <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible lg:w-56 flex-shrink-0 pb-2 lg:pb-0">
-            {TABS.map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveTab(tab.id)}
-                className={cn(
-                  "flex items-center gap-3 rounded-lg border px-4 py-3 text-sm font-medium transition-colors text-left whitespace-nowrap lg:whitespace-normal w-auto lg:w-full",
-                  activeTab === tab.id
-                    ? "bg-primary text-primary-foreground border-primary shadow"
-                    : "bg-background text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
-                )}
-              >
-                <span className="text-lg">{tab.emoji}</span>
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </div>
+        <div className="max-w-5xl mx-auto">
+          <Tabs defaultValue={TABS[0]!.id}>
+            <TabsList className="flex flex-wrap h-auto gap-1 mb-6 bg-muted p-1 rounded-xl">
+              {TABS.map((tab) => (
+                <TabsTrigger
+                  key={tab.id}
+                  value={tab.id}
+                  className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow"
+                >
+                  <span>{tab.emoji}</span>
+                  <span>{tab.label}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
 
-          {/* Showcase area */}
-          <div className="flex-1 rounded-xl border bg-card overflow-hidden shadow-lg">
-            <div className="flex items-center gap-2 px-4 py-3 border-b bg-muted">
-              <div className="h-3 w-3 rounded-full bg-red-400" />
-              <div className="h-3 w-3 rounded-full bg-yellow-400" />
-              <div className="h-3 w-3 rounded-full bg-green-400" />
-              <div className="flex-1 mx-4 h-6 rounded bg-background/50" />
-            </div>
-            <div className="aspect-[16/9] bg-gradient-to-br from-primary/10 to-secondary/10 flex flex-col items-center justify-center p-8 text-center">
-              <div className="text-5xl mb-4">{current.emoji}</div>
-              <h3 className="text-xl font-bold mb-2">{current.title}</h3>
-              <p className="text-muted-foreground max-w-md text-sm leading-relaxed">
-                {current.description}
-              </p>
-              <p className="mt-6 text-xs text-muted-foreground/60 italic">
-                Ekran görüntüsü yakında eklenecek
-              </p>
-            </div>
-          </div>
+            {TABS.map((tab) => (
+              <TabsContent key={tab.id} value={tab.id}>
+                <Card>
+                  <CardContent className="p-0 overflow-hidden">
+                    {/* Browser chrome */}
+                    <div className="flex items-center gap-2 px-4 py-3 border-b bg-muted">
+                      <div className="h-3 w-3 rounded-full bg-destructive/60" />
+                      <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
+                      <div className="h-3 w-3 rounded-full bg-green-500/80" />
+                      <div className="flex-1 mx-4 h-6 rounded bg-background/50 text-xs text-muted-foreground flex items-center px-3">
+                        app.insaatkontrol.com
+                      </div>
+                    </div>
+                    {/* Showcase area */}
+                    <div className="aspect-video bg-gradient-to-br from-primary/10 via-background to-secondary/10 flex flex-col items-center justify-center p-8 text-center">
+                      <div className="text-6xl mb-6">{tab.emoji}</div>
+                      <h3 className="text-2xl font-bold mb-3">{tab.title}</h3>
+                      <p className="text-muted-foreground max-w-md leading-relaxed">
+                        {tab.description}
+                      </p>
+                      <p className="mt-8 text-xs text-muted-foreground/50 italic">
+                        Ekran görüntüsü yakında eklenecek
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            ))}
+          </Tabs>
         </div>
       </div>
     </section>
