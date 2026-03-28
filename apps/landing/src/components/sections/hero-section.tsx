@@ -6,26 +6,25 @@ import { Badge } from "@/components/ui/badge";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 to-background py-20 md:py-32">
-      {/* Background decoration */}
+    <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 to-background py-20 md:py-32">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-primary/8 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 text-center">
         <Badge variant="secondary" className="mb-6 text-sm px-4 py-1.5">
-          🚀 Yeni: AI Destekli Risk Analizi
+          Türkiye&apos;nin İnşaat ERP Platformu
         </Badge>
 
         <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl mb-6">
-          İnşaat Projelerinizi{" "}
-          <span className="text-primary">Tam Kontrole Alın</span>
+          Maliyet Aşımı Bitti.{" "}
+          <span className="text-primary">Gecikme Bitti.</span>{" "}
+          Kontrol Sizde.
         </h1>
 
         <p className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl mb-10">
-          Proje yönetimi, maliyet kontrolü, kalite denetimi ve saha
-          operasyonlarını tek platformda birleştiren Türkiye&apos;nin lider
-          inşaat ERP yazılımı.
+          Şantiyeden ofise tek platform. Proje yönetimi, maliyet kontrolü,
+          kalite denetimi, saha operasyonları ve AI araçları — hepsi bir arada.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -36,26 +35,19 @@ export function HeroSection() {
             </Link>
           </Button>
           <Button size="lg" variant="outline" className="text-base px-8" asChild>
-            <Link href="#how-it-works">
+            <Link href="#features">
               <Play className="mr-2 h-4 w-4" />
-              Nasıl Çalışır?
+              Özelliklere Bak
             </Link>
           </Button>
         </div>
 
         {/* Trust badges */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-muted-foreground">
-          <span className="flex items-center gap-1.5">
-            ✓ 14 gün ücretsiz deneme
-          </span>
-          <span className="hidden sm:block text-border">|</span>
-          <span className="flex items-center gap-1.5">
-            ✓ Kredi kartı gerekmez
-          </span>
-          <span className="hidden sm:block text-border">|</span>
-          <span className="flex items-center gap-1.5">
-            ✓ 5 dakikada kurulum
-          </span>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <span className="flex items-center gap-1.5">✓ 14 gün ücretsiz deneme</span>
+          <span className="flex items-center gap-1.5">✓ Kredi kartı gerekmez</span>
+          <span className="flex items-center gap-1.5">✓ Kurulum 5 dakika</span>
+          <span className="flex items-center gap-1.5">✓ Türkçe destek</span>
         </div>
 
         {/* Product mockup placeholder */}
@@ -67,11 +59,14 @@ export function HeroSection() {
               <div className="h-3 w-3 rounded-full bg-green-400" />
               <div className="flex-1 mx-4 h-6 rounded bg-background/50" />
             </div>
-            <div className="aspect-[16/9] bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+            <div className="aspect-[16/9] bg-gradient-to-br from-primary/15 to-secondary/15 flex items-center justify-center">
               <div className="text-center">
                 <div className="text-6xl mb-4">🏗️</div>
-                <p className="text-muted-foreground font-medium">
-                  İnşaat Kontrol Dashboard
+                <p className="text-muted-foreground font-semibold text-lg">
+                  İnşaat Kontrol — Dashboard
+                </p>
+                <p className="text-muted-foreground text-sm mt-1">
+                  Tüm projeleriniz, tek ekranda
                 </p>
               </div>
             </div>
