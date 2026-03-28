@@ -10,10 +10,24 @@ import { Badge } from "@/components/ui/badge";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
+import { LiquidChrome } from "@/components/ui/liquid-chrome";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 to-background py-20 md:py-32">
+    <section className="relative overflow-hidden bg-background py-20 md:py-32">
+      {/* LiquidChrome background — amber/steel construction theme */}
+      <div className="pointer-events-none absolute inset-0 opacity-15">
+        <LiquidChrome
+          baseColor={[0.95, 0.6, 0.05]}
+          speed={0.15}
+          amplitude={0.25}
+          frequencyX={2.5}
+          frequencyY={2.5}
+          interactive={false}
+        />
+      </div>
+      {/* Gradient overlay to keep text readable */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background/80" />
       {/* Floating icons */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-1/2 -z-10 size-[700px] -translate-x-1/2 rounded-full bg-primary/8 blur-3xl" />
