@@ -28,10 +28,7 @@ export function HeroSection() {
       {/* Floating icons */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-1/2 -z-10 size-[700px] -translate-x-1/2 rounded-full bg-primary/8 blur-3xl" />
-        <div className="absolute top-16 left-8 rotate-[-12deg] opacity-10 md:left-24">
-          <HardHat className="size-12 text-primary md:size-16" />
-        </div>
-        <div className="absolute top-32 right-8 rotate-[10deg] opacity-10 md:right-28">
+<div className="absolute top-32 right-8 rotate-[10deg] opacity-10 md:right-28">
           <Construction className="size-10 text-primary md:size-14" />
         </div>
         <div className="absolute bottom-24 left-12 rotate-[8deg] opacity-10 md:left-36">
