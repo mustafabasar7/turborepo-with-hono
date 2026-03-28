@@ -84,7 +84,7 @@ export function HeroSection() {
             </div>
             <div className="aspect-[16/9] bg-gradient-to-br from-primary/15 to-secondary/15 flex items-center justify-center">
               <div className="text-center">
-                <div className="text-6xl mb-4">🏗️</div>
+                <Hammer size={60} animateOnView loop loopDelay={4000} className="text-primary mb-4 mx-auto" />
                 <p className="text-muted-foreground font-semibold text-lg">
                   İnşaat Kontrol — Dashboard
                 </p>

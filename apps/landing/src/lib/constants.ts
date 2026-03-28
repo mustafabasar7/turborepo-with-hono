@@ -81,21 +81,21 @@ export const FEATURES: FeatureItem[] = [
     description:
       "Yapay zeka ile saha talimatı oluşturma, malzeme önerisi, gelecek projeksiyonu ve 360° sanal tur.",
     badge: "Yeni",
-    category: "zekice",
+    category: "akilli",
   },
   {
     icon: "Wrench",
     title: "Risk Yönetimi",
     description:
       "Probability×Impact matrisi ile risk skorlama, mitigasyon planları ve otomatik uyarı sistemi.",
-    category: "zekice",
+    category: "akilli",
   },
   {
     icon: "Users",
     title: "Müşteri Portalı",
     description:
       "Müşterinize özel görünüm: proje ilerlemesi, bütçe durumu ve onaylanan belgeler. Güven oluşturun.",
-    category: "zekice",
+    category: "akilli",
   },
 ];
 

@@ -9,7 +9,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Download } from "@/components/animate-ui/icons/download";
+import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
 import { Clock } from "@/components/animate-ui/icons/clock";
 import { RefreshCcw } from "@/components/animate-ui/icons/refresh-ccw";
 import { Cctv } from "@/components/animate-ui/icons/cctv";
@@ -96,15 +96,15 @@ export function MobileSection() {
           <div className="flex flex-col gap-6">
             <div>
               <Badge variant="secondary" className="mb-4 gap-1">
-                <Download size={14} animateOnView />
-                Mobil Uygulama
+                <ArrowRight size={14} animateOnView />
+                Mobil Erişim
               </Badge>
               <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
-                Şantiye Her Zaman Cebinizde
+                Telefonunuzdan da Kullanabilirsiniz
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                iOS ve Android uygulaması ile sahada, ofiste, her yerde tam
-                kontrol. İnternet olmasa bile çalışır.
+                Ayrı uygulama yüklemenize gerek yok. Telefonunuzun tarayıcısından
+                girin, sahada tam kontrol. İnternet olmasa bile çalışır.
               </p>
             </div>
 
@@ -127,17 +127,14 @@ export function MobileSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button className="gap-2" asChild>
+              <Button size="lg" asChild>
                 <Link href="#demo">
-                  <Download data-icon="inline-start" />
-                  iOS Uygulaması
+                  Ücretsiz Deneyin
+                  <ArrowRight data-icon="inline-end" animateOnHover />
                 </Link>
               </Button>
-              <Button variant="outline" className="gap-2" asChild>
-                <Link href="#demo">
-                  <Download data-icon="inline-start" />
-                  Android Uygulaması
-                </Link>
+              <Button size="lg" variant="outline" asChild>
+                <Link href="#features">Tüm Özelliklere Bak</Link>
               </Button>
             </div>
           </div>

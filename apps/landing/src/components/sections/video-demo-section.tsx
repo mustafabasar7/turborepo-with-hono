@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Play, ExternalLink } from "lucide-react";
+import { CircleCheck } from "@/components/animate-ui/icons/circle-check";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -21,9 +22,9 @@ export function VideoDemoSection() {
 
   const featureChips: FeatureChip[] = [
     { icon: <Clock size={14} />, label: "90 saniye" },
-    { icon: <span className="text-xs">✓</span>, label: "Kurulum gerektirmez" },
-    { icon: <span className="text-xs">✓</span>, label: "Türkçe anlatım" },
-    { icon: <span className="text-xs">✓</span>, label: "Tüm özellikler" },
+    { icon: <CircleCheck size={14} animateOnView className="text-primary" />, label: "Kurulum gerektirmez" },
+    { icon: <CircleCheck size={14} animateOnView className="text-primary" />, label: "Türkçe anlatım" },
+    { icon: <CircleCheck size={14} animateOnView className="text-primary" />, label: "Tüm özellikler" },
   ];
 
   return (

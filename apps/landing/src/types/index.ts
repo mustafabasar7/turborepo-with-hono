@@ -3,7 +3,7 @@ export interface FeatureItem {
   title: string;
   description: string;
   badge?: string;
-  category: "sahada" | "ofiste" | "zekice";
+  category: "sahada" | "ofiste" | "akilli";
 }
 
 export interface FaqItem {

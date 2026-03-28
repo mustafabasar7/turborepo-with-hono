@@ -14,6 +14,8 @@ import { Sparkles } from "@/components/animate-ui/icons/sparkles";
 import { ChartBarIncreasing } from "@/components/animate-ui/icons/chart-bar-increasing";
 import { UsersRound } from "@/components/animate-ui/icons/users-round";
 import { Cctv } from "@/components/animate-ui/icons/cctv";
+import { Axe } from "@/components/animate-ui/icons/axe";
+import { Bot } from "@/components/animate-ui/icons/bot";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -38,24 +40,26 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string; size?: 
   Wrench,
 };
 
-const CATEGORIES = [
+type CategoryId = "sahada" | "ofiste" | "akilli";
+
+const CATEGORIES: { id: CategoryId; label: string; description: string; Icon: React.ComponentType<{ size?: number; animateOnHover?: boolean; className?: string }> }[] = [
   {
-    id: "sahada" as const,
+    id: "sahada",
     label: "Sahada",
     description: "Şantiyeyi gerçek zamanlı yönet",
-    emoji: "🦺",
+    Icon: Axe,
   },
   {
-    id: "ofiste" as const,
+    id: "ofiste",
     label: "Ofiste",
     description: "Maliyet, doküman ve raporlar",
-    emoji: "📊",
+    Icon: ChartBarIncreasing,
   },
   {
-    id: "zekice" as const,
-    label: "Zekice",
+    id: "akilli",
+    label: "Akıllı Araçlar",
     description: "AI destekli araçlar",
-    emoji: "✨",
+    Icon: Bot,
   },
 ];
 
@@ -86,7 +90,7 @@ export function FeaturesSection() {
                 value={cat.id}
                 className="flex flex-col items-center gap-1 rounded-xl border px-8 py-4 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=active]:shadow-md border-border text-muted-foreground hover:text-foreground transition-all h-auto"
               >
-                <span className="text-2xl">{cat.emoji}</span>
+                <cat.Icon size={22} animateOnHover />
                 <span className="font-semibold text-sm">{cat.label}</span>
                 <span className="text-xs opacity-80 hidden sm:block">{cat.description}</span>
               </TabsTrigger>
