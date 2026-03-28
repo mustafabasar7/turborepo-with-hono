@@ -61,13 +61,12 @@ export default function Image() {
               justifyContent: "center",
             }}
           >
-            {/* Hard hat SVG */}
+            {/* Construction frame mark */}
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path
-                d="M16 5C10.5 5 6 9.5 6 14v2h20v-2c0-4.5-4.5-9-10-9z"
-                fill="white"
-              />
-              <rect x="5" y="16" width="22" height="4" rx="2" fill="white" />
+              <rect x="4" y="6" width="5" height="20" rx="1.5" fill="white" />
+              <rect x="23" y="6" width="5" height="20" rx="1.5" fill="white" />
+              <rect x="4" y="6" width="24" height="5" rx="1.5" fill="white" />
+              <rect x="4" y="17" width="24" height="3" rx="1.5" fill="white" opacity="0.5" />
             </svg>
           </div>
           <span style={{ fontSize: "28px", fontWeight: "700", color: "#111827" }}>

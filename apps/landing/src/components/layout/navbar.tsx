@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Hammer } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -26,6 +26,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Logo, LogoMark } from "@/components/ui/logo";
 import { cn } from "@/lib/utils";
 
 const PRODUCT_ITEMS = [
@@ -47,9 +48,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Hammer className="size-5 text-primary" />
-          <span className="text-lg font-bold tracking-tight">İnşaat Kontrol</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <Logo iconSize={28} />
           <Badge variant="secondary" className="text-xs">Beta</Badge>
         </Link>
 
@@ -115,9 +115,8 @@ export function Navbar() {
           <SheetContent side="left" className="w-72 px-0">
             <SheetTitle className="sr-only">Navigasyon Menüsü</SheetTitle>
 
-            <div className="flex items-center gap-2 border-b px-6 pb-4 pt-2">
-              <Hammer className="size-5 text-primary" />
-              <span className="font-bold">İnşaat Kontrol</span>
+            <div className="flex items-center gap-2.5 border-b px-6 pb-4 pt-2">
+              <Logo iconSize={26} />
               <Badge variant="secondary" className="text-xs">Beta</Badge>
             </div>
 
