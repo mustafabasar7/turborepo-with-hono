@@ -18,16 +18,21 @@ import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-background py-20 md:py-32">
-      {/* Animated gradient orbs — pure Tailwind */}
+      {/* Dot grid background — pure CSS, zero JS */}
+      <div
+        aria-hidden="true"
+        className="hero-dot-bg pointer-events-none absolute inset-0 text-foreground/[0.07]"
+      />
+
+      {/* Gradient colour washes — no blur-3xl on mobile for perf */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="motion-safe:animate-pulse absolute -top-32 left-1/2 size-[700px] -translate-x-1/2 rounded-full bg-primary/20 blur-3xl" />
-        <div className="motion-safe:animate-pulse absolute top-1/3 -left-32 size-[400px] rounded-full bg-primary/10 blur-3xl [animation-delay:1.5s] [animation-duration:4s]" />
-        <div className="motion-safe:animate-pulse absolute top-1/4 -right-32 size-[400px] rounded-full bg-primary/10 blur-3xl [animation-delay:3s] [animation-duration:5s]" />
-        <div className="motion-safe:animate-pulse absolute bottom-0 left-1/2 size-[500px] -translate-x-1/2 rounded-full bg-primary/8 blur-3xl [animation-delay:0.8s] [animation-duration:6s]" />
+        <div className="absolute -top-40 left-1/2 size-[900px] -translate-x-1/2 rounded-full bg-primary/15 blur-[100px]" />
+        <div className="absolute top-1/3 -left-40 size-[500px] rounded-full bg-primary/8 blur-[80px]" />
+        <div className="absolute top-1/4 -right-40 size-[500px] rounded-full bg-primary/8 blur-[80px]" />
       </div>
+
       {/* Floating icons */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -z-10 size-[700px] -translate-x-1/2 rounded-full bg-primary/8 blur-3xl" />
 <div className="absolute top-32 right-8 rotate-[10deg] opacity-10 md:right-28">
           <Construction className="size-10 text-primary md:size-14" />
         </div>
@@ -48,7 +53,7 @@ export function HeroSection() {
       <div className="container relative z-10 mx-auto px-4 text-center">
         {/* Shiny badge */}
         <div className="mb-6 flex justify-center">
-          <div className="inline-flex items-center gap-1.5 rounded-full border bg-background/70 px-4 py-1.5 text-sm backdrop-blur-sm">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/8 px-4 py-1.5 text-sm">
             <AnimatedShinyText shimmerWidth={150} className="font-medium">
               Türkiye&apos;nin İnşaat ERP Platformu
             </AnimatedShinyText>
@@ -101,7 +106,7 @@ export function HeroSection() {
           <Button
             size="lg"
             variant="outline"
-            className="px-8 text-base backdrop-blur-sm"
+            className="px-8 text-base"
             asChild
           >
             <Link href="#features">Özelliklere Bak</Link>
