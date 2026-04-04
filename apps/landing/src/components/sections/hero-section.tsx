@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { HardHat, Construction, Truck, Ruler, BrickWall, TrendingUp, AlertTriangle, CheckCircle2, Clock } from "lucide-react";
 import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
@@ -18,6 +19,23 @@ import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-background py-20 md:py-32">
+      {/* Hero background image */}
+      <div className="pointer-events-none absolute inset-0">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-top opacity-20 dark:opacity-12"
+        />
+        {/* Bottom fade so image blends into content below */}
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background to-transparent" />
+        {/* Side fades */}
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent" />
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent" />
+      </div>
+
       {/* Dot grid background — pure CSS, zero JS */}
       <div
         aria-hidden="true"

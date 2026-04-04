@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import { motion } from "motion/react";
 import { Building2, UserPlus, MonitorSmartphone } from "lucide-react";
 import { ClipboardList } from "@/components/animate-ui/icons/clipboard-list";
 import { Settings } from "@/components/animate-ui/icons/settings";
@@ -18,8 +20,42 @@ const STEP_COLORS = [
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="py-20">
-      <div className="container mx-auto px-4">
+    <section id="how-it-works" className="relative overflow-hidden py-20">
+      {/* Dekoratif arkaplan illüstrasyon — scroll ile açılır */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block"
+        style={{ width: 340, height: 340 }}
+        initial={{ opacity: 0, x: 60 }}
+        whileInView={{ opacity: 0.18, x: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <Image
+          src="/images/construction-circle.jpg"
+          alt=""
+          fill
+          className="object-contain"
+        />
+      </motion.div>
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 hidden xl:block"
+        style={{ width: 240, height: 240 }}
+        initial={{ opacity: 0, x: -60 }}
+        whileInView={{ opacity: 0.12, x: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <Image
+          src="/images/worker-plans.jpg"
+          alt=""
+          fill
+          className="object-contain"
+        />
+      </motion.div>
+
+      <div className="container relative z-10 mx-auto px-4">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 gap-1">
             <Settings size={14} animateOnView />
