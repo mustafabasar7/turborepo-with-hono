@@ -21,12 +21,12 @@ const STEP_COLORS = [
 export function HowItWorksSection() {
   return (
     <section id="how-it-works" className="relative overflow-hidden py-20">
-      {/* Sağ dekoratif illüstrasyon */}
+      {/* Sağ dekoratif — sadece xl+ (1280px) ekranlarda, içerik sütununa taşmaz */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block"
-        style={{ width: 380, height: 380 }}
-        initial={{ opacity: 0, x: 50 }}
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block"
+        style={{ width: 300, height: 300 }}
+        initial={{ opacity: 0, x: 40 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
@@ -36,15 +36,15 @@ export function HowItWorksSection() {
           alt=""
           fill
           className="object-contain"
-          style={{ opacity: 0.55 }}
+          style={{ opacity: 0.5 }}
         />
       </motion.div>
-      {/* Sol dekoratif illüstrasyon */}
+      {/* Sol dekoratif — sadece xl+ */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 hidden lg:block"
-        style={{ width: 280, height: 280 }}
-        initial={{ opacity: 0, x: -50 }}
+        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 hidden xl:block"
+        style={{ width: 240, height: 240 }}
+        initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -54,7 +54,7 @@ export function HowItWorksSection() {
           alt=""
           fill
           className="object-contain"
-          style={{ opacity: 0.45 }}
+          style={{ opacity: 0.4 }}
         />
       </motion.div>
 

@@ -118,7 +118,8 @@ export function QuickWinsSection() {
       </motion.div>
 
       <div className="container relative z-10 mx-auto px-4">
-        <div className="text-center mb-12">
+        {/* Başlık bloğu: kendi bg'si var, görsel alttan geçemez */}
+        <div className="text-center mb-12 rounded-2xl bg-background/80 px-6 py-8 mx-auto max-w-2xl">
           <Badge variant="secondary" className="mb-4 gap-1">
             <ClipboardCheck size={14} animateOnView />
             Hızlı Kazanımlar
