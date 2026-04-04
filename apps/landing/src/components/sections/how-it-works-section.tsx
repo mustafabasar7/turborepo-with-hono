@@ -21,11 +21,11 @@ const STEP_COLORS = [
 export function HowItWorksSection() {
   return (
     <section id="how-it-works" className="relative overflow-hidden py-20">
-      {/* Sağ dekoratif — sadece xl+ (1280px) ekranlarda, içerik sütununa taşmaz */}
+      {/* Sağ dekoratif — adım kartlarının yanında, başlığın altında */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block"
-        style={{ width: 300, height: 300 }}
+        className="pointer-events-none absolute right-0 bottom-4 hidden xl:block"
+        style={{ width: 280, height: 280 }}
         initial={{ opacity: 0, x: 40 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -35,15 +35,15 @@ export function HowItWorksSection() {
           src="/images/construction-circle.jpg"
           alt=""
           fill
-          className="object-contain"
+          className="object-contain object-bottom"
           style={{ opacity: 0.5 }}
         />
       </motion.div>
-      {/* Sol dekoratif — sadece xl+ */}
+      {/* Sol dekoratif — adım kartlarının yanında, başlığın altında */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 hidden xl:block"
-        style={{ width: 240, height: 240 }}
+        className="pointer-events-none absolute left-0 bottom-4 hidden xl:block"
+        style={{ width: 220, height: 220 }}
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
@@ -53,7 +53,7 @@ export function HowItWorksSection() {
           src="/images/worker-plans.jpg"
           alt=""
           fill
-          className="object-contain"
+          className="object-contain object-bottom"
           style={{ opacity: 0.4 }}
         />
       </motion.div>
