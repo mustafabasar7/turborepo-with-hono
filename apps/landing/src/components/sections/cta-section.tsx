@@ -18,18 +18,18 @@ export function CtaSection() {
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute bottom-0 left-0 hidden lg:block"
-        style={{ width: 320, height: 280 }}
+        style={{ width: 360, height: 300 }}
         initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 0.5, x: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <Image
           src="/images/workers-site.jpg"
           alt=""
           fill
-          className="object-contain object-bottom-left"
-          style={{ mixBlendMode: "multiply" }}
+          className="object-contain object-bottom"
+          style={{ opacity: 0.6, mixBlendMode: "multiply" }}
         />
       </motion.div>
 

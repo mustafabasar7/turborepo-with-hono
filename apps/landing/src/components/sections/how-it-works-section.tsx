@@ -21,37 +21,40 @@ const STEP_COLORS = [
 export function HowItWorksSection() {
   return (
     <section id="how-it-works" className="relative overflow-hidden py-20">
-      {/* Dekoratif arkaplan illüstrasyon — scroll ile açılır */}
+      {/* Sağ dekoratif illüstrasyon */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block"
-        style={{ width: 340, height: 340 }}
-        initial={{ opacity: 0, x: 60 }}
-        whileInView={{ opacity: 0.45, x: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
+        className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block"
+        style={{ width: 380, height: 380 }}
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <Image
           src="/images/construction-circle.jpg"
           alt=""
           fill
           className="object-contain"
+          style={{ opacity: 0.55 }}
         />
       </motion.div>
+      {/* Sol dekoratif illüstrasyon */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 hidden xl:block"
-        style={{ width: 240, height: 240 }}
-        initial={{ opacity: 0, x: -60 }}
-        whileInView={{ opacity: 0.35, x: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
-        viewport={{ once: true, amount: 0.3 }}
+        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 hidden lg:block"
+        style={{ width: 280, height: 280 }}
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         <Image
           src="/images/worker-plans.jpg"
           alt=""
           fill
           className="object-contain"
+          style={{ opacity: 0.45 }}
         />
       </motion.div>
 

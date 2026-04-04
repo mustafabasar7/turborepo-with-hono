@@ -27,12 +27,13 @@ export function HeroSection() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-bottom opacity-35 dark:opacity-25"
+          className="object-cover object-bottom"
+          style={{ opacity: 0.55 }}
         />
-        {/* Üst %70 → tam örtüyor: başlık ve butonlar net kalır */}
-        <div className="absolute inset-x-0 top-0 h-[70%] bg-gradient-to-b from-background via-background/95 to-transparent" />
+        {/* Üst gradient: başlık alanı temiz kalır, alt kısımda (dashboard) görsel çıkar */}
+        <div className="absolute inset-x-0 top-0 h-[60%] bg-gradient-to-b from-background via-background/85 to-transparent" />
         {/* Alt fade */}
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       {/* Dot grid background — pure CSS, zero JS */}

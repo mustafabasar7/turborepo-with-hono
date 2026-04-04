@@ -96,7 +96,7 @@ function WinCard({ win, index }: { win: typeof WINS[0]; index: number }) {
 export function QuickWinsSection() {
   return (
     <section className="relative overflow-hidden py-20">
-      {/* build-02 arkaplanı — scroll ile görünür */}
+      {/* build-02 arkaplanı — scroll ile fade-in */}
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -110,12 +110,11 @@ export function QuickWinsSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center opacity-20 dark:opacity-15"
+          className="object-cover object-center"
+          style={{ opacity: 0.45 }}
         />
-        {/* Hafif overlay: kartlar okunabilir kalır */}
-        <div className="absolute inset-0 bg-background/75" />
-        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </motion.div>
 
       <div className="container relative z-10 mx-auto px-4">
