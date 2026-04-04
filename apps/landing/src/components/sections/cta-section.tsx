@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
 import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
 import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { Particles } from "@/components/ui/particles";
@@ -14,25 +12,6 @@ import { BlurFade } from "@/components/ui/blur-fade";
 export function CtaSection() {
   return (
     <section className="relative overflow-hidden bg-primary py-24 text-primary-foreground">
-      {/* Sol alt köşe — içerik merkezine taşmayacak kadar küçük */}
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 hidden xl:block"
-        style={{ width: 220, height: 180 }}
-        initial={{ opacity: 0, x: -40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <Image
-          src="/images/workers-site.jpg"
-          alt=""
-          fill
-          className="object-contain object-bottom-left"
-          style={{ opacity: 0.55, mixBlendMode: "multiply" }}
-        />
-      </motion.div>
-
       {/* Particle effect */}
       <Particles
         className="pointer-events-none absolute inset-0 opacity-40"

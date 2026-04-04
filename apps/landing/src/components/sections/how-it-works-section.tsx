@@ -21,41 +21,25 @@ const STEP_COLORS = [
 export function HowItWorksSection() {
   return (
     <section id="how-it-works" className="relative overflow-hidden py-20">
-      {/* Sağ dekoratif — adım kartlarının yanında, başlığın altında */}
+      {/* Tam section arkaplanı — scroll ile açılır */}
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 bottom-4 hidden xl:block"
-        style={{ width: 280, height: 280 }}
-        initial={{ opacity: 0, x: 40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
+        className="pointer-events-none absolute inset-0"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.0, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.15 }}
       >
         <Image
           src="/images/construction-circle.jpg"
           alt=""
           fill
-          className="object-contain object-bottom"
-          style={{ opacity: 0.5 }}
+          sizes="100vw"
+          className="object-cover object-center"
+          style={{ opacity: 0.18 }}
         />
-      </motion.div>
-      {/* Sol dekoratif — adım kartlarının yanında, başlığın altında */}
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-0 bottom-4 hidden xl:block"
-        style={{ width: 220, height: 220 }}
-        initial={{ opacity: 0, x: -40 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <Image
-          src="/images/worker-plans.jpg"
-          alt=""
-          fill
-          className="object-contain object-bottom"
-          style={{ opacity: 0.4 }}
-        />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
       </motion.div>
 
       <div className="container relative z-10 mx-auto px-4">

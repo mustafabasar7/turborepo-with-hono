@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import { motion } from "motion/react";
 import {
   Building2,
   Ruler,
@@ -83,8 +85,29 @@ const CATEGORIES: {
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="py-20">
-      <div className="container mx-auto px-4">
+    <section id="features" className="relative overflow-hidden py-20">
+      {/* workers-site tam arkaplan */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.0, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        <Image
+          src="/images/workers-site.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          style={{ opacity: 0.12 }}
+        />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      </motion.div>
+
+      <div className="container relative z-10 mx-auto px-4">
         <BlurFade delay={0.1} inView>
           <div className="mb-12 text-center">
             <Badge variant="secondary" className="mb-4 gap-1">
