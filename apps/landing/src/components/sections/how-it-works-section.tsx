@@ -27,7 +27,7 @@ export function HowItWorksSection() {
         className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden xl:block"
         style={{ width: 340, height: 340 }}
         initial={{ opacity: 0, x: 60 }}
-        whileInView={{ opacity: 0.18, x: 0 }}
+        whileInView={{ opacity: 0.45, x: 0 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
@@ -43,7 +43,7 @@ export function HowItWorksSection() {
         className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 hidden xl:block"
         style={{ width: 240, height: 240 }}
         initial={{ opacity: 0, x: -60 }}
-        whileInView={{ opacity: 0.12, x: 0 }}
+        whileInView={{ opacity: 0.35, x: 0 }}
         transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
         viewport={{ once: true, amount: 0.3 }}
       >

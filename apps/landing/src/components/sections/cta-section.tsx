@@ -20,7 +20,7 @@ export function CtaSection() {
         className="pointer-events-none absolute bottom-0 left-0 hidden lg:block"
         style={{ width: 320, height: 280 }}
         initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 0.22, x: 0 }}
+        whileInView={{ opacity: 0.5, x: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >

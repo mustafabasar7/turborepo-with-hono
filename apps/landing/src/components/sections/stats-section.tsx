@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { motion } from "motion/react";
 import {
   Label,
   PolarGrid,
@@ -56,28 +54,8 @@ const STATS = [
 
 export function StatsSection() {
   return (
-    <section className="relative overflow-hidden py-16 border-y">
-      {/* Scroll-reveal background image */}
-      <motion.div
-        className="pointer-events-none absolute inset-0"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <Image
-          src="/images/build-02.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center opacity-15 dark:opacity-8"
-        />
-        <div className="absolute inset-0 bg-background/70" />
-        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-background to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent" />
-      </motion.div>
-
-      <div className="container relative z-10 mx-auto px-4">
+    <section className="py-16 border-y bg-muted/30">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {STATS.map((stat) => {
             const chartConfig = {
