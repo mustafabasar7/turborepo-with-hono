@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "motion/react";
+import React from "react";
 import {
   Building2,
   Ruler,
@@ -84,39 +82,10 @@ const CATEGORIES: {
 ];
 
 export function FeaturesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const bgOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.88, 1],
-    [0, 0.35, 0.35, 0]
-  );
-
   return (
-    <section ref={sectionRef} id="features" className="relative overflow-hidden py-20">
-      {/* futuristic-tech — scroll ile açılır, çıkınca solar */}
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{ opacity: bgOpacity }}
-      >
-        <Image
-          src="/images/futuristic-tech.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-[50%_15%]"
-        />
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
-        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent" />
-        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent" />
-      </motion.div>
+    <section id="features" className="py-20">
 
-      <div className="container relative z-10 mx-auto px-4">
+      <div className="container mx-auto px-4">
         <BlurFade delay={0.1} inView>
           <div className="mb-12 text-center">
             <Badge variant="secondary" className="mb-4 gap-1">

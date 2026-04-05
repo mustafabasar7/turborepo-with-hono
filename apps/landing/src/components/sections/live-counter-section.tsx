@@ -1,8 +1,4 @@
 "use client";
-
-import { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { NumberTicker } from "@/components/ui/number-ticker";
@@ -48,37 +44,9 @@ const COUNTERS = [
 ] as const;
 
 export function LiveCounterSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const bgOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.88, 1],
-    [0, 0.38, 0.38, 0]
-  );
-
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-16">
-      {/* build-02 — scroll ile açılır, section çıkınca solar */}
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{ opacity: bgOpacity }}
-      >
-        <Image
-          src="/images/build-02.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent" />
-      </motion.div>
-
-      <div className="container relative z-10 mx-auto px-4">
+    <section className="py-16">
+      <div className="container mx-auto px-4">
         <BlurFade delay={0.1} inView>
           <div className="mb-10 text-center">
             <Badge variant="secondary" className="mb-4 gap-1">

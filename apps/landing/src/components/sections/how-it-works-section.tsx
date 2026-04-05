@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "motion/react";
+import React from "react";
 import { Building2, UserPlus, MonitorSmartphone } from "lucide-react";
 import { ClipboardList } from "@/components/animate-ui/icons/clipboard-list";
 import { Settings } from "@/components/animate-ui/icons/settings";
@@ -19,37 +17,9 @@ const STEP_COLORS = [
 ];
 
 export function HowItWorksSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const bgOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.15, 0.88, 1],
-    [0, 0.28, 0.28, 0]
-  );
-
   return (
-    <section ref={sectionRef} id="how-it-works" className="relative overflow-hidden py-20">
-      {/* building-tablet — scroll ile açılır, çıkınca solar */}
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{ opacity: bgOpacity }}
-      >
-        <Image
-          src="/images/building-tablet.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
-      </motion.div>
-
-      <div className="container relative z-10 mx-auto px-4">
+    <section id="how-it-works" className="py-20">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 gap-1">
             <Settings size={14} animateOnView />

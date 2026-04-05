@@ -22,6 +22,7 @@ import { TimelineSection } from "@/components/sections/timeline-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { CtaSection } from "@/components/sections/cta-section";
 import { DemoFormSection } from "@/components/sections/demo-form-section";
+import { ImageBreakSection } from "@/components/sections/image-break-section";
 
 export default function HomePage() {
   return (
@@ -32,13 +33,22 @@ export default function HomePage() {
         <LogoMarqueeSection />
         <StatsSection />
         <LiveCounterSection />
+
+        <ImageBreakSection src="/images/build-02.jpg" height={400} position="[50%_60%]" />
+
         <FeaturesSection />
         <BentoGridSection />
         <ComparisonTableSection />
+
+        <ImageBreakSection src="/images/futuristic-tech.jpg" height={440} position="[50%_15%]" />
+
         <ProductShowcaseSection />
         <VideoDemoSection />
         <UseCasesSection />
         <HowItWorksSection />
+
+        <ImageBreakSection src="/images/building-tablet.jpg" height={380} position="center" />
+
         <MobileSection />
         <IntegrationsSection />
         <SecuritySection />
