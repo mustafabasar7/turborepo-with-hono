@@ -31,12 +31,12 @@ export function HowItWorksSection() {
         viewport={{ once: true, amount: 0.15 }}
       >
         <Image
-          src="/images/construction-circle.jpg"
+          src="/images/building-tablet.jpg"
           alt=""
           fill
           sizes="100vw"
           className="object-cover object-center"
-          style={{ opacity: 0.18 }}
+          style={{ opacity: 0.25 }}
         />
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />

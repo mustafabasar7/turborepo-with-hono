@@ -96,12 +96,12 @@ export function FeaturesSection() {
         viewport={{ once: true, amount: 0.1 }}
       >
         <Image
-          src="/images/workers-site.jpg"
+          src="/images/futuristic-tech.jpg"
           alt=""
           fill
           sizes="100vw"
           className="object-cover object-center"
-          style={{ opacity: 0.12 }}
+          style={{ opacity: 0.3 }}
         />
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
