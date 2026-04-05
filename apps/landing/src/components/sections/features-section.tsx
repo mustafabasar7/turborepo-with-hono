@@ -100,7 +100,7 @@ export function FeaturesSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-top md:object-[50%_15%]"
+          className="object-contain object-center"
           style={{ opacity: 0.35 }}
         />
         {/* Kenar ve üst-alt fade — metnin üstüne binmez */}
