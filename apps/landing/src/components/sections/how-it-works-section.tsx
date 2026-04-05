@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Building2, UserPlus, MonitorSmartphone } from "lucide-react";
 import { ClipboardList } from "@/components/animate-ui/icons/clipboard-list";
 import { Settings } from "@/components/animate-ui/icons/settings";
@@ -19,24 +19,31 @@ const STEP_COLORS = [
 ];
 
 export function HowItWorksSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.75, 1],
+    [0, 0.28, 0.28, 0]
+  );
+
   return (
-    <section id="how-it-works" className="relative overflow-hidden py-20">
-      {/* Tam section arkaplanı — scroll ile açılır */}
+    <section ref={sectionRef} id="how-it-works" className="relative overflow-hidden py-20">
+      {/* building-tablet — scroll ile açılır, çıkınca solar */}
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.0, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.15 }}
+        style={{ opacity: bgOpacity }}
       >
         <Image
           src="/images/building-tablet.jpg"
           alt=""
           fill
           sizes="100vw"
-          className="object-contain object-center"
-          style={{ opacity: 0.28 }}
+          className="object-cover object-center"
         />
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
