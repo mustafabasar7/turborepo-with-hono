@@ -35,8 +35,8 @@ export function HowItWorksSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center"
-          style={{ opacity: 0.25 }}
+          className="object-contain object-center"
+          style={{ opacity: 0.28 }}
         />
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />

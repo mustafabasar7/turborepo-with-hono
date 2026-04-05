@@ -63,8 +63,8 @@ export function LiveCounterSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center"
-          style={{ opacity: 0.35 }}
+          className="object-cover object-[50%_60%]"
+          style={{ opacity: 0.38 }}
         />
         <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background to-transparent" />

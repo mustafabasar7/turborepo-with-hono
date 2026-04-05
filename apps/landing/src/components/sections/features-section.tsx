@@ -100,11 +100,14 @@ export function FeaturesSection() {
           alt=""
           fill
           sizes="100vw"
-          className="object-cover object-center"
-          style={{ opacity: 0.3 }}
+          className="object-cover object-top md:object-[50%_15%]"
+          style={{ opacity: 0.35 }}
         />
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+        {/* Kenar ve üst-alt fade — metnin üstüne binmez */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent" />
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent" />
       </motion.div>
 
       <div className="container relative z-10 mx-auto px-4">
