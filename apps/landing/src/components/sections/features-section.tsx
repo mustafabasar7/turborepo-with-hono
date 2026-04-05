@@ -91,7 +91,7 @@ export function FeaturesSection() {
   });
   const bgOpacity = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.75, 1],
+    [0, 0.15, 0.88, 1],
     [0, 0.35, 0.35, 0]
   );
 

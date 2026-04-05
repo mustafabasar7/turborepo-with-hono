@@ -55,7 +55,7 @@ export function LiveCounterSection() {
   });
   const bgOpacity = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.75, 1],
+    [0, 0.15, 0.88, 1],
     [0, 0.38, 0.38, 0]
   );
 

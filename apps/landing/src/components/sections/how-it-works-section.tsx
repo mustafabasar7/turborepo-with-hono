@@ -26,7 +26,7 @@ export function HowItWorksSection() {
   });
   const bgOpacity = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.75, 1],
+    [0, 0.15, 0.88, 1],
     [0, 0.28, 0.28, 0]
   );
 
