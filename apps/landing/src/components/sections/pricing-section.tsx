@@ -1,21 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Zap } from "lucide-react";
-import { Check } from "@/components/animate-ui/icons/check";
+import { CheckCircle2, Zap, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import {
   Card,
   CardContent,
@@ -24,167 +15,65 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { PRICING_PLANS } from "@/lib/constants";
+import { BlurFade } from "@/components/ui/blur-fade";
+import { PRICING_PLANS } from "@/config/pricing";
+import { cn } from "@/lib/utils";
 
-const PLAN_REFS = {
-  starter: {
-    monthly: process.env.NEXT_PUBLIC_IYZICO_PLAN_STARTER_MONTHLY ?? "",
-    yearly: process.env.NEXT_PUBLIC_IYZICO_PLAN_STARTER_YEARLY ?? "",
-  },
-  pro: {
-    monthly: process.env.NEXT_PUBLIC_IYZICO_PLAN_PRO_MONTHLY ?? "",
-    yearly: process.env.NEXT_PUBLIC_IYZICO_PLAN_PRO_YEARLY ?? "",
-  },
-} as const;
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.yapiplan.com";
 
-function formatPrice(price: number): string {
-  if (price === 0) return "İletişim";
-  return new Intl.NumberFormat("tr-TR").format(price) + " ₺";
-}
-
-interface CustomerFormState {
-  name: string;
-  surname: string;
-  email: string;
-  gsmNumber: string;
+async function handleCheckout(variantId: string) {
+  const res = await fetch(`${API_URL}/api/checkout`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ variantId }),
+  });
+  const data = (await res.json()) as { checkoutUrl?: string; error?: string };
+  if (data.checkoutUrl) {
+    window.location.href = data.checkoutUrl;
+  }
 }
 
 export function PricingSection() {
   const [isYearly, setIsYearly] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<{ id: string; name: string; ref: string } | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState<CustomerFormState>({
-    name: "",
-    surname: "",
-    email: "",
-    gsmNumber: "",
-  });
+  const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
 
-  function handlePlanClick(planId: string, planName: string) {
-    if (planId === "enterprise") {
+  async function onPlanClick(plan: (typeof PRICING_PLANS)[0]) {
+    if (!plan.isSelfServe) {
       document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
       return;
     }
-    const refs = PLAN_REFS[planId as keyof typeof PLAN_REFS];
-    const ref = isYearly ? refs?.yearly : refs?.monthly;
-    if (!ref) {
-      alert("Plan henüz yapılandırılmamış. Lütfen bize ulaşın.");
+    const variantId = isYearly ? plan.lsVariantYearly : plan.lsVariantMonthly;
+    if (!variantId) {
+      document.getElementById("demo")?.scrollIntoView({ behavior: "smooth" });
       return;
     }
-    setSelectedPlan({ id: planId, name: planName, ref });
-  }
-
-  async function handleCheckoutSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!selectedPlan) return;
-    setLoading(true);
+    setLoadingSlug(plan.slug);
     try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ planReferenceCode: selectedPlan.ref, ...form }),
-      });
-      if (!res.ok) throw new Error();
-      const data = (await res.json()) as { checkoutFormContent: string };
-      const win = window.open("", "_blank");
-      if (win) {
-        win.document.write(data.checkoutFormContent);
-        win.document.close();
-      }
-    } catch {
-      alert("Ödeme sayfası açılamadı. Lütfen tekrar deneyin.");
+      await handleCheckout(variantId);
     } finally {
-      setLoading(false);
-      setSelectedPlan(null);
+      setLoadingSlug(null);
     }
   }
 
   return (
-    <>
-      {/* shadcn Dialog — MCP'den alındı */}
-      <Dialog open={!!selectedPlan} onOpenChange={(open) => !open && setSelectedPlan(null)}>
-        <DialogContent className="sm:max-w-md">
-          <form onSubmit={handleCheckoutSubmit}>
-            <DialogHeader>
-              <DialogTitle>{selectedPlan?.name} Planı</DialogTitle>
-              <DialogDescription>
-                Ödeme sayfasına yönlendirilmek için bilgilerinizi girin.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="grid gap-2">
-                  <Label htmlFor="name">Ad</Label>
-                  <Input
-                    id="name"
-                    placeholder="Ahmet"
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="surname">Soyad</Label>
-                  <Input
-                    id="surname"
-                    placeholder="Yılmaz"
-                    required
-                    value={form.surname}
-                    onChange={(e) => setForm((p) => ({ ...p, surname: e.target.value }))}
-                  />
-                </div>
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="email">E-posta</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="ornek@email.com"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="phone">
-                  Telefon <span className="text-muted-foreground text-xs">(opsiyonel)</span>
-                </Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  placeholder="+905551234567"
-                  value={form.gsmNumber}
-                  onChange={(e) => setForm((p) => ({ ...p, gsmNumber: e.target.value }))}
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => setSelectedPlan(null)}>
-                İptal
-              </Button>
-              <Button type="submit" disabled={loading}>
-                {loading ? "Yönlendiriliyor..." : "Ödeme Sayfasına Git"}
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      <section id="pricing" className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge variant="secondary" className="mb-4">Fiyatlandırma</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-              İşletmenize Uygun Planı Seçin
+    <section id="pricing" className="bg-muted/30 py-20">
+      <div className="container mx-auto px-4">
+        <BlurFade delay={0.1} inView>
+          <div className="mb-12 flex flex-col items-center gap-4 text-center">
+            <Badge variant="secondary">Fiyatlandırma</Badge>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Şantiyenize Uygun Planı Seçin
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            <p className="max-w-2xl text-lg text-muted-foreground">
               14 günlük ücretsiz deneme. Kredi kartı gerekmez. İstediğiniz zaman iptal edebilirsiniz.
             </p>
 
-            {/* shadcn Switch — MCP'den alındı */}
-            <div className="flex items-center justify-center gap-3 mt-8">
-              <Label htmlFor="billing-toggle" className={!isYearly ? "text-foreground font-medium" : "text-muted-foreground"}>
+            {/* Aylık / Yıllık toggle */}
+            <div className="flex items-center gap-3 pt-2">
+              <Label
+                htmlFor="billing-toggle"
+                className={cn("cursor-pointer", !isYearly ? "font-semibold text-foreground" : "text-muted-foreground")}
+              >
                 Aylık
               </Label>
               <Switch
@@ -192,75 +81,111 @@ export function PricingSection() {
                 checked={isYearly}
                 onCheckedChange={setIsYearly}
               />
-              <Label htmlFor="billing-toggle" className={isYearly ? "text-foreground font-medium" : "text-muted-foreground"}>
+              <Label
+                htmlFor="billing-toggle"
+                className={cn("flex cursor-pointer items-center gap-2", isYearly ? "font-semibold text-foreground" : "text-muted-foreground")}
+              >
                 Yıllık
-                <Badge variant="secondary" className="ml-2 text-xs">%20 İndirim</Badge>
+                {isYearly && (
+                  <Badge variant="secondary" className="text-xs">
+                    ~%20 tasarruf
+                  </Badge>
+                )}
               </Label>
             </div>
           </div>
+        </BlurFade>
 
-          {/* shadcn Card — MCP'den alındı */}
-          <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
-            {PRICING_PLANS.map((plan) => (
-              <Card
-                key={plan.id}
-                className={plan.highlighted ? "border-primary shadow-lg ring-2 ring-primary relative" : "relative"}
-              >
-                {plan.highlighted && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className="px-4 py-1 text-sm">
-                      <Zap className="mr-1 size-3" />
-                      En Popüler
-                    </Badge>
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle>{plan.name}</CardTitle>
-                  <CardDescription>{plan.description}</CardDescription>
-                  <div className="flex items-end gap-1 pt-2">
-                    <span className="text-4xl font-extrabold">
-                      {formatPrice(isYearly ? plan.yearlyPrice : plan.monthlyPrice)}
-                    </span>
-                    {plan.monthlyPrice > 0 && (
-                      <span className="text-muted-foreground mb-1">/ay</span>
-                    )}
-                  </div>
-                  {isYearly && plan.monthlyPrice > 0 && (
-                    <p className="text-sm text-muted-foreground">
-                      Yıllık {formatPrice(plan.yearlyPrice * 12)} faturalandırılır
-                    </p>
+        <BlurFade delay={0.2} inView>
+          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+            {PRICING_PLANS.map((plan) => {
+              const price = isYearly ? plan.yearlyUsd : plan.monthlyUsd;
+              const isLoading = loadingSlug === plan.slug;
+
+              return (
+                <Card
+                  key={plan.slug}
+                  className={cn(
+                    "relative flex flex-col",
+                    plan.isPopular && "border-primary shadow-lg ring-2 ring-primary"
                   )}
-                </CardHeader>
-                <Separator />
-                <CardContent className="pt-6">
-                  <ul className="flex flex-col gap-3">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-sm">
-                        <Check size={16} className="text-primary flex-shrink-0" animateOnView />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter>
-                  <Button
-                    variant={plan.highlighted ? "default" : "outline"}
-                    className="w-full"
-                    onClick={() => handlePlanClick(plan.id, plan.name)}
-                  >
-                    {plan.ctaLabel}
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
+                >
+                  {plan.isPopular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                      <Badge className="px-4 py-1 text-sm">
+                        <Zap className="mr-1 size-3" />
+                        En Popüler
+                      </Badge>
+                    </div>
+                  )}
 
-          <div className="mt-10 text-center text-sm text-muted-foreground">
-            <Separator className="mb-6 max-w-xs mx-auto" />
-            <p>Tüm planlar için 14 günlük ücretsiz deneme • SSL güvenli ödeme (iyzico) • İstediğiniz zaman iptal</p>
+                  <CardHeader>
+                    <CardTitle>{plan.name}</CardTitle>
+                    <CardDescription>{plan.description}</CardDescription>
+                    <div className="flex items-end gap-1 pt-2">
+                      {price ? (
+                        <>
+                          <span className="text-4xl font-extrabold">${price}</span>
+                          <span className="mb-1 text-muted-foreground">/ay</span>
+                        </>
+                      ) : (
+                        <span className="text-2xl font-bold text-muted-foreground">Teklif Al</span>
+                      )}
+                    </div>
+                    {isYearly && price && (
+                      <p className="text-sm text-muted-foreground">
+                        Yıllık ${price * 12} faturalandırılır
+                      </p>
+                    )}
+                  </CardHeader>
+
+                  <Separator />
+
+                  <CardContent className="flex-1 pt-6">
+                    <ul className="flex flex-col gap-3">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-2 text-sm">
+                          <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+
+                  <CardFooter>
+                    <Button
+                      variant={plan.isPopular ? "default" : "outline"}
+                      className="w-full"
+                      disabled={isLoading}
+                      onClick={() => onPlanClick(plan)}
+                    >
+                      {isLoading ? (
+                        "Yönlendiriliyor…"
+                      ) : plan.isSelfServe ? (
+                        "14 Gün Ücretsiz Başla"
+                      ) : (
+                        <>
+                          <MessageCircle className="mr-2 size-4" />
+                          Demo Talep Et
+                        </>
+                      )}
+                    </Button>
+                  </CardFooter>
+                </Card>
+              );
+            })}
           </div>
-        </div>
-      </section>
-    </>
+        </BlurFade>
+
+        <BlurFade delay={0.3} inView>
+          <div className="mt-10 text-center">
+            <Separator className="mx-auto mb-6 max-w-xs" />
+            <p className="text-sm text-muted-foreground">
+              Tüm planlar için 14 günlük ücretsiz deneme · SSL güvenli ödeme (Lemonsqueezy) · İstediğiniz zaman iptal
+            </p>
+          </div>
+        </BlurFade>
+      </div>
+    </section>
   );
 }
