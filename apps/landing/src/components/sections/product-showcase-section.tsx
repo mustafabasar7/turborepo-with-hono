@@ -19,6 +19,7 @@ type TabItem = {
   ShowcaseIcon: React.ComponentType<{ size?: number; animateOnView?: boolean; className?: string }>;
   title: string;
   description: string;
+  video?: string;
 };
 
 const TABS: TabItem[] = [
@@ -30,6 +31,7 @@ const TABS: TabItem[] = [
     title: "Tüm projeleri tek ekranda",
     description:
       "Bütçe, ilerleme, risk ve ekip durumunu gerçek zamanlı görün. Hiçbir şeyi kaçırmayın.",
+    video: "/videos/dashboard.mp4",
   },
   {
     id: "cost",
@@ -39,6 +41,7 @@ const TABS: TabItem[] = [
     title: "Her kuruşu kontrol edin",
     description:
       "Ek işler, hakedişler ve maliyet kodları. Bütçe sapmasını oluşmadan önce görün, Excel ile dışa aktarın.",
+    video: "/videos/cost-control.mp4",
   },
   {
     id: "quality",
@@ -57,6 +60,7 @@ const TABS: TabItem[] = [
     title: "Sahayı ofisten yönetin",
     description:
       "Günlük loglar, hava durumu kaydı ve ekipman saatleri. Saha personeli mobil tarayıcıdan giriş yapar.",
+    video: "/videos/project-management.mp4",
   },
   {
     id: "documents",
@@ -124,22 +128,36 @@ export function ProductShowcaseSection() {
                       </div>
                     </div>
                     {/* Showcase area */}
-                    <div className="aspect-video bg-gradient-to-br from-primary/10 via-background to-secondary/10 flex flex-col items-center justify-center p-8 text-center">
-                      <tab.ShowcaseIcon
-                        size={64}
-                        animateOnView
-                        className="text-primary mb-6 opacity-80"
-                      />
-                      <h3 className="text-2xl font-bold mb-3">{tab.title}</h3>
-                      <p className="text-muted-foreground max-w-md leading-relaxed">
-                        {tab.description}
-                      </p>
-                      <p className="mt-8 text-xs text-muted-foreground/50 italic">
-                        Ekran görüntüsü yakında eklenecek
-                      </p>
+                    <div className="aspect-video bg-gradient-to-br from-primary/10 via-background to-secondary/10">
+                      {tab.video ? (
+                        <video
+                          key={tab.video}
+                          controls
+                          preload="metadata"
+                          className="size-full bg-black object-contain"
+                          aria-label={`${tab.label} demo videosu`}
+                        >
+                          <source src={tab.video} type="video/mp4" />
+                        </video>
+                      ) : (
+                        <div className="flex size-full flex-col items-center justify-center p-8 text-center">
+                          <tab.ShowcaseIcon
+                            size={64}
+                            animateOnView
+                            className="text-primary opacity-80"
+                          />
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
+                {/* Başlık + açıklama */}
+                <div className="mt-5 text-center">
+                  <h3 className="text-2xl font-bold mb-2">{tab.title}</h3>
+                  <p className="mx-auto max-w-md text-muted-foreground leading-relaxed">
+                    {tab.description}
+                  </p>
+                </div>
               </TabsContent>
             ))}
           </Tabs>
