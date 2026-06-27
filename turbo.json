@@ -3,7 +3,7 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "env": ["VERCEL", "DATABASE_URL"],
+      "env": ["VERCEL", "DATABASE_URL", "RESEND_API_KEY", "LEAD_EMAIL", "NEXT_PUBLIC_API_URL"],
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**", ".vercel/output/**"]

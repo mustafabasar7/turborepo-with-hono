@@ -24,16 +24,43 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+const EMPTY = {
+  name: "",
+  company: "",
+  email: "",
+  phone: "",
+  companyType: "",
+  siteCount: "",
+  message: "",
+};
+
 export function DemoFormSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState(EMPTY);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const set = (key: keyof typeof EMPTY) => (value: string) =>
+    setForm((f) => ({ ...f, [key]: value }));
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: Hono API entegrasyonu
-    setSubmitted(true);
-    toast.success(
-      "Demo talebiniz alındı! 24 saat içinde dönüş yapacağız."
-    );
+    setLoading(true);
+    try {
+      const res = await fetch("/api/demo-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("request failed");
+      setSubmitted(true);
+      toast.success("Demo talebiniz alındı! En kısa sürede dönüş yapacağız.");
+    } catch {
+      toast.error(
+        "Talep gönderilemedi. Lütfen tekrar deneyin veya bizi arayın.",
+      );
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -79,6 +106,8 @@ export function DemoFormSection() {
                         id="name"
                         placeholder="Ahmet Yılmaz"
                         required
+                        value={form.name}
+                        onChange={(e) => set("name")(e.target.value)}
                       />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -87,6 +116,8 @@ export function DemoFormSection() {
                         id="company"
                         placeholder="ABC İnşaat A.Ş."
                         required
+                        value={form.company}
+                        onChange={(e) => set("company")(e.target.value)}
                       />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -96,6 +127,8 @@ export function DemoFormSection() {
                         type="email"
                         placeholder="ahmet@abc.com"
                         required
+                        value={form.email}
+                        onChange={(e) => set("email")(e.target.value)}
                       />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -104,13 +137,15 @@ export function DemoFormSection() {
                         id="phone"
                         type="tel"
                         placeholder="+90 532 000 00 00"
+                        value={form.phone}
+                        onChange={(e) => set("phone")(e.target.value)}
                       />
                     </div>
 
                     {/* Firma Tipi */}
                     <div className="flex flex-col gap-2 min-w-0">
                       <Label htmlFor="company-type">Firma Tipi</Label>
-                      <Select>
+                      <Select value={form.companyType} onValueChange={set("companyType")}>
                         <SelectTrigger id="company-type" className="w-full">
                           <SelectValue placeholder="Seçiniz..." />
                         </SelectTrigger>
@@ -137,7 +172,7 @@ export function DemoFormSection() {
                     {/* Şantiye Sayısı */}
                     <div className="flex flex-col gap-2 min-w-0">
                       <Label htmlFor="site-count">Şantiye Sayısı</Label>
-                      <Select>
+                      <Select value={form.siteCount} onValueChange={set("siteCount")}>
                         <SelectTrigger id="site-count" className="w-full">
                           <SelectValue placeholder="Seçiniz..." />
                         </SelectTrigger>
@@ -159,6 +194,8 @@ export function DemoFormSection() {
                       id="message"
                       placeholder="Proje türünüz ve ihtiyaçlarınız hakkında kısa bilgi..."
                       rows={4}
+                      value={form.message}
+                      onChange={(e) => set("message")(e.target.value)}
                     />
                   </div>
                 </form>
@@ -169,9 +206,10 @@ export function DemoFormSection() {
                   form="demo-form"
                   size="lg"
                   className="w-full"
+                  disabled={loading}
                 >
                   <Send className="size-4" />
-                  Demo Talep Et
+                  {loading ? "Gönderiliyor..." : "Demo Talep Et"}
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
                   Bilgileriniz üçüncü taraflarla paylaşılmaz. KVKK kapsamında
