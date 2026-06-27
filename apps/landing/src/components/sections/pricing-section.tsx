@@ -99,7 +99,9 @@ export function PricingSection() {
         <BlurFade delay={0.2} inView>
           <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
             {PRICING_PLANS.map((plan) => {
-              const price = isYearly ? plan.yearlyUsd : plan.monthlyUsd;
+              // yearly = yıllık TOPLAM tutar (₺); ekranda aylık-eşdeğer gösterilir.
+              const displayMonthly =
+                isYearly && plan.yearly ? Math.round(plan.yearly / 12) : plan.monthly;
               const isLoading = loadingSlug === plan.slug;
 
               return (
@@ -123,18 +125,20 @@ export function PricingSection() {
                     <CardTitle>{plan.name}</CardTitle>
                     <CardDescription>{plan.description}</CardDescription>
                     <div className="flex items-end gap-1 pt-2">
-                      {price ? (
+                      {displayMonthly ? (
                         <>
-                          <span className="text-4xl font-extrabold">${price}</span>
+                          <span className="text-4xl font-extrabold">
+                            ₺{displayMonthly.toLocaleString("tr-TR")}
+                          </span>
                           <span className="mb-1 text-muted-foreground">/ay</span>
                         </>
                       ) : (
                         <span className="text-2xl font-bold text-muted-foreground">Teklif Al</span>
                       )}
                     </div>
-                    {isYearly && price && (
+                    {isYearly && plan.yearly && (
                       <p className="text-sm text-muted-foreground">
-                        Yıllık ${price * 12} faturalandırılır
+                        Yıllık ₺{plan.yearly.toLocaleString("tr-TR")} faturalandırılır
                       </p>
                     )}
                   </CardHeader>
