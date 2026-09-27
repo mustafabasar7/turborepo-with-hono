@@ -1,0 +1,14 @@
+{
+  "name": "outreach",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Parametric cold-outreach email tool for İnşaat Kontrol",
+  "scripts": {
+    "start": "node send-outreach.mjs",
+    "self-check": "node send-outreach.mjs --self-check"
+  },
+  "dependencies": {
+    "nodemailer": "^7"
+  }
+}

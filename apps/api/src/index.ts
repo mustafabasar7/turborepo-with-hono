@@ -2,6 +2,8 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { auth } from "./auth.js";
 import { CONSTANT } from "@repo/constants";
+import checkout from "./routes/checkout.js";
+import webhook from "./routes/webhook.js";
 
 const app = new Hono();
 
@@ -21,6 +23,9 @@ app.use(
 );
 
 app.on(["GET", "POST"], "/api/auth/**", (c) => auth.handler(c.req.raw));
+
+app.route("/", webhook);
+app.route("/", checkout);
 
 app.get("/", (c) => c.text(CONSTANT));
 

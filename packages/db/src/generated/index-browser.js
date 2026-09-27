@@ -167,9 +167,49 @@ exports.Prisma.VerificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SubscriptionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  lsSubscriptionId: 'lsSubscriptionId',
+  lsCustomerId: 'lsCustomerId',
+  lsVariantId: 'lsVariantId',
+  lsOrderId: 'lsOrderId',
+  email: 'email',
+  name: 'name',
+  status: 'status',
+  planName: 'planName',
+  planSlug: 'planSlug',
+  trialEndsAt: 'trialEndsAt',
+  renewsAt: 'renewsAt',
+  endsAt: 'endsAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PricingConfigScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  name: 'name',
+  description: 'description',
+  monthlyUsd: 'monthlyUsd',
+  yearlyUsd: 'yearlyUsd',
+  lsVariantMonthly: 'lsVariantMonthly',
+  lsVariantYearly: 'lsVariantYearly',
+  features: 'features',
+  isPopular: 'isPopular',
+  isSelfServe: 'isSelfServe',
+  isActive: 'isActive',
+  sortOrder: 'sortOrder',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -182,12 +222,20 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Account: 'Account',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Subscription: 'Subscription',
+  PricingConfig: 'PricingConfig'
 };
 
 /**
