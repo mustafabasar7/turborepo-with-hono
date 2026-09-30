@@ -32,11 +32,6 @@ const TRUST_ITEMS = [
       "Her kullanıcı yalnızca yetkili olduğu alanlara erişir. Proje bazlı izin yönetimi.",
   },
   {
-    title: "İki Faktörlü Doğrulama",
-    description:
-      "SMS veya authenticator uygulaması ile ek güvenlik katmanı.",
-  },
-  {
     title: "Denetim Kaydı",
     description:
       "Kim, ne zaman, ne değiştirdi? Tüm aktiviteler değiştirilemez log olarak saklanır.",

@@ -16,16 +16,18 @@ export const PRICING_PLANS: PlanConfig[] = [
   {
     slug: "starter",
     name: "Starter",
-    description: "Küçük inşaat ekipleri için",
+    description: "1-2 projeli küçük müteahhitler için",
     monthly: 2990,
     yearly: 28704,
     lsVariantMonthly: process.env.NEXT_PUBLIC_LS_VARIANT_STARTER_MONTHLY ?? null,
     lsVariantYearly: process.env.NEXT_PUBLIC_LS_VARIANT_STARTER_YEARLY ?? null,
     features: [
-      "5 aktif proje",
+      "2 aktif proje",
+      "5 kullanıcı",
       "Günlük saha log modülü",
       "Temel maliyet takibi",
-      "Mobil görünüm",
+      "AI sohbet asistanı (sesli asistan ve panorama Pro planda)",
+      "Kamera dahil değil",
       "Email destek",
     ],
     isPopular: false,
@@ -34,15 +36,16 @@ export const PRICING_PLANS: PlanConfig[] = [
   {
     slug: "pro",
     name: "Pro",
-    description: "Büyüyen firmalar için",
+    description: "3-5 projeli büyüyen müteahhitler için",
     monthly: 5990,
     yearly: 57504,
     lsVariantMonthly: process.env.NEXT_PUBLIC_LS_VARIANT_PRO_MONTHLY ?? null,
     lsVariantYearly: process.env.NEXT_PUBLIC_LS_VARIANT_PRO_YEARLY ?? null,
     features: [
-      "Sınırsız proje",
-      "AI Asistan & Doküman Zekası",
-      "Kamera entegrasyonu",
+      "5 aktif proje",
+      "15 kullanıcı",
+      "2 kamera dahil",
+      "Genişletilmiş AI kotası: ayda 60 dk sesli asistan, 5 panorama",
       "Hakediş & Maliyet modülü",
       "Öncelikli destek",
     ],
@@ -58,13 +61,27 @@ export const PRICING_PLANS: PlanConfig[] = [
     lsVariantMonthly: null,
     lsVariantYearly: null,
     features: [
-      "Tüm Pro özellikler",
-      "Özel entegrasyonlar (SAP, AutoCAD)",
+      "20+ proje",
+      "Özel kullanıcı, kamera ve AI kotası",
       "SLA garantisi",
       "Dedicated teknik destek",
+      "Özel entegrasyon talepleri",
       "Özel fiyatlandırma",
     ],
     isPopular: false,
     isSelfServe: false,
   },
+];
+
+export interface AddOnConfig {
+  name: string;
+  price: string;
+}
+
+// Yalnızca Pro planı için eklentiler.
+export const PRO_ADD_ONS: AddOnConfig[] = [
+  { name: "Ek aktif proje", price: "₺1.000 / ay" },
+  { name: "Ek kamera", price: "₺500 / ay" },
+  { name: "Sesli asistan dakika paketi", price: "Paket olarak satılır, fiyat için iletişime geçin" },
+  { name: "Panorama paketi", price: "Paket olarak satılır, fiyat için iletişime geçin" },
 ];

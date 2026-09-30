@@ -147,8 +147,8 @@ export const PRICING_PLANS: PricingPlan[] = [
     monthlyPrice: 2990,
     yearlyPrice: 2392,
     features: [
-      "5 aktif proje",
-      "10 kullanıcı",
+      "2 aktif proje",
+      "5 kullanıcı",
       "Proje yönetimi (Liste/Kanban)",
       "Maliyet takibi & bütçe",
       "Doküman yönetimi",
@@ -167,8 +167,9 @@ export const PRICING_PLANS: PricingPlan[] = [
     monthlyPrice: 5990,
     yearlyPrice: 4792,
     features: [
-      "Sınırsız proje",
-      "50 kullanıcı",
+      "5 aktif proje",
+      "15 kullanıcı",
+      "2 kamera dahil",
       "Tüm özellikler (Saha, Kalite, Doküman)",
       "AI Araçları (Smart Edit, Projeksiyon)",
       "Risk Yönetimi & Raporlar",
@@ -188,7 +189,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     monthlyPrice: 0,
     yearlyPrice: 0,
     features: [
-      "Sınırsız proje ve kullanıcı",
+      "20+ proje, özel kullanıcı ve kamera sayısı",
       "Kamera İzleme entegrasyonu",
       "Özel muhasebe entegrasyonu",
       "Dedicated müşteri temsilcisi",

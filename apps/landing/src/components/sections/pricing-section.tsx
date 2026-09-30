@@ -16,7 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { BlurFade } from "@/components/ui/blur-fade";
-import { PRICING_PLANS } from "@/config/pricing";
+import { PRICING_PLANS, PRO_ADD_ONS } from "@/config/pricing";
 import { cn } from "@/lib/utils";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.yapiplan.com";
@@ -179,6 +179,24 @@ export function PricingSection() {
               );
             })}
           </div>
+        </BlurFade>
+
+        <BlurFade delay={0.25} inView>
+          <Card className="mx-auto mt-10 max-w-5xl">
+            <CardHeader>
+              <CardTitle className="text-base">Pro Plan Eklentileri</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="grid gap-3 text-sm sm:grid-cols-2">
+                {PRO_ADD_ONS.map((addOn) => (
+                  <li key={addOn.name} className="flex flex-col gap-0.5">
+                    <span className="font-medium">{addOn.name}</span>
+                    <span className="text-muted-foreground">{addOn.price}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
         </BlurFade>
 
         <BlurFade delay={0.3} inView>
