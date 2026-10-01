@@ -1,4 +1,4 @@
-import type { FeatureItem, FaqItem, NavLink, StatItem, HowItWorksStep } from "@/types";
+import type { FeatureItem, FaqItem, NavLink, HowItWorksStep } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Özellikler", href: "#features" },
@@ -6,13 +6,6 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Fiyatlandırma", href: "#pricing" },
   { label: "SSS", href: "#faq" },
   { label: "İletişim", href: "#demo" },
-];
-
-export const STATS: StatItem[] = [
-  { value: "%35", label: "Ortalama Maliyet Tasarrufu" },
-  { value: "%60", label: "Daha Az Evrak İşi" },
-  { value: "3×", label: "Daha Hızlı Raporlama" },
-  { value: "24/7", label: "Türkçe Teknik Destek" },
 ];
 
 export const FEATURES: FeatureItem[] = [

@@ -15,18 +15,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-const INTEGRATION_BADGES = [
-  "AutoCAD",
-  "SAP",
-  "Teams",
-  "WhatsApp",
-  "BIM360",
-  "Excel",
-  "Revit",
-  "Procore",
-  "Slack",
-  "Dropbox",
-];
+const INTEGRATION_BADGES = ["WhatsApp", "Excel"];
 
 function SpinningAiBackground() {
   return (
@@ -95,7 +84,7 @@ const features = [
   {
     Icon: TrendingUp,
     name: "Maliyet Kontrolü",
-    description: "Bütçe sapmasını oluşmadan önce gör. %35 ortalama tasarruf.",
+    description: "Bütçe sapmasını oluşmadan önce gör.",
     href: "#features",
     cta: "İncele",
     background: <CounterBackground />,
@@ -114,9 +103,9 @@ const features = [
   },
   {
     Icon: Layers,
-    name: "40+ Entegrasyon",
+    name: "WhatsApp ve Excel",
     description:
-      "AutoCAD, SAP, Teams, WhatsApp Business, BIM360 ve daha fazlası.",
+      "Ekibinle WhatsApp üzerinden haberleş, raporları Excel'e aktar.",
     href: "#features",
     cta: "Tümü",
     background: <IntegrationsBackground />,

@@ -212,8 +212,7 @@ export function DemoFormSection() {
                   {loading ? "Gönderiliyor..." : "Demo Talep Et"}
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">
-                  Bilgileriniz üçüncü taraflarla paylaşılmaz. KVKK kapsamında
-                  korunur.
+                  Bilgileriniz üçüncü taraflarla paylaşılmaz.
                 </p>
               </CardFooter>
             </Card>

@@ -126,8 +126,8 @@ export default function Image() {
         {/* Bottom stats row */}
         <div style={{ display: "flex", gap: "48px" }}>
           {[
-            { value: "%35", label: "Maliyet Tasarrufu" },
-            { value: "20+", label: "İnşaat Firması" },
+            { value: "Kamera", label: "KKD Takibi" },
+            { value: "AI", label: "Sesli Asistan" },
             { value: "14 gün", label: "Ücretsiz Deneme" },
           ].map((stat) => (
             <div key={stat.label} style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
