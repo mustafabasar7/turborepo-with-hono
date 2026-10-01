@@ -41,8 +41,8 @@ export function CtaSection() {
 
         <BlurFade delay={0.3} inView>
           <p className="mx-auto mb-10 max-w-xl text-lg opacity-90">
-            Binlerce müteahhit ve mühendis her gün kullanıyor. Siz de maliyet
-            aşımı ve gecikmeye son verin.
+            Maliyet aşımını ve gecikmeyi sahadan ofise tek platformdan takip
+            edin.
           </p>
         </BlurFade>
 

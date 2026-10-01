@@ -95,7 +95,7 @@ export function ProductShowcaseSection() {
             Gerçek Sistem, Gerçek Sonuçlar
           </h2>
           <p className="mx-auto max-w-xl text-muted-foreground text-lg">
-            Müteahhitler, mühendisler ve saha şefleri her gün kullanıyor.
+            Müteahhitler, mühendisler ve saha şefleri için tasarlandı.
           </p>
         </div>
 

@@ -10,6 +10,7 @@ import { VideoDemoSection } from "@/components/sections/video-demo-section";
 import { UseCasesSection } from "@/components/sections/use-cases-section";
 import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { MobileSection } from "@/components/sections/mobile-section";
+import { EarlyAccessSection } from "@/components/sections/early-access-section";
 import { PricingSection } from "@/components/sections/pricing-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { CtaSection } from "@/components/sections/cta-section";
@@ -39,6 +40,7 @@ export default function HomePage() {
         <ImageBreakSection src="/images/building-tablet.jpg" height={380} position="center" />
 
         <MobileSection />
+        <EarlyAccessSection />
         <PricingSection />
         <FaqSection />
         <CtaSection />

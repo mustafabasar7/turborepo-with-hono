@@ -14,7 +14,7 @@ const fontMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "İnşaat Kontrol — Türkiye'nin Lider İnşaat ERP Platformu",
+  title: "İnşaat Kontrol — İnşaat Şantiye Yönetim Platformu",
   description:
     "Proje yönetimi, maliyet kontrolü, kalite denetimi ve saha operasyonlarını tek platformda yönetin. 14 günlük ücretsiz deneme.",
   keywords: [
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "yapı denetim yazılımı",
   ],
   openGraph: {
-    title: "İnşaat Kontrol — Türkiye'nin Lider İnşaat ERP Platformu",
+    title: "İnşaat Kontrol — İnşaat Şantiye Yönetim Platformu",
     description:
       "Proje yönetimi, maliyet kontrolü, kalite denetimi ve saha operasyonlarını tek platformda yönetin.",
     url: "https://insaatkontrol.com",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "İnşaat Kontrol — Türkiye'nin Lider İnşaat ERP Platformu",
+    title: "İnşaat Kontrol — İnşaat Şantiye Yönetim Platformu",
     description:
       "Proje yönetimi, maliyet kontrolü, kalite denetimi ve saha operasyonlarını tek platformda yönetin.",
   },

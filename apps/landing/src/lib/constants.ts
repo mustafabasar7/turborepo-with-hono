@@ -186,7 +186,7 @@ export const PRICING_PLANS: PricingPlan[] = [
       "Kamera İzleme entegrasyonu",
       "Özel muhasebe entegrasyonu",
       "Dedicated müşteri temsilcisi",
-      "SLA garantisi",
+      "Özel SLA (sözleşmeye göre)",
       "Sınırsız depolama",
       "On-premise seçeneği",
     ],

@@ -63,7 +63,7 @@ export const PRICING_PLANS: PlanConfig[] = [
     features: [
       "20+ proje",
       "Özel kullanıcı, kamera ve AI kotası",
-      "SLA garantisi",
+      "Özel SLA (sözleşmeye göre)",
       "Dedicated teknik destek",
       "Özel entegrasyon talepleri",
       "Özel fiyatlandırma",
