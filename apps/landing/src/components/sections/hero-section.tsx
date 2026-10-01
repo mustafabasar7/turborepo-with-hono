@@ -72,7 +72,7 @@ export function HeroSection() {
         <div className="mb-6 flex justify-center">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/8 px-4 py-1.5 text-sm">
             <AnimatedShinyText shimmerWidth={150} className="font-medium">
-              Türkiye&apos;nin İnşaat ERP Platformu
+              İnşaat Şantiye Yönetim Platformu
             </AnimatedShinyText>
           </div>
         </div>

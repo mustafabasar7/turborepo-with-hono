@@ -3,19 +3,12 @@ import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
 import { FeaturesSection } from "@/components/sections/features-section";
-import { BentoGridSection } from "@/components/sections/bento-grid-section";
-import { ComparisonTableSection } from "@/components/sections/comparison-table-section";
 import { ProductShowcaseSection } from "@/components/sections/product-showcase-section";
-import { VideoDemoSection } from "@/components/sections/video-demo-section";
-import { UseCasesSection } from "@/components/sections/use-cases-section";
-import { HowItWorksSection } from "@/components/sections/how-it-works-section";
-import { MobileSection } from "@/components/sections/mobile-section";
 import { EarlyAccessSection } from "@/components/sections/early-access-section";
 import { PricingSection } from "@/components/sections/pricing-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { CtaSection } from "@/components/sections/cta-section";
 import { DemoFormSection } from "@/components/sections/demo-form-section";
-import { ImageBreakSection } from "@/components/sections/image-break-section";
 
 export default function HomePage() {
   return (
@@ -24,22 +17,10 @@ export default function HomePage() {
       <main>
         <HeroSection />
 
-        <ImageBreakSection src="/images/build-02.jpg" height={400} position="[50%_60%]" />
-
         <FeaturesSection />
-        <BentoGridSection />
-        <ComparisonTableSection />
-
-        <ImageBreakSection src="/images/futuristic-tech.jpg" height={440} position="[50%_15%]" />
 
         <ProductShowcaseSection />
-        <VideoDemoSection />
-        <UseCasesSection />
-        <HowItWorksSection />
 
-        <ImageBreakSection src="/images/building-tablet.jpg" height={380} position="center" />
-
-        <MobileSection />
         <EarlyAccessSection />
         <PricingSection />
         <FaqSection />

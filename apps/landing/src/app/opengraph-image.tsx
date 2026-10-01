@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "İnşaat Kontrol — Türkiye'nin İnşaat ERP Platformu";
+export const alt = "İnşaat Kontrol — İnşaat Şantiye Yönetim Platformu";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

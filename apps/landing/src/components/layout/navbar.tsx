@@ -32,8 +32,6 @@ import { cn } from "@/lib/utils";
 const PRODUCT_ITEMS = [
   { label: "Özellikler", href: "#features", description: "Saha, ofis ve AI araçları" },
   { label: "Platform Özeti", href: "#showcase", description: "Ürünü yakından gör" },
-  { label: "Kullanım Alanları", href: "#use-cases", description: "Senaryoya göre incele" },
-  { label: "Nasıl Çalışır", href: "#how-it-works", description: "5 adımda başla" },
 ] as const;
 
 const SECONDARY_NAV = [
