@@ -25,7 +25,7 @@ export function CtaSection() {
         <BlurFade delay={0.1} inView>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 text-sm font-medium">
             <Hammer size={16} animateOnView />
-            14 gün ücretsiz, kredi kartı gerekmez
+            7 gün ücretsiz, kredi kartı gerekmez
           </div>
         </BlurFade>
 

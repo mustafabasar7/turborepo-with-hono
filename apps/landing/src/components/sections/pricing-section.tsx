@@ -65,7 +65,7 @@ export function PricingSection() {
               Şantiyenize Uygun Planı Seçin
             </h2>
             <p className="max-w-2xl text-lg text-muted-foreground">
-              14 günlük ücretsiz deneme. Kredi kartı gerekmez. İstediğiniz zaman iptal edebilirsiniz.
+              7 günlük ücretsiz deneme. Kredi kartı gerekmez. İstediğiniz zaman iptal edebilirsiniz.
             </p>
 
             {/* Aylık / Yıllık toggle */}
@@ -166,7 +166,7 @@ export function PricingSection() {
                       {isLoading ? (
                         "Yönlendiriliyor…"
                       ) : plan.isSelfServe ? (
-                        "14 Gün Ücretsiz Başla"
+                        "7 Gün Ücretsiz Başla"
                       ) : (
                         <>
                           <MessageCircle className="mr-2 size-4" />
@@ -203,7 +203,7 @@ export function PricingSection() {
           <div className="mt-10 text-center">
             <Separator className="mx-auto mb-6 max-w-xs" />
             <p className="text-sm text-muted-foreground">
-              Tüm planlar için 14 günlük ücretsiz deneme · SSL güvenli ödeme (Lemonsqueezy) · İstediğiniz zaman iptal
+              Tüm planlar için 7 günlük ücretsiz deneme · SSL güvenli ödeme (Lemonsqueezy) · İstediğiniz zaman iptal
             </p>
           </div>
         </BlurFade>

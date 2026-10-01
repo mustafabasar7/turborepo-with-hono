@@ -70,11 +70,11 @@ export function DemoFormSection() {
           <div className="flex flex-col items-center gap-4 text-center mb-10">
             <Badge variant="secondary">Demo Talebi</Badge>
             <h2 className="text-3xl md:text-4xl font-extrabold">
-              14 Gün Ücretsiz Deneyin
+              7 Gün Ücretsiz Deneyin
             </h2>
             <p className="text-muted-foreground text-lg">
               Uzmanlarımız sizi arayarak ihtiyaçlarınıza özel demo sunacak.
-              14 günlük ücretsiz deneme hakkı dahil.
+              7 günlük ücretsiz deneme hakkı dahil.
             </p>
           </div>
 

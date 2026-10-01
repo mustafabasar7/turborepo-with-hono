@@ -118,7 +118,7 @@ export function QuickWinsSection() {
 
         <div className="mt-8 flex flex-wrap justify-center gap-6 text-center">
           {[
-            { icon: <Activity size={20} animateOnView className="text-primary mx-auto mb-1" />, stat: "14 gün", sub: "Ücretsiz deneme" },
+            { icon: <Activity size={20} animateOnView className="text-primary mx-auto mb-1" />, stat: "7 gün", sub: "Ücretsiz deneme" },
             { icon: <ClipboardCheck size={20} animateOnView className="text-primary mx-auto mb-1" />, stat: "5 dakika", sub: "Kurulum süresi" },
             { icon: <Activity size={20} animateOnView className="text-primary mx-auto mb-1" />, stat: "7/24", sub: "Türkçe destek" },
           ].map((item) => (

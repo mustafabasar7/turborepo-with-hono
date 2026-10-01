@@ -133,7 +133,7 @@ export function HeroSection() {
         {/* Trust badges */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           {[
-            "14 gün ücretsiz deneme",
+            "7 gün ücretsiz deneme",
             "Kredi kartı gerekmez",
             "Kurulum 5 dakika",
             "Türkçe destek",

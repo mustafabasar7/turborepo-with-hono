@@ -16,7 +16,7 @@ const fontMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "İnşaat Kontrol — İnşaat Şantiye Yönetim Platformu",
   description:
-    "Proje yönetimi, maliyet kontrolü, kalite denetimi ve saha operasyonlarını tek platformda yönetin. 14 günlük ücretsiz deneme.",
+    "Proje yönetimi, maliyet kontrolü, kalite denetimi ve saha operasyonlarını tek platformda yönetin. 7 günlük ücretsiz deneme.",
   keywords: [
     "inşaat yazılımı",
     "inşaat ERP",

@@ -128,7 +128,7 @@ export default function Image() {
           {[
             { value: "Kamera", label: "KKD Takibi" },
             { value: "AI", label: "Sesli Asistan" },
-            { value: "14 gün", label: "Ücretsiz Deneme" },
+            { value: "7 gün", label: "Ücretsiz Deneme" },
           ].map((stat) => (
             <div key={stat.label} style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
               <span style={{ fontSize: "32px", fontWeight: "800", color: "#111827" }}>

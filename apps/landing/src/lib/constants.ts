@@ -97,7 +97,7 @@ export const HOW_IT_WORKS_STEPS: HowItWorksStep[] = [
     step: 1,
     title: "Demo Talep Edin",
     description:
-      "14 günlük ücretsiz erişim alın. Kredi kartı gerekmez, kurulum 5 dakika.",
+      "7 günlük ücretsiz erişim alın. Kredi kartı gerekmez, kurulum 5 dakika.",
   },
   {
     step: 2,
@@ -236,6 +236,6 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Demo veya deneme süresi var mı?",
     answer:
-      "14 günlük ücretsiz tam özellikli deneme sunuyoruz. Deneme süresinde kredi kartı bilgisi gerekmez ve tüm özelliklere erişiminiz olur.",
+      "7 günlük ücretsiz tam özellikli deneme sunuyoruz. Deneme süresinde kredi kartı bilgisi gerekmez ve tüm özelliklere erişiminiz olur.",
   },
 ];
