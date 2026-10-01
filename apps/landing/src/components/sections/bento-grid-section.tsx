@@ -15,7 +15,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-const INTEGRATION_BADGES = ["WhatsApp", "Excel"];
+const INTEGRATION_BADGES = ["Excel", "WhatsApp (yakında)"];
 
 function SpinningAiBackground() {
   return (
@@ -103,9 +103,9 @@ const features = [
   },
   {
     Icon: Layers,
-    name: "WhatsApp ve Excel",
+    name: "Excel ve WhatsApp",
     description:
-      "Ekibinle WhatsApp üzerinden haberleş, raporları Excel'e aktar.",
+      "Raporları ve tabloları Excel'e aktar. WhatsApp bildirimleri yakında.",
     href: "#features",
     cta: "Tümü",
     background: <IntegrationsBackground />,
