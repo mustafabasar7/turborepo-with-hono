@@ -49,7 +49,7 @@ const PERSONAS = [
     gains: [
       "Müşteri portalı ile şeffaf iletişim",
       "Risk matrisi ile erken uyarı",
-      "Gantt ve Kanban görünümleri",
+      "Kanban ve takvim görünümleri",
       "Punch board ile kusur yönetimi",
     ],
   },
