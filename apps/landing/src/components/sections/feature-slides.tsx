@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
 import { Pause, Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { Iphone } from "@/components/ui/iphone";
 import { cn } from "@/lib/utils";
 import { BrowserFrame } from "@/components/sections/browser-frame";
 
@@ -29,6 +30,23 @@ export type SlideFeature = {
 type FeatureSlidesProps = {
   features: SlideFeature[];
 };
+
+const CLEAR_PIXEL = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+
+/** Gerçek telefon çerçevesi; ekran alanına `children` yerleşir (ekran oranı 389.5 : 843.5). */
+function PhoneFrame({ children }: { children: ReactNode }) {
+  return (
+    <div className="relative mx-auto w-[72%] max-w-72 max-lg:order-first [&_svg]:pointer-events-none">
+      <div
+        className="absolute z-0 overflow-hidden"
+        style={{ left: "4.907%", top: "2.183%", width: "89.95%", height: "95.63%", borderRadius: "14.3% / 6.6%" }}
+      >
+        <div className="relative size-full">{children}</div>
+      </div>
+      <Iphone src={CLEAR_PIXEL} className="drop-shadow-2xl" />
+    </div>
+  );
+}
 
 type SlideVideoProps = {
   src: string;
@@ -115,59 +133,8 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
     setUserChoice(!playing);
   }, [playing]);
 
-  return (
-    <div className="grid items-center gap-8 lg:grid-cols-[4fr_8fr]">
-      <ul className="flex flex-col gap-2">
-        {features.map((feature) => {
-          const hasVideo = slides.includes(feature);
-          const isActive = hasVideo && feature.title === activeTitle;
-          const content = (
-            <>
-              {feature.Icon && (
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                  <feature.Icon size={20} className="text-primary" />
-                </span>
-              )}
-              <span className="flex flex-col gap-1">
-                <span className="flex items-center gap-2 text-sm font-semibold">
-                  {feature.title}
-                  {feature.badge && (
-                    <Badge className="px-1.5 py-0 text-xs">{feature.badge}</Badge>
-                  )}
-                </span>
-                <span className="text-xs leading-relaxed text-muted-foreground">
-                  {feature.description}
-                </span>
-              </span>
-            </>
-          );
-          const rowClass = cn(
-            "flex min-h-11 w-full items-start gap-4 rounded-xl border p-4 text-left transition-colors",
-            isActive ? "border-primary bg-primary/5" : "border-border",
-          );
-          return (
-            <li key={feature.title}>
-              {hasVideo ? (
-                <button
-                  type="button"
-                  aria-pressed={isActive}
-                  className={cn(rowClass, "cursor-pointer hover:border-primary/60")}
-                  onClick={() => showFeature(feature.title)}
-                >
-                  {content}
-                </button>
-              ) : (
-                <div className={cn(rowClass, "opacity-80")}>{content}</div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-
-      <BrowserFrame
-        url="app.insaatkontrol.com"
-        className="bg-muted/30 max-lg:order-first max-sm:mx-auto max-sm:max-w-[17rem] max-sm:rounded-[2rem] max-sm:border-[6px] max-sm:border-foreground/90 max-sm:[&>div:first-child]:hidden"
-      >
+  const player = (
+    <>
         <Carousel opts={{ loop: true, watchDrag: false }} setApi={setApi}>
           <CarouselContent className="ml-0">
             {slides.map((slide, index) => (
@@ -218,7 +185,65 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
         >
           {playing ? <Pause /> : <Play />}
         </Button>
-      </BrowserFrame>
+    </>
+  );
+
+  return (
+    <div className="grid items-center gap-8 lg:grid-cols-[4fr_8fr]">
+      <ul className="flex flex-col gap-2">
+        {features.map((feature) => {
+          const hasVideo = slides.includes(feature);
+          const isActive = hasVideo && feature.title === activeTitle;
+          const content = (
+            <>
+              {feature.Icon && (
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  <feature.Icon size={20} className="text-primary" />
+                </span>
+              )}
+              <span className="flex flex-col gap-1">
+                <span className="flex items-center gap-2 text-sm font-semibold">
+                  {feature.title}
+                  {feature.badge && (
+                    <Badge className="px-1.5 py-0 text-xs">{feature.badge}</Badge>
+                  )}
+                </span>
+                <span className="text-xs leading-relaxed text-muted-foreground">
+                  {feature.description}
+                </span>
+              </span>
+            </>
+          );
+          const rowClass = cn(
+            "flex min-h-11 w-full items-start gap-4 rounded-xl border p-4 text-left transition-colors",
+            isActive ? "border-primary bg-primary/5" : "border-border",
+          );
+          return (
+            <li key={feature.title}>
+              {hasVideo ? (
+                <button
+                  type="button"
+                  aria-pressed={isActive}
+                  className={cn(rowClass, "cursor-pointer hover:border-primary/60")}
+                  onClick={() => showFeature(feature.title)}
+                >
+                  {content}
+                </button>
+              ) : (
+                <div className={cn(rowClass, "opacity-80")}>{content}</div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+
+      {isDesktop ? (
+        <BrowserFrame url="app.insaatkontrol.com" className="bg-muted/30">
+          {player}
+        </BrowserFrame>
+      ) : (
+        <PhoneFrame>{player}</PhoneFrame>
+      )}
     </div>
   );
 }
