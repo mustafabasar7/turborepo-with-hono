@@ -11,7 +11,7 @@ import { useReducedMotion } from "@/hooks/use-reduced-motion";
 /** Koyu çerçeveli, ayaklı monitör. Ekran içeriği `children` olarak gelir. */
 function MonitorFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="hidden flex-col items-center md:drop-shadow-2xl sm:flex">
+    <div className="flex flex-col items-center md:drop-shadow-2xl">
       <div className="w-full overflow-hidden rounded-2xl border-[10px] border-b-[18px] border-neutral-800 bg-neutral-800">
         <div className="overflow-hidden rounded-md">{children}</div>
       </div>
@@ -36,16 +36,16 @@ export function HeroDeviceShowcase() {
   }, [playing]);
 
   return (
-    <div className="relative mx-auto w-full max-w-3xl pb-6 lg:max-w-none sm:pl-[14%] sm:pb-10">
+    <div className="relative mx-auto w-full max-w-3xl pb-6 sm:pl-[14%] sm:pb-10 lg:max-w-none">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute top-1/3 left-[8%] hidden size-72 rounded-full bg-primary/25 blur-3xl md:block"
       />
 
       <MonitorFrame>
-        {playing && isDesktop ? (
+        {playing ? (
           <video
-            src="/videos/hero-desktop.mp4"
+            src={isDesktop ? "/videos/hero-desktop.mp4" : "/videos/hero-desktop-sm.mp4"}
             poster="/images/hero-desktop-poster.jpg"
             autoPlay
             loop
@@ -66,12 +66,12 @@ export function HeroDeviceShowcase() {
         )}
       </MonitorFrame>
 
-      <div className="relative mx-auto w-[68%] max-w-72 sm:absolute sm:bottom-0 sm:left-0 sm:mx-0 sm:w-[28%] sm:max-w-none sm:-rotate-6">
+      <div className="absolute bottom-0 left-0 hidden w-[28%] -rotate-6 sm:block">
         <Iphone
           role="img"
           aria-label="İnşaat Kontrol mobil uygulama ekran kaydı"
           className="md:drop-shadow-2xl"
-          {...(playing
+          {...(playing && isDesktop
             ? { videoSrc: "/videos/hero-mobile.mp4" }
             : { src: "/images/hero-mobile-poster.jpg" })}
         />
