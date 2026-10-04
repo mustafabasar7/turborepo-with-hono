@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Construction, Truck, Ruler, BrickWall, CheckCircle2, ChevronDown } from "lucide-react";
+import { Construction, Truck, Ruler, BrickWall, CheckCircle2 } from "lucide-react";
 import { ArrowRight } from "@/components/animate-ui/icons/arrow-right";
 import { Hammer } from "@/components/animate-ui/icons/hammer";
 import { Button } from "@/components/ui/button";
@@ -141,14 +141,6 @@ export function HeroSection() {
         </div>
 
         <HeroDeviceShowcase />
-      </div>
-
-      {/* Scroll göstergesi */}
-      <div className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-1.5 lg:flex">
-        <span className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
-          Keşfet
-        </span>
-        <ChevronDown className="size-5 motion-safe:animate-bounce text-muted-foreground" />
       </div>
     </section>
   );

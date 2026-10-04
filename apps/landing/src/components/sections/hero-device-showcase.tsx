@@ -23,7 +23,7 @@ export function HeroDeviceShowcase() {
 
   return (
     <div className="relative mx-auto w-full max-w-3xl pb-14 lg:max-w-none sm:pl-[16%] sm:pb-20">
-      <BrowserFrame url="app.insaatkontrol.com" className="hidden drop-shadow-2xl sm:flex">
+      <BrowserFrame url="app.insaatkontrol.com" className="hidden drop-shadow-2xl sm:flex sm:flex-col">
         {playing ? (
           <video
             src="/videos/hero-desktop.mp4"
