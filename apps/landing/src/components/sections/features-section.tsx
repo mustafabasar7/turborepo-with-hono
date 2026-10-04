@@ -35,11 +35,18 @@ const VIDEOS: Record<string, string> = {
   "Müşteri Portalı": "portal",
 };
 
+const MOBILE_VIDEOS = new Set(["field", "quality", "resources", "cost", "docs", "risk", "pm"]);
+
 const videoFor = (title: string) => {
   const slug = VIDEOS[title];
-  return slug
-    ? { src: `/videos/feat/${slug}.mp4`, poster: `/images/feat/${slug}.jpg` }
-    : undefined;
+  if (!slug) return undefined;
+  return {
+    src: `/videos/feat/${slug}.mp4`,
+    poster: `/images/feat/${slug}.jpg`,
+    mobile: MOBILE_VIDEOS.has(slug)
+      ? { src: `/videos/feat-m/${slug}.mp4`, poster: `/images/feat-m/${slug}.jpg` }
+      : undefined,
+  };
 };
 
 const ICON_MAP: Record<

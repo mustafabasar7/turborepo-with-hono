@@ -10,6 +10,7 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils";
 import { BrowserFrame } from "@/components/sections/browser-frame";
@@ -22,7 +23,7 @@ export type SlideFeature = {
   badge?: string;
   Icon?: IconComponent;
   /** Uygulamadan alınan gezinti videosu; yoksa özellik yalnızca listede görünür. */
-  video?: { src: string; poster: string };
+  video?: { src: string; poster: string; mobile?: { src: string; poster: string } };
 };
 
 type FeatureSlidesProps = {
@@ -36,11 +37,13 @@ type SlideVideoProps = {
   /** Yalnızca görünen slayt oynar. */
   active: boolean;
   playing: boolean;
+  /** Dikey telefon videosu mu? */
+  portrait: boolean;
   onEnded: () => void;
 };
 
 /** Sessiz gezinti videosu. Görünür olunca baştan oynar, bitince bir sonrakine geçilir. */
-function SlideVideo({ src, poster, label, active, playing, onEnded }: SlideVideoProps) {
+function SlideVideo({ src, poster, label, active, playing, portrait, onEnded }: SlideVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
   const shouldPlay = active && playing;
 
@@ -64,7 +67,10 @@ function SlideVideo({ src, poster, label, active, playing, onEnded }: SlideVideo
       playsInline
       preload="metadata"
       aria-label={label}
-      className="block aspect-video w-full object-cover object-top"
+      className={cn(
+        "block w-full object-cover object-top",
+        portrait ? "aspect-[390/844]" : "aspect-video",
+      )}
       onEnded={onEnded}
       onError={onEnded}
     />
@@ -77,12 +83,13 @@ function SlideVideo({ src, poster, label, active, playing, onEnded }: SlideVideo
  */
 export function FeatureSlides({ features }: FeatureSlidesProps) {
   const reducedMotion = useReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 640px)", true);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [userChoice, setUserChoice] = useState<boolean | null>(null);
   const playing = userChoice ?? !reducedMotion;
 
-  const slides = features.filter((feature) => feature.video);
+  const slides = features.filter((feature) => feature.video && (isDesktop || feature.video.mobile));
   const activeTitle = slides[current]?.title;
 
   useEffect(() => {
@@ -112,7 +119,7 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
     <div className="grid items-center gap-8 lg:grid-cols-[4fr_8fr]">
       <ul className="flex flex-col gap-2">
         {features.map((feature) => {
-          const hasVideo = Boolean(feature.video);
+          const hasVideo = slides.includes(feature);
           const isActive = hasVideo && feature.title === activeTitle;
           const content = (
             <>
@@ -157,15 +164,19 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
         })}
       </ul>
 
-      <BrowserFrame url="app.insaatkontrol.com" className="bg-muted/30">
+      <BrowserFrame
+        url="app.insaatkontrol.com"
+        className="bg-muted/30 max-lg:order-first max-sm:mx-auto max-sm:max-w-[17rem] max-sm:rounded-[2rem] max-sm:border-[6px] max-sm:border-foreground/90 max-sm:[&>div:first-child]:hidden"
+      >
         <Carousel opts={{ loop: true, watchDrag: false }} setApi={setApi}>
           <CarouselContent className="ml-0">
             {slides.map((slide, index) => (
               <CarouselItem key={slide.title} className="pl-0">
                 {slide.video && (
                   <SlideVideo
-                    src={slide.video.src}
-                    poster={slide.video.poster}
+                    src={!isDesktop && slide.video.mobile ? slide.video.mobile.src : slide.video.src}
+                    poster={!isDesktop && slide.video.mobile ? slide.video.mobile.poster : slide.video.poster}
+                    portrait={!isDesktop && Boolean(slide.video.mobile)}
                     label={`${slide.title} gezinti videosu`}
                     active={index === current}
                     playing={playing}
