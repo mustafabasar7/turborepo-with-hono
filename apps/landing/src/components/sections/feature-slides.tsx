@@ -135,6 +135,7 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
 
   const slides = features.filter((feature) => feature.video && (isDesktop || feature.video.mobile));
   const activeTitle = slides[current]?.title;
+  const activeFeature = slides[current];
 
   useEffect(() => {
     if (!api) return;
@@ -290,6 +291,7 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
 
   return (
     <div ref={rootRef} className="grid items-center gap-8 lg:grid-cols-[4fr_8fr]">
+      {isDesktop ? (
       <ul className="flex flex-col gap-2">
         {features.map((feature) => {
           const hasVideo = slides.includes(feature);
@@ -336,6 +338,21 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
           );
         })}
       </ul>
+      ) : (
+        activeFeature && (
+          <div className="mx-auto flex w-full max-w-80 items-start gap-3 rounded-xl border border-primary bg-primary/5 p-4 text-left" aria-live="polite">
+            {activeFeature.Icon && (
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                <activeFeature.Icon size={20} className="text-primary" />
+              </span>
+            )}
+            <span className="flex flex-col gap-1">
+              <span className="text-sm font-semibold">{activeFeature.title}</span>
+              <span className="text-xs leading-relaxed text-muted-foreground">{activeFeature.description}</span>
+            </span>
+          </div>
+        )
+      )}
 
       {isDesktop ? (
         <BrowserFrame url="app.insaatkontrol.com" className="bg-muted/30">

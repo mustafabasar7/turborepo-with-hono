@@ -21,6 +21,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { FEATURES } from "@/lib/constants";
 import { FeatureSlides } from "@/components/sections/feature-slides";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 /** Özellik başlığı → uygulamadan alınan gezinti videosu. Listede olmayan özelliğin videosu yoktur. */
 const VIDEOS: Record<string, string> = {
@@ -102,7 +103,16 @@ const CATEGORIES: {
   },
 ];
 
+const toSlideFeature = (feature: (typeof FEATURES)[number]) => ({
+  title: feature.title,
+  description: feature.description,
+  badge: feature.badge,
+  Icon: ICON_MAP[feature.icon],
+  video: videoFor(feature.title),
+});
+
 export function FeaturesSection() {
+  const isDesktop = useMediaQuery("(min-width: 640px)", false);
   return (
     <section id="features" className="py-20">
 
@@ -123,6 +133,7 @@ export function FeaturesSection() {
           </div>
         </BlurFade>
 
+        {isDesktop ? (
         <Tabs defaultValue="sahada" className="mx-auto max-w-6xl">
           <TabsList className="mb-6 grid h-auto grid-cols-3 gap-2 bg-transparent sm:mb-10 sm:flex sm:flex-wrap sm:justify-center">
             {CATEGORIES.map((cat) => (
@@ -143,19 +154,15 @@ export function FeaturesSection() {
           {CATEGORIES.map((cat) => (
             <TabsContent key={cat.id} value={cat.id}>
               <FeatureSlides
-                features={FEATURES.filter((f) => f.category === cat.id).map(
-                  (feature) => ({
-                    title: feature.title,
-                    description: feature.description,
-                    badge: feature.badge,
-                    Icon: ICON_MAP[feature.icon],
-                    video: videoFor(feature.title),
-                  }),
-                )}
+                features={FEATURES.filter((f) => f.category === cat.id).map(toSlideFeature)}
               />
             </TabsContent>
           ))}
         </Tabs>
+        ) : (
+          // Telefonda tek seçim: tüm özellikler tek düğme satırında, kategori katmanı yok.
+          <FeatureSlides features={FEATURES.map(toSlideFeature)} />
+        )}
       </div>
     </section>
   );
