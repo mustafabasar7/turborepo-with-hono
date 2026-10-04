@@ -3,7 +3,6 @@ import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
 import { FeaturesSection } from "@/components/sections/features-section";
-import { ProductShowcaseSection } from "@/components/sections/product-showcase-section";
 import { EarlyAccessSection } from "@/components/sections/early-access-section";
 import { PricingSection } from "@/components/sections/pricing-section";
 import { FaqSection } from "@/components/sections/faq-section";
@@ -18,8 +17,6 @@ export default function HomePage() {
         <HeroSection />
 
         <FeaturesSection />
-
-        <ProductShowcaseSection />
 
         <EarlyAccessSection />
         <PricingSection />

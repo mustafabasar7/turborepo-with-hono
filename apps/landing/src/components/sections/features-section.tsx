@@ -17,16 +17,30 @@ import { Cctv } from "@/components/animate-ui/icons/cctv";
 import { Axe } from "@/components/animate-ui/icons/axe";
 import { Bot } from "@/components/animate-ui/icons/bot";
 import { Badge } from "@/components/ui/badge";
-import { MagicCard } from "@/components/ui/magic-card";
-import { BorderBeam } from "@/components/ui/border-beam";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { FEATURES } from "@/lib/constants";
+import { FeatureSlides } from "@/components/sections/feature-slides";
+
+/** Özellik başlığı → uygulamadan alınan gezinti videosu. Listede olmayan özelliğin videosu yoktur. */
+const VIDEOS: Record<string, string> = {
+  "Saha Operasyonları": "field",
+  "Kalite & Güvenlik": "quality",
+  "Kaynaklar & Lojistik": "resources",
+  "Maliyet Kontrolü": "cost",
+  "Doküman Zekası": "docs",
+  "Raporlar & Analitik": "reports",
+  "Proje Yönetimi": "pm",
+  "Risk Yönetimi": "risk",
+  "Müşteri Portalı": "portal",
+};
+
+const videoFor = (title: string) => {
+  const slug = VIDEOS[title];
+  return slug
+    ? { src: `/videos/feat/${slug}.mp4`, poster: `/images/feat/${slug}.jpg` }
+    : undefined;
+};
 
 const ICON_MAP: Record<
   string,
@@ -102,7 +116,7 @@ export function FeaturesSection() {
           </div>
         </BlurFade>
 
-        <Tabs defaultValue="sahada" className="mx-auto max-w-5xl">
+        <Tabs defaultValue="sahada" className="mx-auto max-w-6xl">
           <TabsList className="mb-10 flex h-auto flex-wrap justify-center gap-2 bg-transparent">
             {CATEGORIES.map((cat) => (
               <TabsTrigger
@@ -121,75 +135,17 @@ export function FeaturesSection() {
 
           {CATEGORIES.map((cat) => (
             <TabsContent key={cat.id} value={cat.id}>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {FEATURES.filter((f) => f.category === cat.id).map(
-                  (feature, i) => {
-                    const Icon = ICON_MAP[feature.icon];
-                    return (
-                      <BlurFade key={feature.title} delay={i * 0.08} inView>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <div className="relative cursor-default overflow-hidden rounded-xl">
-                              <MagicCard
-                                className="rounded-xl"
-                                gradientSize={150}
-                                gradientColor="hsl(var(--primary))"
-                                gradientOpacity={0.08}
-                              >
-                                <div className="flex gap-4 p-5">
-                                  {Icon && (
-                                    <div className="mt-0.5 flex size-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                                      <Icon
-                                        size={20}
-                                        className="text-primary"
-                                        animateOnView
-                                      />
-                                    </div>
-                                  )}
-                                  <div className="min-w-0">
-                                    <div className="mb-1 flex items-center gap-2">
-                                      <h3 className="text-sm font-semibold">
-                                        {feature.title}
-                                      </h3>
-                                      {feature.badge && (
-                                        <Badge
-                                          variant="default"
-                                          className="px-1.5 py-0 text-xs"
-                                        >
-                                          {feature.badge}
-                                        </Badge>
-                                      )}
-                                    </div>
-                                    <p className="text-xs leading-relaxed text-muted-foreground">
-                                      {feature.description}
-                                    </p>
-                                  </div>
-                                </div>
-                              </MagicCard>
-                              {feature.badge && (
-                                <BorderBeam
-                                  size={60}
-                                  duration={8}
-                                  delay={i * 0.5}
-                                />
-                              )}
-                            </div>
-                          </TooltipTrigger>
-                          <TooltipContent
-                            side="top"
-                            className="max-w-xs text-center"
-                          >
-                            <p className="font-medium">{feature.title}</p>
-                            <p className="mt-1 text-xs text-muted-foreground">
-                              {feature.description}
-                            </p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </BlurFade>
-                    );
-                  }
+              <FeatureSlides
+                features={FEATURES.filter((f) => f.category === cat.id).map(
+                  (feature) => ({
+                    title: feature.title,
+                    description: feature.description,
+                    badge: feature.badge,
+                    Icon: ICON_MAP[feature.icon],
+                    video: videoFor(feature.title),
+                  }),
                 )}
-              </div>
+              />
             </TabsContent>
           ))}
         </Tabs>
