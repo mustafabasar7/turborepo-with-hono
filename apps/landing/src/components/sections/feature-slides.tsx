@@ -60,11 +60,22 @@ type SlideVideoProps = {
   playing: boolean;
   /** Dikey telefon videosu mu? */
   portrait: boolean;
+  /** Seçili slayt: posteri hemen ve öncelikli yüklenir. */
+  current: boolean;
   onEnded: () => void;
 };
 
 /** Sessiz gezinti videosu. Yalnızca etkin slaytta ve bölüm görünürken yüklenir; diğerleri poster gösterir. */
-function SlideVideo({ src, poster, label, active, playing, portrait, onEnded }: SlideVideoProps) {
+function SlideVideo({
+  src,
+  poster,
+  label,
+  active,
+  playing,
+  portrait,
+  current,
+  onEnded,
+}: SlideVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
   const shouldPlay = active && playing;
   const shape = cn("block w-full object-cover object-top", portrait ? "aspect-[390/844]" : "aspect-video");
@@ -78,7 +89,16 @@ function SlideVideo({ src, poster, label, active, playing, portrait, onEnded }: 
 
   if (!active) {
     // biome-ignore lint/performance/noImgElement: küçük sabit poster, kaydırmada yüklenir
-    return <img src={poster} alt="" loading="lazy" decoding="async" className={shape} />;
+    return (
+      <img
+        src={poster}
+        alt=""
+        loading={current ? "eager" : "lazy"}
+        fetchPriority={current ? "high" : "auto"}
+        decoding="async"
+        className={shape}
+      />
+    );
   }
 
   return (
@@ -103,7 +123,7 @@ function SlideVideo({ src, poster, label, active, playing, portrait, onEnded }: 
  */
 export function FeatureSlides({ features }: FeatureSlidesProps) {
   const reducedMotion = useReducedMotion();
-  const isDesktop = useMediaQuery("(min-width: 640px)", true);
+  const isDesktop = useMediaQuery("(min-width: 640px)", false);
   const rootRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<HTMLDivElement>(null);
   const chipRef = useRef<HTMLButtonElement>(null);
@@ -177,6 +197,7 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
                     src={!isDesktop && slide.video.mobile ? slide.video.mobile.src : slide.video.src}
                     poster={!isDesktop && slide.video.mobile ? slide.video.mobile.poster : slide.video.poster}
                     portrait={!isDesktop && Boolean(slide.video.mobile)}
+                    current={index === current}
                     label={`${slide.title} gezinti videosu`}
                     active={nearViewport && index === current}
                     playing={playing}
