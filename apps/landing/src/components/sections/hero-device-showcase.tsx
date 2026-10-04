@@ -5,11 +5,23 @@ import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Iphone } from "@/components/ui/iphone";
-import { BrowserFrame } from "@/components/sections/browser-frame";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
+/** Koyu çerçeveli, ayaklı monitör. Ekran içeriği `children` olarak gelir. */
+function MonitorFrame({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="hidden flex-col items-center drop-shadow-2xl sm:flex">
+      <div className="w-full overflow-hidden rounded-2xl border-[10px] border-b-[18px] border-neutral-800 bg-neutral-800">
+        <div className="overflow-hidden rounded-md">{children}</div>
+      </div>
+      <div className="h-10 w-1/5 bg-gradient-to-b from-neutral-700 to-neutral-800" />
+      <div className="h-2.5 w-2/5 rounded-t-md rounded-b-sm bg-neutral-800" />
+    </div>
+  );
+}
+
 /**
- * Masaüstü penceresi + telefon. Videolar sessiz ve döngülüdür;
+ * Monitör + telefon. Videolar sessiz ve döngülüdür;
  * "hareketi azalt" tercihi açıksa veya kullanıcı durdurursa sabit kare gösterilir.
  */
 export function HeroDeviceShowcase() {
@@ -22,8 +34,13 @@ export function HeroDeviceShowcase() {
   }, [playing]);
 
   return (
-    <div className="relative mx-auto w-full max-w-3xl pb-14 lg:max-w-none sm:pl-[16%] sm:pb-20">
-      <BrowserFrame url="app.insaatkontrol.com" className="hidden drop-shadow-2xl sm:flex sm:flex-col">
+    <div className="relative mx-auto w-full max-w-3xl pb-6 lg:max-w-none sm:pl-[14%] sm:pb-10">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/3 left-[8%] size-72 rounded-full bg-primary/25 blur-3xl max-sm:left-1/2 max-sm:-translate-x-1/2"
+      />
+
+      <MonitorFrame>
         {playing ? (
           <video
             src="/videos/hero-desktop.mp4"
@@ -45,9 +62,9 @@ export function HeroDeviceShowcase() {
             className="h-auto w-full"
           />
         )}
-      </BrowserFrame>
+      </MonitorFrame>
 
-      <div className="mx-auto w-[68%] max-w-72 sm:absolute sm:-bottom-10 sm:left-0 sm:mx-0 sm:w-[26%] sm:max-w-none sm:-rotate-6">
+      <div className="relative mx-auto w-[68%] max-w-72 sm:absolute sm:bottom-0 sm:left-0 sm:mx-0 sm:w-[28%] sm:max-w-none sm:-rotate-6">
         <Iphone
           role="img"
           aria-label="İnşaat Kontrol mobil uygulama ekran kaydı"
