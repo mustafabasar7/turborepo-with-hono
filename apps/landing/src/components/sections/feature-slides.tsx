@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState, type ComponentType } from "re
 import { Pause, Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -13,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils";
+import { BrowserFrame } from "@/components/sections/browser-frame";
 
 type IconComponent = ComponentType<{ size?: number; className?: string }>;
 
@@ -157,16 +157,7 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
         })}
       </ul>
 
-      <Card className="relative gap-0 overflow-hidden rounded-2xl bg-muted/30 p-0 shadow-xl">
-        <div className="flex items-center gap-2 border-b bg-muted px-4 py-2.5">
-          <span className="size-2.5 rounded-full bg-muted-foreground/30" />
-          <span className="size-2.5 rounded-full bg-muted-foreground/30" />
-          <span className="size-2.5 rounded-full bg-muted-foreground/30" />
-          <span className="mx-3 flex-1 truncate rounded bg-background/60 px-3 py-1 text-xs text-muted-foreground">
-            app.insaatkontrol.com
-          </span>
-        </div>
-
+      <BrowserFrame url="app.insaatkontrol.com" className="bg-muted/30">
         <Carousel opts={{ loop: true, watchDrag: false }} setApi={setApi}>
           <CarouselContent className="ml-0">
             {slides.map((slide, index) => (
@@ -216,7 +207,7 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
         >
           {playing ? <Pause /> : <Play />}
         </Button>
-      </Card>
+      </BrowserFrame>
     </div>
   );
 }
