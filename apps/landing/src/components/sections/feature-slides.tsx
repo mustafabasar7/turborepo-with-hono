@@ -36,7 +36,7 @@ const CLEAR_PIXEL = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABA
 /** Gerçek telefon çerçevesi; ekran alanına `children` yerleşir (ekran oranı 389.5 : 843.5). */
 function PhoneFrame({ children, controls }: { children: ReactNode; controls: ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-80 max-lg:order-first">
+    <div className="mx-auto w-full max-w-80">
       <div className="relative mx-auto w-[72%] max-w-72 [&_svg]:pointer-events-none">
       <div
         className="absolute z-0 overflow-hidden"
@@ -105,6 +105,8 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
   const reducedMotion = useReducedMotion();
   const isDesktop = useMediaQuery("(min-width: 640px)", true);
   const rootRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<HTMLDivElement>(null);
+  const chipRef = useRef<HTMLButtonElement>(null);
   const [nearViewport, setNearViewport] = useState(false);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -127,8 +129,15 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
     (title: string) => {
       const index = slides.findIndex((slide) => slide.title === title);
       if (index >= 0) api?.scrollTo(index);
+      // Telefonda liste videonun altında: seçince video görünüme gelsin.
+      if (!isDesktop) {
+        playerRef.current?.scrollIntoView({
+          behavior: reducedMotion ? "auto" : "smooth",
+          block: "center",
+        });
+      }
     },
-    [api, slides],
+    [api, slides, isDesktop, reducedMotion],
   );
 
   useEffect(() => {
@@ -148,6 +157,11 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
   }, []);
 
   const showNext = useCallback(() => api?.scrollNext(), [api]);
+
+  // Telefonda seçili düğme satırın ortasında kalsın.
+  useEffect(() => {
+    chipRef.current?.scrollIntoView({ inline: "center", block: "nearest" });
+  }, [current]);
 
   const togglePlaying = useCallback(() => {
     setUserChoice(!playing);
@@ -211,37 +225,41 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
   );
 
   const belowControls = (
-    <div className="mt-3 flex items-center justify-center gap-2">
-        <div className="flex flex-wrap items-center justify-center">
-          {slides.map((slide, index) => (
-            <button
-              key={slide.title}
-              type="button"
-              aria-label={`${slide.title} videosu`}
-              aria-current={index === current}
-              className="flex size-11 items-center justify-center"
-              onClick={() => api?.scrollTo(index)}
-            >
-              <span
-                className={cn(
-                  "size-2.5 rounded-full transition-colors",
-                  index === current ? "bg-primary" : "bg-muted-foreground/40",
-                )}
-              />
-            </button>
-          ))}
-        </div>
-
-        <Button
-          type="button"
-          variant="secondary"
-          size="icon"
-          className="size-11 shrink-0"
-          aria-label={playing ? "Videoyu durdur" : "Videoyu oynat"}
-          onClick={togglePlaying}
-        >
-          {playing ? <Pause /> : <Play />}
-        </Button>
+    <div className="mt-3 flex items-center gap-2">
+      <div
+        role="tablist"
+        aria-label="Özellik videoları"
+        className="flex min-w-0 flex-1 snap-x gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {slides.map((slide, index) => (
+          <button
+            key={slide.title}
+            ref={index === current ? chipRef : undefined}
+            type="button"
+            role="tab"
+            aria-selected={index === current}
+            className={cn(
+              "min-h-11 shrink-0 snap-center rounded-full border px-4 text-sm font-medium transition-colors",
+              index === current
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-border bg-background text-muted-foreground",
+            )}
+            onClick={() => api?.scrollTo(index)}
+          >
+            {slide.title}
+          </button>
+        ))}
+      </div>
+      <Button
+        type="button"
+        variant="secondary"
+        size="icon"
+        className="size-11 shrink-0"
+        aria-label={playing ? "Videoyu durdur" : "Videoyu oynat"}
+        onClick={togglePlaying}
+      >
+        {playing ? <Pause /> : <Play />}
+      </Button>
     </div>
   );
 
@@ -300,7 +318,9 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
           {overlayControls}
         </BrowserFrame>
       ) : (
-        <PhoneFrame controls={belowControls}>{carousel}</PhoneFrame>
+        <div ref={playerRef} className="max-lg:order-first">
+          <PhoneFrame controls={belowControls}>{carousel}</PhoneFrame>
+        </div>
       )}
     </div>
   );

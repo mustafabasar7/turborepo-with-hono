@@ -62,8 +62,9 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="container relative z-10 mx-auto grid items-center gap-12 px-4 lg:grid-cols-[5fr_7fr] lg:gap-6 xl:max-w-[88rem]">
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+      <div className="container relative z-10 mx-auto grid items-center gap-8 px-4 lg:grid-cols-[5fr_7fr] lg:gap-x-6 lg:gap-y-0 xl:max-w-[88rem]">
+        {/* Mobilde sıra: başlık, laptop, maddeler ve butonlar; masaüstünde laptop sağ sütunda. */}
+        <div className="flex flex-col items-center text-center lg:col-start-1 lg:row-start-1 lg:items-start lg:self-end lg:text-left">
           {/* Shiny badge */}
           <div className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/8 px-4 py-1.5 text-sm">
             <AnimatedShinyText shimmerWidth={150} className="font-medium">
@@ -102,11 +103,17 @@ export function HeroSection() {
             by="line"
             duration={0.3}
             delay={0.2}
-            className="mb-8 max-w-xl text-lg text-muted-foreground md:text-xl"
+            className="mb-0 max-w-xl text-lg text-muted-foreground md:text-xl lg:mb-8"
           >
             {"Şantiyeden ofise tek platform. Proje yönetimi, maliyet kontrolü, kalite denetimi, saha operasyonları ve AI araçları — hepsi bir arada."}
           </TextAnimate>
+        </div>
 
+        <div className="max-lg:order-none lg:col-start-2 lg:row-span-2 lg:row-start-1">
+          <HeroDeviceShowcase />
+        </div>
+
+        <div className="flex flex-col items-center text-center lg:col-start-1 lg:row-start-2 lg:items-start lg:self-start lg:text-left">
           {/* Trust bullets */}
           <ul className="mb-8 flex flex-col gap-2 text-left text-base text-muted-foreground">
             {[
@@ -139,8 +146,6 @@ export function HeroSection() {
             </Button>
           </div>
         </div>
-
-        <HeroDeviceShowcase />
       </div>
     </section>
   );
