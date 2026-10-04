@@ -62,7 +62,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="container relative z-10 mx-auto grid items-center gap-12 px-4 lg:grid-cols-2 lg:gap-8">
+      <div className="container relative z-10 mx-auto grid items-center gap-12 px-4 lg:grid-cols-[5fr_7fr] lg:gap-6 xl:max-w-[88rem]">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           {/* Shiny badge */}
           <div className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/8 px-4 py-1.5 text-sm">
@@ -77,7 +77,7 @@ export function HeroSection() {
             animation="blurInUp"
             by="line"
             duration={0.25}
-            className="mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl xl:text-6xl"
+            className="mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl xl:text-5xl 2xl:text-6xl"
           >
             {"Maliyet Aşımı Bitti."}
           </TextAnimate>
@@ -92,7 +92,7 @@ export function HeroSection() {
                 "Kontrol Sizde.",
               ]}
               duration={2200}
-              className="text-4xl font-extrabold tracking-tight text-primary sm:text-5xl xl:text-6xl"
+              className="text-4xl font-extrabold tracking-tight text-primary sm:text-5xl xl:text-5xl 2xl:text-6xl"
             />
           </div>
 

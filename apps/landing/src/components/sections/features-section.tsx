@@ -29,7 +29,7 @@ const VIDEOS: Record<string, string> = {
   "Kaynaklar & Lojistik": "resources",
   "Maliyet Kontrolü": "cost",
   "Doküman Zekası": "docs",
-  "Raporlar & Analitik": "reports",
+  "Raporlar & Analitik": "insights",
   "Proje Yönetimi": "pm",
   "Risk Yönetimi": "risk",
   "Müşteri Portalı": "portal",

@@ -21,7 +21,7 @@ export function HeroDeviceShowcase() {
   }, [playing]);
 
   return (
-    <div className="relative mx-auto w-full max-w-3xl pb-12 pl-[16%] sm:pb-16">
+    <div className="relative mx-auto w-full max-w-3xl pb-12 lg:max-w-none pl-[16%] sm:pb-16">
       <Safari
         url="app.insaatkontrol.com"
         role="img"
