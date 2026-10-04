@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/navbar";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { MobileCtaBar } from "@/components/layout/mobile-cta-bar";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
 import { FeaturesSection } from "@/components/sections/features-section";
@@ -26,6 +27,7 @@ export default function HomePage() {
       </main>
       <Footer />
       <ScrollToTop />
+      <MobileCtaBar />
     </>
   );
 }

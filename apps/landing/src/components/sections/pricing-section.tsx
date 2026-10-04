@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Zap, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,6 +36,16 @@ async function handleCheckout(variantId: string) {
 export function PricingSection() {
   const [isYearly, setIsYearly] = useState(false);
   const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
+  const planRowRef = useRef<HTMLDivElement>(null);
+
+  // Telefonda kartlar yatay kayar; ilk açılışta "En Popüler" plan ortada görünsün.
+  useEffect(() => {
+    const row = planRowRef.current;
+    if (!row || row.scrollWidth <= row.clientWidth) return;
+    const popular = row.children[PRICING_PLANS.findIndex((plan) => plan.isPopular)] as HTMLElement | undefined;
+    if (!popular) return;
+    row.scrollLeft = popular.offsetLeft - (row.clientWidth - popular.offsetWidth) / 2;
+  }, []);
 
   async function onPlanClick(plan: (typeof PRICING_PLANS)[0]) {
     if (!plan.isSelfServe) {
@@ -97,7 +107,10 @@ export function PricingSection() {
         </BlurFade>
 
         <BlurFade delay={0.2} inView>
-          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+          <div
+            ref={planRowRef}
+            className="-mx-4 flex max-w-5xl snap-x snap-mandatory gap-4 overflow-x-auto px-4 pt-6 pb-4 [scrollbar-width:none] md:mx-auto md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pt-0 [&::-webkit-scrollbar]:hidden"
+          >
             {PRICING_PLANS.map((plan) => {
               // yearly = yıllık TOPLAM tutar (₺); ekranda aylık-eşdeğer gösterilir.
               const displayMonthly =
@@ -108,7 +121,7 @@ export function PricingSection() {
                 <Card
                   key={plan.slug}
                   className={cn(
-                    "relative flex flex-col",
+                    "relative flex min-w-[82%] snap-center flex-col md:min-w-0",
                     plan.isPopular && "border-primary shadow-lg ring-2 ring-primary"
                   )}
                 >

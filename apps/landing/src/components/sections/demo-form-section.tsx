@@ -104,6 +104,7 @@ export function DemoFormSection() {
                       <Label htmlFor="name">Ad Soyad *</Label>
                       <Input
                         id="name"
+                        autoComplete="name"
                         placeholder="Ahmet Yılmaz"
                         required
                         value={form.name}
@@ -114,6 +115,7 @@ export function DemoFormSection() {
                       <Label htmlFor="company">Şirket Adı *</Label>
                       <Input
                         id="company"
+                        autoComplete="organization"
                         placeholder="ABC İnşaat A.Ş."
                         required
                         value={form.company}
@@ -135,6 +137,8 @@ export function DemoFormSection() {
                       <Label htmlFor="phone">Telefon</Label>
                       <Input
                         id="phone"
+                        autoComplete="tel"
+                        inputMode="tel"
                         type="tel"
                         placeholder="+90 532 000 00 00"
                         value={form.phone}
@@ -143,7 +147,7 @@ export function DemoFormSection() {
                     </div>
 
                     {/* Firma Tipi */}
-                    <div className="flex flex-col gap-2 min-w-0">
+                    <div className="flex flex-col gap-2 min-w-0 max-sm:hidden">
                       <Label htmlFor="company-type">Firma Tipi</Label>
                       <Select value={form.companyType} onValueChange={set("companyType")}>
                         <SelectTrigger id="company-type" className="w-full">
@@ -170,7 +174,7 @@ export function DemoFormSection() {
                     </div>
 
                     {/* Şantiye Sayısı */}
-                    <div className="flex flex-col gap-2 min-w-0">
+                    <div className="flex flex-col gap-2 min-w-0 max-sm:hidden">
                       <Label htmlFor="site-count">Şantiye Sayısı</Label>
                       <Select value={form.siteCount} onValueChange={set("siteCount")}>
                         <SelectTrigger id="site-count" className="w-full">
@@ -188,7 +192,7 @@ export function DemoFormSection() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 max-sm:hidden">
                     <Label htmlFor="message">Mesaj</Label>
                     <Textarea
                       id="message"

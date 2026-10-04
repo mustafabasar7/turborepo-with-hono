@@ -37,7 +37,7 @@ const CLEAR_PIXEL = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABA
 function PhoneFrame({ children, controls }: { children: ReactNode; controls: ReactNode }) {
   return (
     <div className="mx-auto w-full max-w-80">
-      <div className="relative mx-auto w-[72%] max-w-72 [&_svg]:pointer-events-none">
+      <div className="relative mx-auto w-[64%] max-w-64 [&_svg]:pointer-events-none">
       <div
         className="absolute z-0 overflow-hidden"
         style={{ left: "4.907%", top: "2.183%", width: "89.95%", height: "95.63%", borderRadius: "14.3% / 6.6%" }}

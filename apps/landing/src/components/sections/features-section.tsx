@@ -35,7 +35,7 @@ const VIDEOS: Record<string, string> = {
   "Müşteri Portalı": "portal",
 };
 
-const MOBILE_VIDEOS = new Set(["field", "quality", "resources", "cost", "docs", "risk", "pm"]);
+const MOBILE_VIDEOS = new Set(["field", "quality", "resources", "cost", "docs", "risk", "pm", "dashboard", "portal"]);
 
 const videoFor = (title: string) => {
   const slug = VIDEOS[title];
@@ -124,15 +124,15 @@ export function FeaturesSection() {
         </BlurFade>
 
         <Tabs defaultValue="sahada" className="mx-auto max-w-6xl">
-          <TabsList className="mb-10 flex h-auto flex-wrap justify-center gap-2 bg-transparent">
+          <TabsList className="mb-6 grid h-auto grid-cols-3 gap-2 bg-transparent sm:mb-10 sm:flex sm:flex-wrap sm:justify-center">
             {CATEGORIES.map((cat) => (
               <TabsTrigger
                 key={cat.id}
                 value={cat.id}
-                className="h-auto flex-col items-center gap-1 rounded-xl border border-border px-8 py-4 text-muted-foreground transition-all hover:text-foreground data-[state=active]:border-primary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md"
+                className="h-auto min-h-11 flex-col items-center gap-1 rounded-xl border border-border px-2 py-3 text-muted-foreground sm:px-8 sm:py-4 transition-all hover:text-foreground data-[state=active]:border-primary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md"
               >
                 <cat.Icon size={22} animateOnHover />
-                <span className="text-sm font-semibold">{cat.label}</span>
+                <span className="text-xs font-semibold sm:text-sm">{cat.label}</span>
                 <span className="hidden text-xs opacity-80 sm:block">
                   {cat.description}
                 </span>
