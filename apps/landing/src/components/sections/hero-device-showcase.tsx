@@ -5,12 +5,13 @@ import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Iphone } from "@/components/ui/iphone";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 /** Koyu çerçeveli, ayaklı monitör. Ekran içeriği `children` olarak gelir. */
 function MonitorFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="hidden flex-col items-center drop-shadow-2xl sm:flex">
+    <div className="hidden flex-col items-center md:drop-shadow-2xl sm:flex">
       <div className="w-full overflow-hidden rounded-2xl border-[10px] border-b-[18px] border-neutral-800 bg-neutral-800">
         <div className="overflow-hidden rounded-md">{children}</div>
       </div>
@@ -26,6 +27,7 @@ function MonitorFrame({ children }: { children: React.ReactNode }) {
  */
 export function HeroDeviceShowcase() {
   const reducedMotion = useReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 640px)", false);
   const [userChoice, setUserChoice] = useState<boolean | null>(null);
   const playing = userChoice ?? !reducedMotion;
 
@@ -37,11 +39,11 @@ export function HeroDeviceShowcase() {
     <div className="relative mx-auto w-full max-w-3xl pb-6 lg:max-w-none sm:pl-[14%] sm:pb-10">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/3 left-[8%] size-72 rounded-full bg-primary/25 blur-3xl max-sm:left-1/2 max-sm:-translate-x-1/2"
+        className="pointer-events-none absolute top-1/3 left-[8%] hidden size-72 rounded-full bg-primary/25 blur-3xl md:block"
       />
 
       <MonitorFrame>
-        {playing ? (
+        {playing && isDesktop ? (
           <video
             src="/videos/hero-desktop.mp4"
             poster="/images/hero-desktop-poster.jpg"
@@ -68,7 +70,7 @@ export function HeroDeviceShowcase() {
         <Iphone
           role="img"
           aria-label="İnşaat Kontrol mobil uygulama ekran kaydı"
-          className="drop-shadow-2xl"
+          className="md:drop-shadow-2xl"
           {...(playing
             ? { videoSrc: "/videos/hero-mobile.mp4" }
             : { src: "/images/hero-mobile-poster.jpg" })}
@@ -79,7 +81,7 @@ export function HeroDeviceShowcase() {
         type="button"
         variant="secondary"
         size="icon"
-        className="absolute right-2 bottom-0 size-11"
+        className="absolute right-2 bottom-0 size-11 max-sm:static max-sm:mx-auto max-sm:mt-4 max-sm:flex"
         aria-label={playing ? "Tanıtım videolarını durdur" : "Tanıtım videolarını oynat"}
         onClick={togglePlaying}
       >

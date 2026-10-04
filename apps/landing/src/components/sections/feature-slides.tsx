@@ -34,16 +34,19 @@ type FeatureSlidesProps = {
 const CLEAR_PIXEL = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
 /** Gerçek telefon çerçevesi; ekran alanına `children` yerleşir (ekran oranı 389.5 : 843.5). */
-function PhoneFrame({ children }: { children: ReactNode }) {
+function PhoneFrame({ children, controls }: { children: ReactNode; controls: ReactNode }) {
   return (
-    <div className="relative mx-auto w-[72%] max-w-72 max-lg:order-first [&_svg]:pointer-events-none">
+    <div className="mx-auto w-full max-w-80 max-lg:order-first">
+      <div className="relative mx-auto w-[72%] max-w-72 [&_svg]:pointer-events-none">
       <div
         className="absolute z-0 overflow-hidden"
         style={{ left: "4.907%", top: "2.183%", width: "89.95%", height: "95.63%", borderRadius: "14.3% / 6.6%" }}
       >
         <div className="relative size-full">{children}</div>
       </div>
-      <Iphone src={CLEAR_PIXEL} className="drop-shadow-2xl" />
+      <Iphone src={CLEAR_PIXEL} className="md:drop-shadow-2xl" />
+      </div>
+      {controls}
     </div>
   );
 }
@@ -60,10 +63,11 @@ type SlideVideoProps = {
   onEnded: () => void;
 };
 
-/** Sessiz gezinti videosu. Görünür olunca baştan oynar, bitince bir sonrakine geçilir. */
+/** Sessiz gezinti videosu. Yalnızca etkin slaytta ve bölüm görünürken yüklenir; diğerleri poster gösterir. */
 function SlideVideo({ src, poster, label, active, playing, portrait, onEnded }: SlideVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
   const shouldPlay = active && playing;
+  const shape = cn("block w-full object-cover object-top", portrait ? "aspect-[390/844]" : "aspect-video");
 
   useEffect(() => {
     const video = ref.current;
@@ -72,9 +76,10 @@ function SlideVideo({ src, poster, label, active, playing, portrait, onEnded }: 
     else video.pause();
   }, [shouldPlay]);
 
-  useEffect(() => {
-    if (!active && ref.current) ref.current.currentTime = 0;
-  }, [active]);
+  if (!active) {
+    // biome-ignore lint/performance/noImgElement: küçük sabit poster, kaydırmada yüklenir
+    return <img src={poster} alt="" loading="lazy" decoding="async" className={shape} />;
+  }
 
   return (
     <video
@@ -83,14 +88,11 @@ function SlideVideo({ src, poster, label, active, playing, portrait, onEnded }: 
       poster={poster}
       muted
       playsInline
-      preload="metadata"
+      autoPlay={playing}
+      preload="auto"
       aria-label={label}
-      className={cn(
-        "block w-full object-cover object-top",
-        portrait ? "aspect-[390/844]" : "aspect-video",
-      )}
+      className={shape}
       onEnded={onEnded}
-      onError={onEnded}
     />
   );
 }
@@ -102,6 +104,8 @@ function SlideVideo({ src, poster, label, active, playing, portrait, onEnded }: 
 export function FeatureSlides({ features }: FeatureSlidesProps) {
   const reducedMotion = useReducedMotion();
   const isDesktop = useMediaQuery("(min-width: 640px)", true);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [nearViewport, setNearViewport] = useState(false);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [userChoice, setUserChoice] = useState<boolean | null>(null);
@@ -127,14 +131,29 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
     [api, slides],
   );
 
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setNearViewport(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   const showNext = useCallback(() => api?.scrollNext(), [api]);
 
   const togglePlaying = useCallback(() => {
     setUserChoice(!playing);
   }, [playing]);
 
-  const player = (
-    <>
+  const carousel = (
         <Carousel opts={{ loop: true, watchDrag: false }} setApi={setApi}>
           <CarouselContent className="ml-0">
             {slides.map((slide, index) => (
@@ -145,7 +164,7 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
                     poster={!isDesktop && slide.video.mobile ? slide.video.mobile.poster : slide.video.poster}
                     portrait={!isDesktop && Boolean(slide.video.mobile)}
                     label={`${slide.title} gezinti videosu`}
-                    active={index === current}
+                    active={nearViewport && index === current}
                     playing={playing}
                     onEnded={showNext}
                   />
@@ -154,7 +173,10 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
             ))}
           </CarouselContent>
         </Carousel>
+  );
 
+  const overlayControls = (
+    <>
         <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center rounded-full bg-background/80 px-1 backdrop-blur-sm">
           {slides.map((slide, index) => (
             <button
@@ -188,8 +210,43 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
     </>
   );
 
+  const belowControls = (
+    <div className="mt-3 flex items-center justify-center gap-2">
+        <div className="flex flex-wrap items-center justify-center">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.title}
+              type="button"
+              aria-label={`${slide.title} videosu`}
+              aria-current={index === current}
+              className="flex size-11 items-center justify-center"
+              onClick={() => api?.scrollTo(index)}
+            >
+              <span
+                className={cn(
+                  "size-2.5 rounded-full transition-colors",
+                  index === current ? "bg-primary" : "bg-muted-foreground/40",
+                )}
+              />
+            </button>
+          ))}
+        </div>
+
+        <Button
+          type="button"
+          variant="secondary"
+          size="icon"
+          className="size-11 shrink-0"
+          aria-label={playing ? "Videoyu durdur" : "Videoyu oynat"}
+          onClick={togglePlaying}
+        >
+          {playing ? <Pause /> : <Play />}
+        </Button>
+    </div>
+  );
+
   return (
-    <div className="grid items-center gap-8 lg:grid-cols-[4fr_8fr]">
+    <div ref={rootRef} className="grid items-center gap-8 lg:grid-cols-[4fr_8fr]">
       <ul className="flex flex-col gap-2">
         {features.map((feature) => {
           const hasVideo = slides.includes(feature);
@@ -239,10 +296,11 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
 
       {isDesktop ? (
         <BrowserFrame url="app.insaatkontrol.com" className="bg-muted/30">
-          {player}
+          {carousel}
+          {overlayControls}
         </BrowserFrame>
       ) : (
-        <PhoneFrame>{player}</PhoneFrame>
+        <PhoneFrame controls={belowControls}>{carousel}</PhoneFrame>
       )}
     </div>
   );

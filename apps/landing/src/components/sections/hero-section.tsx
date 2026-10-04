@@ -37,7 +37,7 @@ export function HeroSection() {
       />
 
       {/* Gradient colour washes — no blur-3xl on mobile for perf */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block">
         <div className="absolute -top-40 left-1/2 size-[900px] -translate-x-1/2 rounded-full bg-primary/15 blur-[100px]" />
         <div className="absolute top-1/3 -left-40 size-[500px] rounded-full bg-primary/8 blur-[80px]" />
         <div className="absolute top-1/4 -right-40 size-[500px] rounded-full bg-primary/8 blur-[80px]" />
