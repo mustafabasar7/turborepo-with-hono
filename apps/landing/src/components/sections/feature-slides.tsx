@@ -178,9 +178,13 @@ export function FeatureSlides({ features }: FeatureSlidesProps) {
 
   const showNext = useCallback(() => api?.scrollNext(), [api]);
 
-  // Telefonda seçili düğme satırın ortasında kalsın.
+  // Telefonda seçili düğme satırın ortasında kalsın. Yalnızca düğme satırı yatay kayar;
+  // scrollIntoView sayfayı da dikey kaydırdığı için kullanılmaz.
   useEffect(() => {
-    chipRef.current?.scrollIntoView({ inline: "center", block: "nearest" });
+    const chip = chipRef.current;
+    const row = chip?.parentElement;
+    if (!chip || !row) return;
+    row.scrollTo({ left: chip.offsetLeft - (row.clientWidth - chip.offsetWidth) / 2, behavior: "smooth" });
   }, [current]);
 
   const togglePlaying = useCallback(() => {
