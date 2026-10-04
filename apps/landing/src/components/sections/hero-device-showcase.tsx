@@ -22,8 +22,8 @@ export function HeroDeviceShowcase() {
   }, [playing]);
 
   return (
-    <div className="relative mx-auto w-full max-w-3xl pb-16 lg:max-w-none pl-[16%] sm:pb-20">
-      <BrowserFrame url="app.insaatkontrol.com" className="drop-shadow-2xl">
+    <div className="relative mx-auto w-full max-w-3xl pb-14 lg:max-w-none sm:pl-[16%] sm:pb-20">
+      <BrowserFrame url="app.insaatkontrol.com" className="hidden drop-shadow-2xl sm:flex">
         {playing ? (
           <video
             src="/videos/hero-desktop.mp4"
@@ -47,7 +47,7 @@ export function HeroDeviceShowcase() {
         )}
       </BrowserFrame>
 
-      <div className="absolute -bottom-10 left-0 w-[26%] -rotate-6">
+      <div className="mx-auto w-[68%] max-w-72 sm:absolute sm:-bottom-10 sm:left-0 sm:mx-0 sm:w-[26%] sm:max-w-none sm:-rotate-6">
         <Iphone
           role="img"
           aria-label="İnşaat Kontrol mobil uygulama ekran kaydı"
