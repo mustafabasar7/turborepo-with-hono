@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from "react"
+import { type HTMLAttributes, useId } from "react"
 
 const PHONE_WIDTH = 433
 const PHONE_HEIGHT = 882
@@ -28,6 +28,8 @@ export function Iphone({
   style,
   ...props
 }: IphoneProps) {
+  // Aynı sayfada birden çok telefon olabilir; sabit bir maske kimliği gizli olana bağlanıp ekranı boş bırakır.
+  const maskId = `screenPunch${useId().replace(/:/g, "")}`
   const hasVideo = !!videoSrc
   const hasMedia = hasVideo || !!src
 
@@ -89,7 +91,7 @@ export function Iphone({
         className="absolute inset-0 size-full"
         style={{ transform: "translateZ(0)" }}
       >
-        <g mask={hasMedia ? "url(#screenPunch)" : undefined}>
+        <g mask={hasMedia ? `url(#${maskId})` : undefined}>
           <path
             d="M2 73C2 32.6832 34.6832 0 75 0H357C397.317 0 430 32.6832 430 73V809C430 849.317 397.317 882 357 882H75C34.6832 882 2 849.317 2 809V73Z"
             className="fill-[#E5E5E5] dark:fill-[#404040]"
@@ -125,7 +127,7 @@ export function Iphone({
         <path
           d={`M${SCREEN_X} 75C${SCREEN_X} 44.2101 46.2101 ${SCREEN_Y} 77 ${SCREEN_Y}H355C385.79 ${SCREEN_Y} 410.75 44.2101 410.75 75V807C410.75 837.79 385.79 862.75 355 862.75H77C46.2101 862.75 ${SCREEN_X} 837.79 ${SCREEN_X} 807V75Z`}
           className="fill-[#E5E5E5] stroke-[#E5E5E5] stroke-[0.5] dark:fill-[#404040] dark:stroke-[#404040]"
-          mask={hasMedia ? "url(#screenPunch)" : undefined}
+          mask={hasMedia ? `url(#${maskId})` : undefined}
         />
 
         <path
@@ -142,7 +144,7 @@ export function Iphone({
         />
 
         <defs>
-          <mask id="screenPunch" maskUnits="userSpaceOnUse">
+          <mask id={maskId} maskUnits="userSpaceOnUse">
             <rect
               x="0"
               y="0"
