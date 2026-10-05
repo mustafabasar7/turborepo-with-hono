@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/navbar";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { MobileCtaBar } from "@/components/layout/mobile-cta-bar";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
@@ -13,6 +14,7 @@ import { DemoFormSection } from "@/components/sections/demo-form-section";
 export default function HomePage() {
   return (
     <>
+      <ScrollProgress className="h-0.5 bg-primary from-primary via-primary to-primary" />
       <Navbar />
       <main>
         <HeroSection />

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { WordRotate } from "@/components/ui/word-rotate";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
+import { NumberTicker } from "@/components/ui/number-ticker";
 import { HeroDeviceShowcase } from "@/components/sections/hero-device-showcase";
 
 export function HeroSection() {
@@ -117,14 +118,14 @@ export function HeroSection() {
           {/* Trust bullets */}
           <ul className="mb-8 flex flex-col gap-2 text-left text-base text-muted-foreground">
             {[
-              "7 gün ücretsiz deneme",
-              "Kredi kartı gerekmez",
-              "Kurulum 5 dakika",
-              "Türkçe destek",
+              { key: "deneme", text: <><NumberTicker value={7} /> gün ücretsiz deneme</> },
+              { key: "kart", text: "Kredi kartı gerekmez" },
+              { key: "kurulum", text: <>Kurulum <NumberTicker value={5} delay={0.4} /> dakika</> },
+              { key: "destek", text: "Türkçe destek" },
             ].map((item) => (
-              <li key={item} className="flex items-center gap-2">
+              <li key={item.key} className="flex items-center gap-2">
                 <CheckCircle2 className="size-5 shrink-0 text-primary" aria-hidden="true" />
-                {item}
+                <span>{item.text}</span>
               </li>
             ))}
           </ul>

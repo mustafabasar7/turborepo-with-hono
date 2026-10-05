@@ -16,6 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { BlurFade } from "@/components/ui/blur-fade";
+import { BorderBeam } from "@/components/ui/border-beam";
 import { PRICING_PLANS, PRO_ADD_ONS } from "@/config/pricing";
 import { cn } from "@/lib/utils";
 
@@ -125,6 +126,9 @@ export function PricingSection() {
                     plan.isPopular && "border-primary shadow-lg ring-2 ring-primary"
                   )}
                 >
+                  {plan.isPopular && (
+                    <BorderBeam size={140} duration={7} colorFrom="#f59e0b" colorTo="#fde68a" borderWidth={2} />
+                  )}
                   {plan.isPopular && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                       <Badge className="px-4 py-1 text-sm">
